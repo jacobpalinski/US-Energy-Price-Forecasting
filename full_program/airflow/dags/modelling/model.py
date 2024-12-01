@@ -40,22 +40,10 @@ class Model:
             mlflow.log_param("units", 32)
             mlflow.log_param("activation_function", 'tanh')
             mlflow.log_param("dropout", 0.2)
-            mlflow.log_param("epochs", 150)
+            mlflow.log_param("epochs", 75)
             mlflow.log_param("batch_size", 128)
 
-            # Create the sequence generators for training and validation
-            # train_gen = EtlTransforms.create_sequences(x_train, y_train, sequence_length=time_steps, batch_size=batch_size)
-            # test_gen = EtlTransforms.create_sequences(x_test, y_test, sequence_length=time_steps, batch_size=batch_size)
-            # The above would be passed to model fit with test_gen in validation_data parameter
-
-            '''print(f' X_train columns : {x_train.columns}')
-            print(f' Null values by column: {x_train.isnull().sum()}')
-            print(f"X_train shape: {x_train.shape}")
-            print(f"X_test shape: {x_test.shape}")
-            x_batch, y_batch = next(train_gen)
-            print(f"Batch shape: {x_batch.shape}, {y_batch.shape}")'''
-
-            trained = cls._train(model, dataset, validation_dataset, epochs=150, callbacks=[MLflowCallback])
+            trained = cls._train(model, dataset, validation_dataset, epochs=75, callbacks=[MLflowCallback()])
             mae = cls.compute_mae(trained, validation_dataset)
 
             mlflow.log_metric("mae", mae)
@@ -77,3 +65,18 @@ class Model:
         model.fit(dataset, epochs=epochs, validation_data=validation_dataset, verbose=2,
                   callbacks=[] if callbacks is None else callbacks)
         return model
+    
+    @classmethod
+    def compute_mae(cls, model: keras.Model, validation_dataset: tf.data.Dataset):
+        '''
+        Compute the Mean Absolute Error (MAE) for the validation dataset
+        '''
+        true_values = []
+        predicted_values = []
+        for x_batch, y_batch in validation_dataset:
+            y_pred = model.predict(x_batch)
+            true_values.extend(y_batch.numpy())
+            predicted_values.extend(y_pred.flatten())
+        
+        mae = mean_absolute_error(true_values, predicted_values)
+        return mae

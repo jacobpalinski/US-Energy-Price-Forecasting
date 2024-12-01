@@ -194,6 +194,7 @@ class NoaaTransformation:
         df['wci'] = round(35.74 + (0.6215 * (1.8 * df['tavg'] + 32)) - (35.75 * (2.23694 * df['awnd'])**0.16) + (0.4275 * (1.8 * df['tavg'] + 32) * (2.23694 * df['awnd'])**0.16), 2)
         wci_aggregation = df.groupby(df.index)['wci'].agg(wci_sum='sum')
         df = pd.merge(df, wci_aggregation, left_index=True, right_index=True)
+        df = df.drop(columns=['wci'])
         return df
     
     @classmethod

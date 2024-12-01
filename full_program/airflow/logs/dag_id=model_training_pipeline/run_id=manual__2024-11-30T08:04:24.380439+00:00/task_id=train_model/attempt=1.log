@@ -1,0 +1,31 @@
+[2024-11-30T08:04:33.967+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model permission to 509
+[2024-11-30T08:04:33.968+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model'
+[2024-11-30T08:04:34.006+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model permission to 509
+[2024-11-30T08:04:34.006+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model'
+[2024-11-30T08:04:34.035+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-30T08:04:24.380439+00:00 [queued]>
+[2024-11-30T08:04:34.045+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-30T08:04:24.380439+00:00 [queued]>
+[2024-11-30T08:04:34.046+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-30T08:04:34.063+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model> on 2024-11-30 08:04:24.380439+00:00
+[2024-11-30T08:04:34.078+0000] {standard_task_runner.py:57} INFO - Started process 105026 to run task
+[2024-11-30T08:04:34.085+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model', 'manual__2024-11-30T08:04:24.380439+00:00', '--job-id', '37', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpjf1q57ze']
+[2024-11-30T08:04:34.093+0000] {standard_task_runner.py:85} INFO - Job 37: Subtask train_model
+[2024-11-30T08:04:34.175+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model permission to 509
+[2024-11-30T08:04:34.176+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-30T08:04:24.380439+00:00/task_id=train_model'
+[2024-11-30T08:04:34.178+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model manual__2024-11-30T08:04:24.380439+00:00 [running]> on host 71596b931411
+[2024-11-30T08:04:34.303+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-30T08:04:24.380439+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-30T08:04:24.380439+00:00'
+[2024-11-30T08:07:36.921+0000] {logging_mixin.py:151} INFO - Data has been normalised
+[2024-11-30T08:07:36.925+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/train_model.py", line 43, in train_model
+    train_dataset = EtlTransforms.build_dataset(x=X_train, y=y_train, sequence_length=30, batch_size=128)
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 290, in build_dataset
+    tf.TensorSpec(shape=(y.shape[1],), dtype=tf.float64),
+IndexError: tuple index out of range
+[2024-11-30T08:07:36.973+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=model_training_pipeline, task_id=train_model, execution_date=20241130T080424, start_date=20241130T080434, end_date=20241130T080736
+[2024-11-30T08:07:36.999+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 37 for task train_model (tuple index out of range; 105026)
+[2024-11-30T08:07:37.094+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-30T08:07:37.145+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

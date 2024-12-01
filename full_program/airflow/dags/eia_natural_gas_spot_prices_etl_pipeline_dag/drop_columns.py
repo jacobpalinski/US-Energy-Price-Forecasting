@@ -22,4 +22,4 @@ def drop_columns():
     'process-name', 'series', 'series-description', 'units'])
     
     # Put data in S3
-    s3.put_data(data=natural_gas_spot_prices_df, folder='full_program/extraction/natural_gas_spot_prices/', object_key=f'natural_gas_spot_prices_{formatted_date}')
+    s3.put_data(data=natural_gas_spot_prices_df, folder='full_program/transformation/natural_gas_spot_prices/', object_key=f'natural_gas_spot_prices_{formatted_date}')

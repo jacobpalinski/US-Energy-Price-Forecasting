@@ -1,0 +1,65 @@
+[2024-12-01T08:21:32.400+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day permission to 509
+[2024-12-01T08:21:32.400+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day'
+[2024-12-01T08:21:32.438+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day permission to 509
+[2024-12-01T08:21:32.439+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day'
+[2024-12-01T08:21:32.466+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model_7day manual__2024-12-01T07:03:18.014924+00:00 [queued]>
+[2024-12-01T08:21:32.476+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model_7day manual__2024-12-01T07:03:18.014924+00:00 [queued]>
+[2024-12-01T08:21:32.477+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2024-12-01T08:21:32.494+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model_7day> on 2024-12-01 07:03:18.014924+00:00
+[2024-12-01T08:21:32.506+0000] {standard_task_runner.py:57} INFO - Started process 75829 to run task
+[2024-12-01T08:21:32.508+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model_7day', 'manual__2024-12-01T07:03:18.014924+00:00', '--job-id', '56', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpue0x_1_a']
+[2024-12-01T08:21:32.511+0000] {standard_task_runner.py:85} INFO - Job 56: Subtask train_model_7day
+[2024-12-01T08:21:32.568+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day permission to 509
+[2024-12-01T08:21:32.568+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T07:03:18.014924+00:00/task_id=train_model_7day'
+[2024-12-01T08:21:32.570+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model_7day manual__2024-12-01T07:03:18.014924+00:00 [running]> on host 71596b931411
+[2024-12-01T08:21:32.661+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model_7day' AIRFLOW_CTX_EXECUTION_DATE='2024-12-01T07:03:18.014924+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-01T07:03:18.014924+00:00'
+[2024-12-01T08:25:57.087+0000] {logging_mixin.py:151} INFO - sequences successfully created
+[2024-12-01T08:25:57.653+0000] {logging_mixin.py:151} WARNING - 2024/12/01 08:25:57 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-12-01T08:25:57.885+0000] {logging_mixin.py:151} INFO - Epoch 1/75
+[2024-12-01T08:26:54.576+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.8203 - val_loss: 0.8107 - 57s/epoch - 43ms/step
+[2024-12-01T08:26:54.592+0000] {logging_mixin.py:151} INFO - Epoch 2/75
+[2024-12-01T08:27:55.939+0000] {logging_mixin.py:151} INFO - 1314/1314 - 61s - loss: 0.5663 - val_loss: 0.6469 - 61s/epoch - 47ms/step
+[2024-12-01T08:27:55.982+0000] {logging_mixin.py:151} INFO - Epoch 3/75
+[2024-12-01T08:28:58.744+0000] {logging_mixin.py:151} INFO - 1314/1314 - 63s - loss: 0.4777 - val_loss: 0.6004 - 63s/epoch - 48ms/step
+[2024-12-01T08:28:58.759+0000] {logging_mixin.py:151} INFO - Epoch 4/75
+[2024-12-01T08:29:55.680+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.4270 - val_loss: 0.6742 - 57s/epoch - 43ms/step
+[2024-12-01T08:29:55.758+0000] {logging_mixin.py:151} INFO - Epoch 5/75
+[2024-12-01T08:31:11.114+0000] {logging_mixin.py:151} INFO - 1314/1314 - 75s - loss: 0.3996 - val_loss: 0.6127 - 75s/epoch - 57ms/step
+[2024-12-01T08:31:11.197+0000] {logging_mixin.py:151} INFO - Epoch 6/75
+[2024-12-01T08:32:26.118+0000] {logging_mixin.py:151} INFO - 1314/1314 - 75s - loss: 0.3703 - val_loss: 0.6413 - 75s/epoch - 57ms/step
+[2024-12-01T08:32:26.199+0000] {logging_mixin.py:151} INFO - Epoch 7/75
+[2024-12-01T08:33:21.166+0000] {logging_mixin.py:151} INFO - 1314/1314 - 55s - loss: 0.3412 - val_loss: 0.6061 - 55s/epoch - 42ms/step
+[2024-12-01T08:33:21.238+0000] {logging_mixin.py:151} INFO - Epoch 8/75
+[2024-12-01T08:34:20.207+0000] {logging_mixin.py:151} INFO - 1314/1314 - 59s - loss: 0.3239 - val_loss: 0.6122 - 59s/epoch - 45ms/step
+[2024-12-01T08:34:20.231+0000] {logging_mixin.py:151} INFO - Epoch 9/75
+[2024-12-01T08:35:17.648+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.2991 - val_loss: 0.5636 - 57s/epoch - 44ms/step
+[2024-12-01T08:35:17.704+0000] {logging_mixin.py:151} INFO - Epoch 10/75
+[2024-12-01T08:36:14.371+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.2931 - val_loss: 0.4652 - 57s/epoch - 43ms/step
+[2024-12-01T08:36:14.385+0000] {logging_mixin.py:151} INFO - Epoch 11/75
+[2024-12-01T08:37:09.461+0000] {logging_mixin.py:151} INFO - 1314/1314 - 55s - loss: 0.2645 - val_loss: 0.4287 - 55s/epoch - 42ms/step
+[2024-12-01T08:37:09.523+0000] {logging_mixin.py:151} INFO - Epoch 12/75
+[2024-12-01T08:38:03.699+0000] {logging_mixin.py:151} INFO - 1314/1314 - 54s - loss: 0.2634 - val_loss: 0.4306 - 54s/epoch - 41ms/step
+[2024-12-01T08:38:03.763+0000] {logging_mixin.py:151} INFO - Epoch 13/75
+[2024-12-01T08:39:11.119+0000] {logging_mixin.py:151} INFO - 1314/1314 - 67s - loss: 0.2525 - val_loss: 0.3350 - 67s/epoch - 51ms/step
+[2024-12-01T08:39:11.201+0000] {logging_mixin.py:151} INFO - Epoch 14/75
+[2024-12-01T08:40:26.946+0000] {logging_mixin.py:151} INFO - 1314/1314 - 76s - loss: 0.2394 - val_loss: 0.3137 - 76s/epoch - 58ms/step
+[2024-12-01T08:40:27.041+0000] {logging_mixin.py:151} INFO - Epoch 15/75
+[2024-12-01T08:41:43.442+0000] {logging_mixin.py:151} INFO - 1314/1314 - 76s - loss: 0.2304 - val_loss: 0.3101 - 76s/epoch - 58ms/step
+[2024-12-01T08:41:43.485+0000] {logging_mixin.py:151} INFO - Epoch 16/75
+[2024-12-01T08:43:01.344+0000] {logging_mixin.py:151} INFO - 1314/1314 - 78s - loss: 0.2218 - val_loss: 0.3129 - 78s/epoch - 59ms/step
+[2024-12-01T08:43:01.422+0000] {logging_mixin.py:151} INFO - Epoch 17/75

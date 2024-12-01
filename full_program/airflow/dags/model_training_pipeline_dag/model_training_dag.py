@@ -10,9 +10,13 @@ from model_training_pipeline_dag.natural_gas_feature_engineering import natural_
 from model_training_pipeline_dag.weather_variables_feature_engineering import weather_variables_feature_engineering
 from model_training_pipeline_dag.backfill_missing_values import backfill_missing_values
 from model_training_pipeline_dag.forwardfill_missing_values import forwardfill_missing_values
+from model_training_pipeline_dag.drop_columns import drop_columns
 from model_training_pipeline_dag.extend_previous_curated_data import extend_previous_curated_data
 from model_training_pipeline_dag.test_data_creation import test_data_creation
-from model_training_pipeline_dag.train_model import train_model
+from model_training_pipeline_dag.train_model_7day import train_model_7day
+from model_training_pipeline_dag.train_model_14day import train_model_14day
+from model_training_pipeline_dag.train_model_30day import train_model_30day
+from model_training_pipeline_dag.train_model_60day import train_model_60day
 
 # Retrieve current date to be used by cloudwatch logs
 today = datetime.now()
@@ -38,25 +42,6 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
         timeout=120,  # Timeout for the sensor
         mode='poke',  # The mode of operation ('poke' or 'reschedule')
     )'''
-    '''check_lambda_logs = CloudWatchLogsSensor(
-        task_id='check_lambda_logs',
-        log_group='/aws/lambda/natural_gas_spot_prices_transformation_trigger',
-        filter_pattern=f'"{formatted_date}"',
-        aws_conn_id='aws_connection',
-        timeout=60,
-        poke_interval=30
-    )'''
-    '''invoke_lambda_function = LambdaInvokeFunctionOperator(
-        task_id='invoke_lambda_function',
-        function_name='natural_gas_spot_prices_transformation_trigger',
-        aws_conn_id='aws_connection',
-        log_type='Tail'
-    )'''
-    '''process_lambda_output = PythonOperator(
-        task_id='process_lambda_output',
-        python_callable=process_lambda_output,
-        provide_context=True
-    )'''
     '''merge_dataframes = PythonOperator(
         task_id='merge_dataframes',
         python_callable=merge_dataframes
@@ -77,6 +62,10 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
         task_id='forwardfill_missing_values',
         python_callable=forwardfill_missing_values
     )
+    drop_columns = PythonOperator(
+        task_id='drop_columns',
+        python_callable=drop_columns
+    )
     extend_previous_curated_data = PythonOperator(
         task_id='extend_previous_curated_data',
         python_callable=extend_previous_curated_data
@@ -85,9 +74,21 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
         task_id='test_data_creation',
         python_callable=test_data_creation
     )'''
-    train_model = PythonOperator(
-        task_id='train_model',
-        python_callable=train_model
+    train_model_7day = PythonOperator(
+        task_id='train_model_7day',
+        python_callable=train_model_7day
+    )
+    train_model_14day = PythonOperator(
+        task_id='train_model_14day',
+        python_callable=train_model_14day
+    )
+    train_model_30day = PythonOperator(
+        task_id='train_model_30day',
+        python_callable=train_model_30day
+    )
+    train_model_60day = PythonOperator(
+        task_id='train_model_60day',
+        python_callable=train_model_60day
     )
     # Dag Execution
-    train_model
+    train_model_7day >> train_model_14day >> train_model_30day >> train_model_60day

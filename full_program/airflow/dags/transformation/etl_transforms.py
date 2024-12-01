@@ -212,8 +212,9 @@ class EtlTransforms:
         Returns:
             pd.DataFrame: Returns dataframe with columns with null values end of series forward filled
         '''
-        columns_to_ffill = ['residential_consumption', 'commercial_consumption', 'total_underground_storage',
-        'imports', 'lng_imports', 'natural_gas_rigs_in_operation', 'awnd', 'snow', 'tavg']
+        columns_to_ffill = ['imports', 'lng_imports', 'natural_gas_rigs_in_operation', 
+        'total_consumption_total_underground_storage_ratio', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum', 
+        'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median']
         
         for col in columns_to_ffill:
             last_valid_index = df[col].last_valid_index()
@@ -259,7 +260,7 @@ class EtlTransforms:
         return holdout_df
 
     @classmethod
-    def generator(cls, x: np.array, y: np.array, sequence_length: int) -> None:
+    def generator(cls, x: pd.DataFrame, y: pd.DataFrame, sequence_length: int) -> None:
         """
         Creates sequences for LSTM
 
@@ -271,14 +272,14 @@ class EtlTransforms:
         Returns:
             np.array: Returns array of sequences for both input and output variables
         """
-        num_samples = len(x) - sequence_length
+        num_samples = len(y) - sequence_length
         for i in range(num_samples):
             x_seq = x[i:i + sequence_length]
             y_next = y[i + sequence_length]
             yield x_seq, y_next
 
     @classmethod
-    def build_dataset(cls, x: np.array, y: np.array, sequence_length: int, batch_size: int) -> tf.data.Dataset:
+    def build_dataset(cls, x: pd.DataFrame, y: pd.DataFrame, sequence_length: int, batch_size: int) -> tf.data.Dataset:
         """
         Build dataset from generator
         """
@@ -287,7 +288,7 @@ class EtlTransforms:
             args=(x, y, sequence_length),
             output_signature=(
                 tf.TensorSpec(shape=(sequence_length, x.shape[1]), dtype=tf.float64),
-                tf.TensorSpec(shape=(y.shape[1],), dtype=tf.float64),
+                tf.TensorSpec(shape=(), dtype=tf.float64),
             )
         )
         return dataset.batch(batch_size=batch_size).prefetch(tf.data.AUTOTUNE)
@@ -328,42 +329,6 @@ class EtlTransforms:
         
         # Return normalised dataframes
         return train_df, test_df
-    
-    @classmethod
-    def normalise_test_data(cls, test_df: pd.DataFrame) -> pd.DataFrame:
-        '''
-        Normalise dataframe before training machine learning model on test data
-
-        Args:
-            test_df (pd.DataFrame): Test dataframe
-        
-        Returns:
-            pd.DataFrame: Returns test dataframe with normalised data
-        '''
-        # Columns where robust scaler is going to be applied
-        robust_columns = ['imports', 'lng_imports', 'heating_oil_natural_gas_price_ratio',  '7day_ew_volatility price ($/MMBTU)',
-       '14day_ew_volatility price ($/MMBTU)', '30day_ew_volatility price ($/MMBTU)', '60day_ew_volatility price ($/MMBTU)', 
-       'price_1day_lag ($/MMBTU)', 'price_2day_lag ($/MMBTU)', 'price_3day_lag ($/MMBTU)',
-       '7day_rolling_average price ($/MMBTU)', '14day_rolling_average price ($/MMBTU)',
-       '30day_rolling_average price ($/MMBTU)', '7day_rolling_median price ($/MMBTU)','14day_rolling_median price ($/MMBTU)',
-       '30day_rolling_median price ($/MMBTU)', 'total_consumption_total_underground_storage_ratio',
-       'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median', 
-       'hdd_max', 'cdd_max', 'wci_sum']
-        
-        # Columns where log scaler is going to be applied
-        log_columns = ['snow_sum']
-
-        # Define robust scaler
-        robust_scaler = RobustScaler()
-
-        # Apply robust scaler
-        test_df[robust_columns] = robust_scaler.transform(test_df[robust_columns])
-
-        # Apply log scaler
-        test_df[log_columns] = np.log(test_df[log_columns] + 1)
-
-        # Return test dataframe
-        return test_df
         
         
         

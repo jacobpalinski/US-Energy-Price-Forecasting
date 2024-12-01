@@ -23,4 +23,4 @@ def drop_columns():
     'series', 'series-description', 'units'])
     
     # Put data in S3
-    s3.put_data(data=natural_gas_monthly_variables_df, folder='full_program/extraction/natural_gas_monthly_variables/', object_key=f'natural_gas_monthly_variables_{formatted_date}')
+    s3.put_data(data=natural_gas_monthly_variables_df, folder='full_program/transformation/natural_gas_monthly_variables/', object_key=f'natural_gas_monthly_variables_{formatted_date}')

@@ -1,0 +1,712 @@
+[2024-12-01T05:03:41.277+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model permission to 509
+[2024-12-01T05:03:41.278+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model'
+[2024-12-01T05:03:41.318+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model permission to 509
+[2024-12-01T05:03:41.319+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model'
+[2024-12-01T05:03:41.339+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-12-01T03:57:19.841673+00:00 [queued]>
+[2024-12-01T05:03:41.346+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-12-01T03:57:19.841673+00:00 [queued]>
+[2024-12-01T05:03:41.346+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2024-12-01T05:03:41.358+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model> on 2024-12-01 03:57:19.841673+00:00
+[2024-12-01T05:03:41.369+0000] {standard_task_runner.py:57} INFO - Started process 25413 to run task
+[2024-12-01T05:03:41.371+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model', 'manual__2024-12-01T03:57:19.841673+00:00', '--job-id', '52', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmp8kjulwk5']
+[2024-12-01T05:03:41.373+0000] {standard_task_runner.py:85} INFO - Job 52: Subtask train_model
+[2024-12-01T05:03:41.411+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model permission to 509
+[2024-12-01T05:03:41.412+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-12-01T03:57:19.841673+00:00/task_id=train_model'
+[2024-12-01T05:03:41.413+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model manual__2024-12-01T03:57:19.841673+00:00 [running]> on host 71596b931411
+[2024-12-01T05:03:41.486+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-12-01T03:57:19.841673+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-01T03:57:19.841673+00:00'
+[2024-12-01T05:06:47.676+0000] {logging_mixin.py:151} INFO - sequences successfully created
+[2024-12-01T05:06:48.304+0000] {logging_mixin.py:151} WARNING - 2024/12/01 05:06:48 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-12-01T05:06:48.721+0000] {logging_mixin.py:151} INFO - Epoch 1/75
+[2024-12-01T05:07:40.121+0000] {logging_mixin.py:151} INFO - 1314/1314 - 51s - loss: 0.8356 - mae: 0.8356 - val_loss: 1.0755 - val_mae: 1.0755 - 51s/epoch - 39ms/step
+[2024-12-01T05:07:40.137+0000] {logging_mixin.py:151} INFO - Epoch 2/75
+[2024-12-01T05:08:30.346+0000] {logging_mixin.py:151} INFO - 1314/1314 - 50s - loss: 0.5660 - mae: 0.5660 - val_loss: 0.7996 - val_mae: 0.7996 - 50s/epoch - 38ms/step
+[2024-12-01T05:08:30.361+0000] {logging_mixin.py:151} INFO - Epoch 3/75
+[2024-12-01T05:09:20.590+0000] {logging_mixin.py:151} INFO - 1314/1314 - 50s - loss: 0.5018 - mae: 0.5018 - val_loss: 0.6658 - val_mae: 0.6658 - 50s/epoch - 38ms/step
+[2024-12-01T05:09:20.606+0000] {logging_mixin.py:151} INFO - Epoch 4/75
+[2024-12-01T05:10:11.651+0000] {logging_mixin.py:151} INFO - 1314/1314 - 51s - loss: 0.4424 - mae: 0.4424 - val_loss: 0.5987 - val_mae: 0.5987 - 51s/epoch - 39ms/step
+[2024-12-01T05:10:11.669+0000] {logging_mixin.py:151} INFO - Epoch 5/75
+[2024-12-01T05:11:01.991+0000] {logging_mixin.py:151} INFO - 1314/1314 - 50s - loss: 0.4102 - mae: 0.4102 - val_loss: 0.7655 - val_mae: 0.7655 - 50s/epoch - 38ms/step
+[2024-12-01T05:11:02.008+0000] {logging_mixin.py:151} INFO - Epoch 6/75
+[2024-12-01T05:11:54.973+0000] {logging_mixin.py:151} INFO - 1314/1314 - 53s - loss: 0.3869 - mae: 0.3869 - val_loss: 0.9126 - val_mae: 0.9126 - 53s/epoch - 40ms/step
+[2024-12-01T05:11:55.008+0000] {logging_mixin.py:151} INFO - Epoch 7/75
+[2024-12-01T05:12:46.924+0000] {logging_mixin.py:151} INFO - 1314/1314 - 52s - loss: 0.3831 - mae: 0.3831 - val_loss: 0.8581 - val_mae: 0.8581 - 52s/epoch - 40ms/step
+[2024-12-01T05:12:46.940+0000] {logging_mixin.py:151} INFO - Epoch 8/75
+[2024-12-01T05:13:39.867+0000] {logging_mixin.py:151} INFO - 1314/1314 - 53s - loss: 0.3601 - mae: 0.3601 - val_loss: 0.7861 - val_mae: 0.7861 - 53s/epoch - 40ms/step
+[2024-12-01T05:13:39.888+0000] {logging_mixin.py:151} INFO - Epoch 9/75
+[2024-12-01T05:14:31.720+0000] {logging_mixin.py:151} INFO - 1314/1314 - 52s - loss: 0.3299 - mae: 0.3299 - val_loss: 0.6407 - val_mae: 0.6407 - 52s/epoch - 39ms/step
+[2024-12-01T05:14:31.735+0000] {logging_mixin.py:151} INFO - Epoch 10/75
+[2024-12-01T05:15:23.070+0000] {logging_mixin.py:151} INFO - 1314/1314 - 51s - loss: 0.3205 - mae: 0.3205 - val_loss: 0.5257 - val_mae: 0.5257 - 51s/epoch - 39ms/step
+[2024-12-01T05:15:23.097+0000] {logging_mixin.py:151} INFO - Epoch 11/75
+[2024-12-01T05:16:19.236+0000] {logging_mixin.py:151} INFO - 1314/1314 - 56s - loss: 0.2949 - mae: 0.2949 - val_loss: 0.6835 - val_mae: 0.6835 - 56s/epoch - 43ms/step
+[2024-12-01T05:16:19.260+0000] {logging_mixin.py:151} INFO - Epoch 12/75
+[2024-12-01T05:17:12.565+0000] {logging_mixin.py:151} INFO - 1314/1314 - 53s - loss: 0.2873 - mae: 0.2873 - val_loss: 0.5660 - val_mae: 0.5660 - 53s/epoch - 41ms/step
+[2024-12-01T05:17:12.582+0000] {logging_mixin.py:151} INFO - Epoch 13/75
+[2024-12-01T05:18:07.479+0000] {logging_mixin.py:151} INFO - 1314/1314 - 55s - loss: 0.2726 - mae: 0.2726 - val_loss: 0.5559 - val_mae: 0.5559 - 55s/epoch - 42ms/step
+[2024-12-01T05:18:07.509+0000] {logging_mixin.py:151} INFO - Epoch 14/75
+[2024-12-01T05:18:59.853+0000] {logging_mixin.py:151} INFO - 1314/1314 - 52s - loss: 0.2603 - mae: 0.2603 - val_loss: 0.4792 - val_mae: 0.4792 - 52s/epoch - 40ms/step
+[2024-12-01T05:18:59.867+0000] {logging_mixin.py:151} INFO - Epoch 15/75
+[2024-12-01T05:19:54.913+0000] {logging_mixin.py:151} INFO - 1314/1314 - 55s - loss: 0.2498 - mae: 0.2498 - val_loss: 0.3708 - val_mae: 0.3708 - 55s/epoch - 42ms/step
+[2024-12-01T05:19:54.934+0000] {logging_mixin.py:151} INFO - Epoch 16/75
+[2024-12-01T05:20:48.973+0000] {logging_mixin.py:151} INFO - 1314/1314 - 54s - loss: 0.2400 - mae: 0.2400 - val_loss: 0.3915 - val_mae: 0.3915 - 54s/epoch - 41ms/step
+[2024-12-01T05:20:48.987+0000] {logging_mixin.py:151} INFO - Epoch 17/75
+[2024-12-01T05:21:43.079+0000] {logging_mixin.py:151} INFO - 1314/1314 - 54s - loss: 0.2301 - mae: 0.2301 - val_loss: 0.3326 - val_mae: 0.3326 - 54s/epoch - 41ms/step
+[2024-12-01T05:21:43.114+0000] {logging_mixin.py:151} INFO - Epoch 18/75
+[2024-12-01T05:22:38.151+0000] {logging_mixin.py:151} INFO - 1314/1314 - 55s - loss: 0.2225 - mae: 0.2225 - val_loss: 0.3144 - val_mae: 0.3144 - 55s/epoch - 42ms/step
+[2024-12-01T05:22:38.166+0000] {logging_mixin.py:151} INFO - Epoch 19/75
+[2024-12-01T05:23:33.994+0000] {logging_mixin.py:151} INFO - 1314/1314 - 56s - loss: 0.2163 - mae: 0.2163 - val_loss: 0.3165 - val_mae: 0.3165 - 56s/epoch - 42ms/step
+[2024-12-01T05:23:34.026+0000] {logging_mixin.py:151} INFO - Epoch 20/75
+[2024-12-01T05:24:43.513+0000] {logging_mixin.py:151} INFO - 1314/1314 - 69s - loss: 0.2047 - mae: 0.2047 - val_loss: 0.2446 - val_mae: 0.2446 - 69s/epoch - 53ms/step
+[2024-12-01T05:24:43.529+0000] {logging_mixin.py:151} INFO - Epoch 21/75
+[2024-12-01T05:25:54.441+0000] {logging_mixin.py:151} INFO - 1314/1314 - 71s - loss: 0.2010 - mae: 0.2010 - val_loss: 0.2545 - val_mae: 0.2545 - 71s/epoch - 54ms/step
+[2024-12-01T05:25:54.472+0000] {logging_mixin.py:151} INFO - Epoch 22/75
+[2024-12-01T05:26:50.377+0000] {logging_mixin.py:151} INFO - 1314/1314 - 56s - loss: 0.1926 - mae: 0.1926 - val_loss: 0.1947 - val_mae: 0.1947 - 56s/epoch - 43ms/step
+[2024-12-01T05:26:50.432+0000] {logging_mixin.py:151} INFO - Epoch 23/75
+[2024-12-01T05:28:03.012+0000] {logging_mixin.py:151} INFO - 1314/1314 - 73s - loss: 0.1882 - mae: 0.1882 - val_loss: 0.1926 - val_mae: 0.1926 - 73s/epoch - 55ms/step
+[2024-12-01T05:28:03.036+0000] {logging_mixin.py:151} INFO - Epoch 24/75
+[2024-12-01T05:29:15.876+0000] {logging_mixin.py:151} INFO - 1314/1314 - 73s - loss: 0.1825 - mae: 0.1825 - val_loss: 0.1585 - val_mae: 0.1585 - 73s/epoch - 55ms/step
+[2024-12-01T05:29:15.903+0000] {logging_mixin.py:151} INFO - Epoch 25/75
+[2024-12-01T05:30:26.101+0000] {logging_mixin.py:151} INFO - 1314/1314 - 70s - loss: 0.1812 - mae: 0.1812 - val_loss: 0.1615 - val_mae: 0.1615 - 70s/epoch - 53ms/step
+[2024-12-01T05:30:26.157+0000] {logging_mixin.py:151} INFO - Epoch 26/75
+[2024-12-01T05:31:35.357+0000] {logging_mixin.py:151} INFO - 1314/1314 - 69s - loss: 0.1728 - mae: 0.1728 - val_loss: 0.1583 - val_mae: 0.1583 - 69s/epoch - 53ms/step
+[2024-12-01T05:31:35.412+0000] {logging_mixin.py:151} INFO - Epoch 27/75
+[2024-12-01T05:32:40.983+0000] {logging_mixin.py:151} INFO - 1314/1314 - 66s - loss: 0.1744 - mae: 0.1744 - val_loss: 0.2005 - val_mae: 0.2005 - 66s/epoch - 50ms/step
+[2024-12-01T05:32:41.029+0000] {logging_mixin.py:151} INFO - Epoch 28/75
+[2024-12-01T05:33:41.922+0000] {logging_mixin.py:151} INFO - 1314/1314 - 61s - loss: 0.1713 - mae: 0.1713 - val_loss: 0.1536 - val_mae: 0.1536 - 61s/epoch - 46ms/step
+[2024-12-01T05:33:41.993+0000] {logging_mixin.py:151} INFO - Epoch 29/75
+[2024-12-01T05:34:50.614+0000] {logging_mixin.py:151} INFO - 1314/1314 - 69s - loss: 0.1669 - mae: 0.1669 - val_loss: 0.1416 - val_mae: 0.1416 - 69s/epoch - 52ms/step
+[2024-12-01T05:34:50.634+0000] {logging_mixin.py:151} INFO - Epoch 30/75
+[2024-12-01T05:35:56.203+0000] {logging_mixin.py:151} INFO - 1314/1314 - 66s - loss: 0.1662 - mae: 0.1662 - val_loss: 0.1367 - val_mae: 0.1367 - 66s/epoch - 50ms/step
+[2024-12-01T05:35:56.223+0000] {logging_mixin.py:151} INFO - Epoch 31/75
+[2024-12-01T05:37:03.850+0000] {logging_mixin.py:151} INFO - 1314/1314 - 68s - loss: 0.1702 - mae: 0.1702 - val_loss: 0.1485 - val_mae: 0.1485 - 68s/epoch - 51ms/step
+[2024-12-01T05:37:03.871+0000] {logging_mixin.py:151} INFO - Epoch 32/75
+[2024-12-01T05:38:15.688+0000] {logging_mixin.py:151} INFO - 1314/1314 - 72s - loss: 0.1614 - mae: 0.1614 - val_loss: 0.1610 - val_mae: 0.1610 - 72s/epoch - 55ms/step
+[2024-12-01T05:38:15.801+0000] {logging_mixin.py:151} INFO - Epoch 33/75
+[2024-12-01T05:39:30.690+0000] {logging_mixin.py:151} INFO - 1314/1314 - 75s - loss: 0.1656 - mae: 0.1656 - val_loss: 0.1719 - val_mae: 0.1719 - 75s/epoch - 57ms/step
+[2024-12-01T05:39:30.771+0000] {logging_mixin.py:151} INFO - Epoch 34/75
+[2024-12-01T05:40:32.093+0000] {logging_mixin.py:151} INFO - 1314/1314 - 61s - loss: 0.1574 - mae: 0.1574 - val_loss: 0.1304 - val_mae: 0.1304 - 61s/epoch - 47ms/step
+[2024-12-01T05:40:32.167+0000] {logging_mixin.py:151} INFO - Epoch 35/75
+[2024-12-01T05:41:26.460+0000] {logging_mixin.py:151} INFO - 1314/1314 - 54s - loss: 0.1581 - mae: 0.1581 - val_loss: 0.1553 - val_mae: 0.1553 - 54s/epoch - 41ms/step
+[2024-12-01T05:41:26.523+0000] {logging_mixin.py:151} INFO - Epoch 36/75
+[2024-12-01T05:42:33.468+0000] {logging_mixin.py:151} INFO - 1314/1314 - 67s - loss: 0.1563 - mae: 0.1563 - val_loss: 0.1554 - val_mae: 0.1554 - 67s/epoch - 51ms/step
+[2024-12-01T05:42:33.541+0000] {logging_mixin.py:151} INFO - Epoch 37/75
+[2024-12-01T05:43:46.506+0000] {logging_mixin.py:151} INFO - 1314/1314 - 73s - loss: 0.1567 - mae: 0.1567 - val_loss: 0.1364 - val_mae: 0.1364 - 73s/epoch - 56ms/step
+[2024-12-01T05:43:46.577+0000] {logging_mixin.py:151} INFO - Epoch 38/75
+[2024-12-01T05:44:55.377+0000] {logging_mixin.py:151} INFO - 1314/1314 - 69s - loss: 0.1592 - mae: 0.1592 - val_loss: 0.1325 - val_mae: 0.1325 - 69s/epoch - 52ms/step
+[2024-12-01T05:44:55.465+0000] {logging_mixin.py:151} INFO - Epoch 39/75
+[2024-12-01T05:46:05.366+0000] {logging_mixin.py:151} INFO - 1314/1314 - 70s - loss: 0.1547 - mae: 0.1547 - val_loss: 0.1801 - val_mae: 0.1801 - 70s/epoch - 53ms/step
+[2024-12-01T05:46:05.446+0000] {logging_mixin.py:151} INFO - Epoch 40/75
+[2024-12-01T05:47:15.295+0000] {logging_mixin.py:151} INFO - 1314/1314 - 70s - loss: 0.1519 - mae: 0.1519 - val_loss: 0.1544 - val_mae: 0.1544 - 70s/epoch - 53ms/step
+[2024-12-01T05:47:15.318+0000] {logging_mixin.py:151} INFO - Epoch 41/75
+[2024-12-01T05:48:13.234+0000] {logging_mixin.py:151} INFO - 1314/1314 - 58s - loss: 0.1505 - mae: 0.1505 - val_loss: 0.1301 - val_mae: 0.1301 - 58s/epoch - 44ms/step
+[2024-12-01T05:48:13.312+0000] {logging_mixin.py:151} INFO - Epoch 42/75
+[2024-12-01T05:49:08.681+0000] {logging_mixin.py:151} INFO - 1314/1314 - 55s - loss: 0.1540 - mae: 0.1540 - val_loss: 0.1258 - val_mae: 0.1258 - 55s/epoch - 42ms/step
+[2024-12-01T05:49:08.714+0000] {logging_mixin.py:151} INFO - Epoch 43/75
+[2024-12-01T05:50:21.955+0000] {logging_mixin.py:151} INFO - 1314/1314 - 73s - loss: 0.1532 - mae: 0.1532 - val_loss: 0.1226 - val_mae: 0.1226 - 73s/epoch - 56ms/step
+[2024-12-01T05:50:21.994+0000] {logging_mixin.py:151} INFO - Epoch 44/75
+[2024-12-01T05:51:32.957+0000] {logging_mixin.py:151} INFO - 1314/1314 - 71s - loss: 0.1481 - mae: 0.1481 - val_loss: 0.1267 - val_mae: 0.1267 - 71s/epoch - 54ms/step
+[2024-12-01T05:51:33.027+0000] {logging_mixin.py:151} INFO - Epoch 45/75
+[2024-12-01T05:52:33.209+0000] {logging_mixin.py:151} INFO - 1314/1314 - 60s - loss: 0.1526 - mae: 0.1526 - val_loss: 0.1624 - val_mae: 0.1624 - 60s/epoch - 46ms/step
+[2024-12-01T05:52:33.236+0000] {logging_mixin.py:151} INFO - Epoch 46/75
+[2024-12-01T05:53:30.343+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.1513 - mae: 0.1513 - val_loss: 0.1703 - val_mae: 0.1703 - 57s/epoch - 43ms/step
+[2024-12-01T05:53:30.433+0000] {logging_mixin.py:151} INFO - Epoch 47/75
+[2024-12-01T05:54:39.371+0000] {logging_mixin.py:151} INFO - 1314/1314 - 69s - loss: 0.1479 - mae: 0.1479 - val_loss: 0.1272 - val_mae: 0.1272 - 69s/epoch - 52ms/step
+[2024-12-01T05:54:39.404+0000] {logging_mixin.py:151} INFO - Epoch 48/75
+[2024-12-01T05:55:54.629+0000] {logging_mixin.py:151} INFO - 1314/1314 - 75s - loss: 0.1452 - mae: 0.1452 - val_loss: 0.1679 - val_mae: 0.1679 - 75s/epoch - 57ms/step
+[2024-12-01T05:55:54.701+0000] {logging_mixin.py:151} INFO - Epoch 49/75
+[2024-12-01T05:57:04.420+0000] {logging_mixin.py:151} INFO - 1314/1314 - 70s - loss: 0.1462 - mae: 0.1462 - val_loss: 0.1477 - val_mae: 0.1477 - 70s/epoch - 53ms/step
+[2024-12-01T05:57:04.493+0000] {logging_mixin.py:151} INFO - Epoch 50/75
+[2024-12-01T05:58:11.888+0000] {logging_mixin.py:151} INFO - 1314/1314 - 67s - loss: 0.1468 - mae: 0.1468 - val_loss: 0.2146 - val_mae: 0.2146 - 67s/epoch - 51ms/step
+[2024-12-01T05:58:11.967+0000] {logging_mixin.py:151} INFO - Epoch 51/75
+[2024-12-01T05:59:15.493+0000] {logging_mixin.py:151} INFO - 1314/1314 - 64s - loss: 0.1483 - mae: 0.1483 - val_loss: 0.2328 - val_mae: 0.2328 - 64s/epoch - 48ms/step
+[2024-12-01T05:59:15.562+0000] {logging_mixin.py:151} INFO - Epoch 52/75
+[2024-12-01T06:00:12.797+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.1517 - mae: 0.1517 - val_loss: 0.2355 - val_mae: 0.2355 - 57s/epoch - 44ms/step
+[2024-12-01T06:00:12.872+0000] {logging_mixin.py:151} INFO - Epoch 53/75
+[2024-12-01T06:01:09.314+0000] {logging_mixin.py:151} INFO - 1314/1314 - 56s - loss: 0.1477 - mae: 0.1477 - val_loss: 0.1918 - val_mae: 0.1918 - 56s/epoch - 43ms/step
+[2024-12-01T06:01:09.395+0000] {logging_mixin.py:151} INFO - Epoch 54/75
+[2024-12-01T06:02:05.581+0000] {logging_mixin.py:151} INFO - 1314/1314 - 56s - loss: 0.1431 - mae: 0.1431 - val_loss: 0.1696 - val_mae: 0.1696 - 56s/epoch - 43ms/step
+[2024-12-01T06:02:05.660+0000] {logging_mixin.py:151} INFO - Epoch 55/75
+[2024-12-01T06:03:02.527+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.1471 - mae: 0.1471 - val_loss: 0.1795 - val_mae: 0.1795 - 57s/epoch - 43ms/step
+[2024-12-01T06:03:02.559+0000] {logging_mixin.py:151} INFO - Epoch 56/75
+[2024-12-01T06:03:59.428+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.1425 - mae: 0.1425 - val_loss: 0.2255 - val_mae: 0.2255 - 57s/epoch - 43ms/step
+[2024-12-01T06:03:59.505+0000] {logging_mixin.py:151} INFO - Epoch 57/75
+[2024-12-01T06:05:00.221+0000] {logging_mixin.py:151} INFO - 1314/1314 - 61s - loss: 0.1428 - mae: 0.1428 - val_loss: 0.1808 - val_mae: 0.1808 - 61s/epoch - 46ms/step
+[2024-12-01T06:05:00.297+0000] {logging_mixin.py:151} INFO - Epoch 58/75
+[2024-12-01T06:05:58.535+0000] {logging_mixin.py:151} INFO - 1314/1314 - 58s - loss: 0.1398 - mae: 0.1398 - val_loss: 0.1288 - val_mae: 0.1288 - 58s/epoch - 44ms/step
+[2024-12-01T06:05:58.600+0000] {logging_mixin.py:151} INFO - Epoch 59/75
+[2024-12-01T06:06:57.263+0000] {logging_mixin.py:151} INFO - 1314/1314 - 59s - loss: 0.1400 - mae: 0.1400 - val_loss: 0.1611 - val_mae: 0.1611 - 59s/epoch - 45ms/step
+[2024-12-01T06:06:57.344+0000] {logging_mixin.py:151} INFO - Epoch 60/75
+[2024-12-01T06:07:55.747+0000] {logging_mixin.py:151} INFO - 1314/1314 - 58s - loss: 0.1414 - mae: 0.1414 - val_loss: 0.1699 - val_mae: 0.1699 - 58s/epoch - 44ms/step
+[2024-12-01T06:07:55.821+0000] {logging_mixin.py:151} INFO - Epoch 61/75
+[2024-12-01T06:08:54.697+0000] {logging_mixin.py:151} INFO - 1314/1314 - 59s - loss: 0.1427 - mae: 0.1427 - val_loss: 0.1751 - val_mae: 0.1751 - 59s/epoch - 45ms/step
+[2024-12-01T06:08:54.776+0000] {logging_mixin.py:151} INFO - Epoch 62/75
+[2024-12-01T06:09:50.973+0000] {logging_mixin.py:151} INFO - 1314/1314 - 56s - loss: 0.1408 - mae: 0.1408 - val_loss: 0.2072 - val_mae: 0.2072 - 56s/epoch - 43ms/step
+[2024-12-01T06:09:51.046+0000] {logging_mixin.py:151} INFO - Epoch 63/75
+[2024-12-01T06:10:47.724+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.1398 - mae: 0.1398 - val_loss: 0.1788 - val_mae: 0.1788 - 57s/epoch - 43ms/step
+[2024-12-01T06:10:47.801+0000] {logging_mixin.py:151} INFO - Epoch 64/75
+[2024-12-01T06:11:45.110+0000] {logging_mixin.py:151} INFO - 1314/1314 - 57s - loss: 0.1384 - mae: 0.1384 - val_loss: 0.2081 - val_mae: 0.2081 - 57s/epoch - 44ms/step
+[2024-12-01T06:11:45.186+0000] {logging_mixin.py:151} INFO - Epoch 65/75
+[2024-12-01T06:12:48.797+0000] {logging_mixin.py:151} INFO - 1314/1314 - 64s - loss: 0.1384 - mae: 0.1384 - val_loss: 0.1498 - val_mae: 0.1498 - 64s/epoch - 48ms/step
+[2024-12-01T06:12:48.894+0000] {logging_mixin.py:151} INFO - Epoch 66/75
+[2024-12-01T06:13:58.087+0000] {logging_mixin.py:151} INFO - 1314/1314 - 69s - loss: 0.1382 - mae: 0.1382 - val_loss: 0.1802 - val_mae: 0.1802 - 69s/epoch - 53ms/step
+[2024-12-01T06:13:58.177+0000] {logging_mixin.py:151} INFO - Epoch 67/75
+[2024-12-01T06:14:58.658+0000] {logging_mixin.py:151} INFO - 1314/1314 - 60s - loss: 0.1392 - mae: 0.1392 - val_loss: 0.1331 - val_mae: 0.1331 - 60s/epoch - 46ms/step
+[2024-12-01T06:14:58.711+0000] {logging_mixin.py:151} INFO - Epoch 68/75
+[2024-12-01T06:15:59.789+0000] {logging_mixin.py:151} INFO - 1314/1314 - 61s - loss: 0.1385 - mae: 0.1385 - val_loss: 0.0991 - val_mae: 0.0991 - 61s/epoch - 46ms/step
+[2024-12-01T06:15:59.892+0000] {logging_mixin.py:151} INFO - Epoch 69/75
+[2024-12-01T06:17:12.571+0000] {logging_mixin.py:151} INFO - 1314/1314 - 73s - loss: 0.1384 - mae: 0.1384 - val_loss: 0.1603 - val_mae: 0.1603 - 73s/epoch - 55ms/step
+[2024-12-01T06:17:12.653+0000] {logging_mixin.py:151} INFO - Epoch 70/75
+[2024-12-01T06:18:24.220+0000] {logging_mixin.py:151} INFO - 1314/1314 - 72s - loss: 0.1407 - mae: 0.1407 - val_loss: 0.2107 - val_mae: 0.2107 - 72s/epoch - 54ms/step
+[2024-12-01T06:18:24.272+0000] {logging_mixin.py:151} INFO - Epoch 71/75
+[2024-12-01T06:19:37.983+0000] {logging_mixin.py:151} INFO - 1314/1314 - 74s - loss: 0.1359 - mae: 0.1359 - val_loss: 0.1982 - val_mae: 0.1982 - 74s/epoch - 56ms/step
+[2024-12-01T06:19:38.000+0000] {logging_mixin.py:151} INFO - Epoch 72/75
+[2024-12-01T06:20:52.134+0000] {logging_mixin.py:151} INFO - 1314/1314 - 74s - loss: 0.1370 - mae: 0.1370 - val_loss: 0.1613 - val_mae: 0.1613 - 74s/epoch - 56ms/step
+[2024-12-01T06:20:52.211+0000] {logging_mixin.py:151} INFO - Epoch 73/75
+[2024-12-01T06:22:04.725+0000] {logging_mixin.py:151} INFO - 1314/1314 - 73s - loss: 0.1364 - mae: 0.1364 - val_loss: 0.1333 - val_mae: 0.1333 - 73s/epoch - 55ms/step
+[2024-12-01T06:22:04.766+0000] {logging_mixin.py:151} INFO - Epoch 74/75
+[2024-12-01T06:23:10.203+0000] {logging_mixin.py:151} INFO - 1314/1314 - 65s - loss: 0.1421 - mae: 0.1421 - val_loss: 0.2198 - val_mae: 0.2198 - 65s/epoch - 50ms/step
+[2024-12-01T06:23:10.284+0000] {logging_mixin.py:151} INFO - Epoch 75/75
+[2024-12-01T06:24:24.738+0000] {logging_mixin.py:151} INFO - 1314/1314 - 74s - loss: 0.1377 - mae: 0.1377 - val_loss: 0.1760 - val_mae: 0.1760 - 74s/epoch - 57ms/step
+[2024-12-01T06:24:26.510+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 4s
+[2024-12-01T06:24:26.534+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 1s 8ms/step
+[2024-12-01T06:24:26.625+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:26.643+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:26.724+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:26.743+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:26.819+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:26.835+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:26.910+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:26.931+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 7ms/step
+[2024-12-01T06:24:27.011+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.027+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:27.093+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.108+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:27.176+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.192+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:27.287+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.304+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:27.369+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.386+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:27.507+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.522+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:27.597+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.612+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:27.680+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.692+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:27.755+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.769+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:27.830+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.846+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:27.916+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:27.934+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:28.000+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.016+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.078+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.092+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.153+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.168+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.228+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.242+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.308+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.321+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:28.380+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.393+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:28.453+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.468+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.526+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.542+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.608+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.624+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.689+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.703+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.768+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.783+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.849+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.862+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:28.930+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:28.947+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:29.025+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.040+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:29.111+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.128+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:29.191+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.206+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:29.270+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.288+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:29.349+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.364+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:29.435+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.453+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:29.518+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.534+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:29.629+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.641+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:29.702+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.717+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:29.784+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.799+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:29.863+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.878+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:29.950+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:29.963+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.022+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.036+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.094+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.107+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.165+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.178+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.239+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.252+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.312+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.326+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:30.389+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.403+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:30.473+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.486+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.544+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.557+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.616+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.629+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.690+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.703+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.763+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.775+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:30.837+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.851+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:30.915+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:30.930+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:30.991+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.005+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:31.063+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.075+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:31.142+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.155+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:31.214+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.230+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:31.296+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.312+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:31.372+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.386+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:31.446+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.458+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:31.517+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.530+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:31.588+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.601+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:31.658+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.671+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:31.738+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.751+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:31.816+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.830+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:31.893+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.907+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:31.968+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:31.984+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:32.044+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.057+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:32.114+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.127+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:32.188+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.200+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:32.258+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.272+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:32.342+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.357+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:32.418+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.431+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:32.497+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.510+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:32.568+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.580+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:32.638+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.650+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:32.707+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.721+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:32.779+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.806+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 9ms/step
+[2024-12-01T06:24:32.868+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.882+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:32.950+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:32.966+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:33.033+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.048+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:33.106+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.119+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:33.184+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.197+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:33.254+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.271+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:33.347+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.363+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:33.434+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.450+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:33.518+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.534+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:33.601+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.617+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:33.691+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.708+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:33.779+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.802+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 8ms/step
+[2024-12-01T06:24:33.877+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.895+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:33.974+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:33.991+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:38.037+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.058+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 8ms/step
+[2024-12-01T06:24:38.143+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.161+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:38.235+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.253+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:38.327+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.343+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:38.412+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.429+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:38.503+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.519+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:38.584+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.602+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:38.690+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.707+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:38.785+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.810+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 8ms/step
+[2024-12-01T06:24:38.883+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.901+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:38.972+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:38.992+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:39.060+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.076+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:39.149+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.166+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:39.233+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.249+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:39.324+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.344+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 7ms/step
+[2024-12-01T06:24:39.421+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.440+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:39.510+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.529+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:39.610+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.637+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 9ms/step
+[2024-12-01T06:24:39.730+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.760+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 10ms/step
+[2024-12-01T06:24:39.842+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.863+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 7ms/step
+[2024-12-01T06:24:39.925+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:39.939+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:39.997+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.010+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:40.069+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.082+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:40.147+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.160+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:40.221+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.233+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:40.290+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.308+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:40.368+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.381+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:40.443+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.456+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:40.518+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.531+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:40.588+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.601+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:40.658+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.671+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:40.735+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.755+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 7ms/step
+[2024-12-01T06:24:40.817+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.831+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:40.897+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.914+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:40.979+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:40.993+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:41.058+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.072+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:41.130+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.143+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:41.201+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.213+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:41.271+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.285+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:41.357+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.372+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:41.438+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.451+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:41.510+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.523+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:41.580+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.593+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:41.650+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.662+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:41.720+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.732+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:41.789+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.804+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:41.868+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.886+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:41.949+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:41.964+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:42.020+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.033+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:42.099+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.112+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:42.171+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.184+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:42.241+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.253+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:42.311+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.325+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:42.384+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.397+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:42.456+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.468+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:42.526+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.539+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:42.596+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.608+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:42.664+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.677+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:42.741+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.755+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:42.819+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.835+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:42.898+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.912+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:42.972+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:42.985+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.042+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.054+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.111+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.124+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.181+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.194+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.253+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.266+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.318+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.334+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:43.400+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.412+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.470+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.483+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.540+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.554+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:43.611+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.624+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.679+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.690+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.746+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.760+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:43.821+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.837+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:43.902+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.915+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:43.974+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:43.986+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:44.050+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.063+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:44.121+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.136+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:44.193+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.205+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:44.263+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.277+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:44.348+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.362+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:44.421+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.434+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:44.490+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.503+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:44.559+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.573+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:44.630+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.642+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:44.705+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.718+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:44.776+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.790+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:44.856+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.877+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 7ms/step
+[2024-12-01T06:24:44.962+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:44.978+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:45.045+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.061+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:45.126+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.142+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:45.208+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.223+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:45.297+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.315+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:45.384+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.401+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:45.478+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.496+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:45.562+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.578+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:45.648+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.663+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:45.730+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.746+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:45.812+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.829+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:45.900+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:45.917+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:45.994+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.011+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:46.083+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.100+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:46.165+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.181+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:46.254+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.270+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:46.343+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.359+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:46.429+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.445+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:46.512+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.527+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:46.595+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.610+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:46.678+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.697+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:46.777+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.796+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:46.864+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.879+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:46.949+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:46.967+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:47.042+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.059+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:47.133+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.150+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:47.220+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.235+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:47.308+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.326+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:47.396+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.412+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:47.481+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.498+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:47.568+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.584+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:47.662+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.679+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:47.747+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.763+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:47.843+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.860+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:47.933+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:47.949+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:48.015+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.032+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:48.100+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.116+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:48.185+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.202+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:48.266+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.297+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 10ms/step
+[2024-12-01T06:24:48.368+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.386+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:48.455+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.470+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:48.540+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.557+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:48.631+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.647+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:48.716+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.733+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:48.863+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.888+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 8ms/step
+[2024-12-01T06:24:48.966+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:48.983+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:49.060+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.076+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:49.145+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.162+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:49.231+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.249+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:49.320+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.336+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:49.402+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.421+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:49.499+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.515+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:49.583+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.599+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:49.662+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.678+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:49.749+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.764+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:49.832+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.849+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:49.924+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:49.945+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 7ms/step
+[2024-12-01T06:24:50.017+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.036+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:50.115+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.132+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:50.203+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.219+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:50.291+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.307+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:50.375+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.391+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:50.474+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.491+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:50.560+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.577+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:50.646+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.661+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:50.725+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.742+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:50.827+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.844+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:50.913+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:50.929+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:50.996+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.012+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:51.087+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.103+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:51.174+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.191+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:51.262+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.279+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:51.352+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.371+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:51.446+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.463+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:51.531+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.547+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:51.615+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.634+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:51.713+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.732+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 6ms/step
+[2024-12-01T06:24:51.812+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.828+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:51.902+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.917+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 5ms/step
+[2024-12-01T06:24:51.977+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:51.989+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:52.051+0000] {logging_mixin.py:151} INFO - 1/4 [======>.......................] - ETA: 0s
+[2024-12-01T06:24:52.065+0000] {logging_mixin.py:151} INFO - 4/4 [==============================] - 0s 4ms/step
+[2024-12-01T06:24:52.712+0000] {logging_mixin.py:151} INFO - 1/3 [=========>....................] - ETA: 1s
+[2024-12-01T06:24:52.726+0000] {logging_mixin.py:151} INFO - 3/3 [==============================] - 1s 7ms/step
+[2024-12-01T06:24:52.835+0000] {logging_mixin.py:151} WARNING - 2024/12/01 06:24:52 WARNING mlflow.tensorflow: You are saving a TensorFlow Core model or Keras model without a signature. Inference with mlflow.pyfunc.spark_udf() will not work unless the model's pyfunc representation accepts pandas DataFrames as inference inputs.
+[2024-12-01T06:24:57.308+0000] {builder_impl.py:804} INFO - Assets written to: /tmp/tmpgipizkxh/model/data/model/assets
+[2024-12-01T06:26:33.678+0000] {local_task_job_runner.py:228} INFO - Task exited with return code -9
+[2024-12-01T06:26:34.113+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
