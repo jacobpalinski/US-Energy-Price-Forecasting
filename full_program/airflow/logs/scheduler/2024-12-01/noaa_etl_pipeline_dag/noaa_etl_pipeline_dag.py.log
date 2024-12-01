@@ -3946,3 +3946,73 @@
 [2024-12-01T08:43:11.661+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:43:11.659+0000] {dag.py:2907} INFO - Sync 1 DAGs
 [2024-12-01T08:43:11.698+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:43:11.698+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
 [2024-12-01T08:43:11.738+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 9.255 seconds
+[2024-12-01T08:54:53.378+0000] {processor.py:157} INFO - Started process (PID=82513) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:54:53.380+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:54:53.382+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:54:53.381+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:54:57.889+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:54:57.913+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:54:57.912+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:54:57.941+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:54:57.940+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:54:57.969+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 4.595 seconds
+[2024-12-01T08:55:28.345+0000] {processor.py:157} INFO - Started process (PID=82636) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:55:28.346+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:55:28.347+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:55:28.347+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:55:31.097+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:55:31.118+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:55:31.117+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:55:31.136+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:55:31.136+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:55:31.153+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 2.810 seconds
+[2024-12-01T08:56:01.421+0000] {processor.py:157} INFO - Started process (PID=82743) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:56:01.422+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:56:01.423+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:56:01.423+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:56:04.057+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:56:04.077+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:56:04.076+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:56:04.094+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:56:04.094+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:56:04.110+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 2.692 seconds
+[2024-12-01T08:56:34.540+0000] {processor.py:157} INFO - Started process (PID=82839) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:56:34.543+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:56:34.546+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:56:34.545+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:56:39.801+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:56:39.831+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:56:39.830+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:56:39.861+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:56:39.861+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:56:39.899+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 5.364 seconds
+[2024-12-01T08:57:09.998+0000] {processor.py:157} INFO - Started process (PID=82946) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:57:09.999+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:57:09.999+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:57:09.999+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:57:13.440+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:57:13.460+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:57:13.460+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:57:13.486+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:57:13.486+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:57:13.505+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 3.510 seconds
+[2024-12-01T08:57:44.182+0000] {processor.py:157} INFO - Started process (PID=83053) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:57:44.183+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:57:44.185+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:57:44.184+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:57:48.407+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:57:48.434+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:57:48.433+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:57:48.462+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:57:48.461+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:57:48.487+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 4.309 seconds
+[2024-12-01T08:58:18.784+0000] {processor.py:157} INFO - Started process (PID=83160) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:58:18.786+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:58:18.788+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:58:18.788+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:58:23.364+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:58:23.396+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:58:23.395+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:58:23.425+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:58:23.425+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:58:23.461+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 4.680 seconds
+[2024-12-01T08:58:54.053+0000] {processor.py:157} INFO - Started process (PID=83267) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:58:54.055+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:58:54.056+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:58:54.056+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:58:58.472+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:58:58.501+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:58:58.500+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:58:58.527+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:58:58.527+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:58:58.552+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 4.503 seconds
+[2024-12-01T08:59:29.030+0000] {processor.py:157} INFO - Started process (PID=83385) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:59:29.031+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T08:59:29.032+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:59:29.032+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:59:32.135+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T08:59:32.153+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:59:32.153+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T08:59:32.171+0000] {logging_mixin.py:151} INFO - [2024-12-01T08:59:32.171+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T08:59:32.188+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 3.161 seconds
+[2024-12-01T09:00:02.685+0000] {processor.py:157} INFO - Started process (PID=83481) to work on /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T09:00:02.686+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py for tasks to queue
+[2024-12-01T09:00:02.688+0000] {logging_mixin.py:151} INFO - [2024-12-01T09:00:02.687+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T09:00:06.212+0000] {processor.py:839} INFO - DAG(s) dict_keys(['noaa_etl_pipeline']) retrieved from /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py
+[2024-12-01T09:00:06.233+0000] {logging_mixin.py:151} INFO - [2024-12-01T09:00:06.232+0000] {dag.py:2907} INFO - Sync 1 DAGs
+[2024-12-01T09:00:06.253+0000] {logging_mixin.py:151} INFO - [2024-12-01T09:00:06.253+0000] {dag.py:3677} INFO - Setting next_dagrun for noaa_etl_pipeline to 2024-11-10T00:00:00+00:00, run_after=2024-12-10T00:00:00+00:00
+[2024-12-01T09:00:06.272+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py took 3.592 seconds
