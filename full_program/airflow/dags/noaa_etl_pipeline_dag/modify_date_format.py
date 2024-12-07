@@ -1,8 +1,8 @@
 ''' Import modules '''
 from datetime import datetime
-from extraction.noaa_api import *
-from transformation.etl_transforms import EtlTransforms
-from transformation.noaa_api_transformation import NoaaTransformation
+from dags.extraction.noaa_api import *
+from dags.transformation.etl_transforms import EtlTransforms
+from dags.transformation.noaa_api_transformation import NoaaTransformation
 
 def modify_date_format():
     ''' Modify date format of extracted NOAA weather data '''

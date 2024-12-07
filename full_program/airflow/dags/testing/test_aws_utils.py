@@ -2,9 +2,9 @@
 import json
 import pytest
 from unittest.mock import MagicMock
-from utils.aws import *
-from utils.config import *
-from fixtures.fixtures import mock_environment_variables, mock_s3, mock_s3_metadata, mock_boto3_client, mock_get_data, mock_natural_gas_spot_prices_response, mock_metadata_response
+from dags.utils.aws import *
+from dags.utils.config import *
+from dags.fixtures.fixtures import mock_environment_variables, mock_s3, mock_s3_metadata, mock_boto3_client, mock_get_data, mock_natural_gas_spot_prices_response, mock_metadata_response
 
 class TestS3:
     ''' Test class for testing S3 class '''

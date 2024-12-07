@@ -274,8 +274,8 @@ class EtlTransforms:
         """
         num_samples = len(y) - sequence_length
         for i in range(num_samples):
-            x_seq = x[i:i + sequence_length]
-            y_next = y[i + sequence_length]
+            x_seq = x.iloc[i:i + sequence_length]
+            y_next = y.iloc[i + sequence_length]
             yield x_seq, y_next
 
     @classmethod
@@ -313,19 +313,19 @@ class EtlTransforms:
        '30day_rolling_average price ($/MMBTU)', '7day_rolling_median price ($/MMBTU)','14day_rolling_median price ($/MMBTU)',
        '30day_rolling_median price ($/MMBTU)', 'total_consumption_total_underground_storage_ratio',
        'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median', 
-       'hdd_max', 'cdd_max', 'natural_gas_rigs_in_operation']
-        #log_columns = ['snow_sum']
+       'hdd_max', 'cdd_max', 'wci_sum', 'natural_gas_rigs_in_operation']
+        log_columns = ['snow_sum']
         robust_scaler = RobustScaler()
 
         # Normalise training data
         train_df[robust_columns] = robust_scaler.fit_transform(train_df[robust_columns])
         
-        #train_df[log_columns] = np.log(train_df[log_columns] + 1)
+        train_df[log_columns] = np.log(train_df[log_columns] + 1)
 
         # Normalise test data
         test_df[robust_columns] = robust_scaler.transform(test_df[robust_columns])
 
-        #test_df[log_columns] = np.log(test_df[log_columns] + 1)
+        test_df[log_columns] = np.log(test_df[log_columns] + 1)
         
         # Return normalised dataframes
         return train_df, test_df

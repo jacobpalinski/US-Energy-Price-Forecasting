@@ -1,9 +1,9 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.aws import S3
-from utils.config import Config
-from transformation.noaa_api_transformation import NoaaTransformation
-from transformation.etl_transforms import EtlTransforms
+from dags.utils.aws import S3
+from dags.utils.config import Config
+from dags.transformation.noaa_api_transformation import NoaaTransformation
+from dags.transformation.etl_transforms import EtlTransforms
 
 def weather_variables_feature_engineering():
     ''' Function that engineers features from weather variables in curated training data '''

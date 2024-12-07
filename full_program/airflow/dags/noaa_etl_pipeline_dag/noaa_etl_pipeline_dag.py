@@ -20,7 +20,7 @@ default_args = {
 
 with DAG(dag_id='noaa_etl_pipeline', default_args=default_args, schedule_interval = timedelta(30), 
         catchup=False) as dag:
-    '''noaa_extraction = PythonOperator(
+    noaa_extraction = PythonOperator(
         task_id='noaa_extraction',
         python_callable=noaa_extraction
     )
@@ -31,7 +31,7 @@ with DAG(dag_id='noaa_etl_pipeline', default_args=default_args, schedule_interva
     impute_missing_values = PythonOperator(
         task_id='impute_missing_values',
         python_callable=impute_missing_values
-    )'''
+    )
     calculate_missing_average_temperature = PythonOperator(
         task_id='calculate_missing_average_temperature',
         python_callable=calculate_missing_average_temperature
@@ -48,7 +48,7 @@ with DAG(dag_id='noaa_etl_pipeline', default_args=default_args, schedule_interva
         task_id='rename_columns',
         python_callable=rename_columns
     )
-    calculate_missing_average_temperature \
+    noaa_extraction >> modify_date_format >> impute_missing_values >> calculate_missing_average_temperature \
     >> pivot_data >> drop_columns >> rename_columns
 
 

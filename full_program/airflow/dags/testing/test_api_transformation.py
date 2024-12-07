@@ -1,10 +1,10 @@
 ''' Import modules '''
 import pytest
 import pandas as pd
-from transformation.noaa_api_transformation import *
-from transformation.eia_api_transformation import *
-from fixtures.fixtures import df_noaa_transformation_testing, df_noaa_transformation_testing_impute_missing_weather_variables, df_noaa_feature_engineering_testing, \
-df_convert_price_to_float, df_eia_feature_engineering_testing
+from dags.transformation.noaa_api_transformation import *
+from dags.transformation.eia_api_transformation import *
+from dags.fixtures.fixtures import df_noaa_transformation_testing, df_noaa_transformation_testing_impute_missing_weather_variables, df_noaa_feature_engineering_testing, \
+df_convert_column_to_float, df_eia_feature_engineering_testing
 
 class TestNoaaTransformation:
     ''' 
@@ -139,7 +139,6 @@ class TestNoaaTransformation:
         'awnd': [10, 5, 1, 8, 7, 4, 2, 10, 4, 0, 2, 1, 3, 4, 2, 1, 5, 3, 1, 15, 8, 3, 17, 12, 4, 6, 7],
         'snow': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 0, 2, 1, 0, 6, 4, 2],
         'tavg': [0.1, 15, 17.1, 0, 13, 15, 17, 16, 16, 17, 17, 17, 16, 17, 30, -3, -1, 15, 6, 7, 0, 25, -10, -6, 22, -15, -10],
-        'hdd': [18.33, 3.33, 1.33, 18.33, 5.33, 3.33, 1.33, 2.33, 2.33, 1.33, 1.33, 1.33, 2.33, 1.33, 0, 21.33, 19.33, 3.33, 12.33, 11.33, 18.33, 0, 28.33, 24.33, 0, 33.33, 28.33],
         'hdd_max': [18.33, 18.33, 18.33, 18.33, 18.33, 18.33, 2.33, 2.33, 2.33, 1.33, 1.33, 1.33, 2.33, 2.33, 2.33, 21.33, 21.33, 21.33, 18.33, 18.33, 18.33, 28.33, 28.33, 28.33, 33.33, 33.33, 33.33]}
         expected_df = pd.DataFrame(data)
         expected_df['date'] = pd.to_datetime(expected_df['date'])
@@ -163,7 +162,6 @@ class TestNoaaTransformation:
         'awnd': [10, 5, 1, 8, 7, 4, 2, 10, 4, 0, 2, 1, 3, 4, 2, 1, 5, 3, 1, 15, 8, 3, 17, 12, 4, 6, 7],
         'snow': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 0, 2, 1, 0, 6, 4, 2],
         'tavg': [0.1, 15, 17.1, 0, 13, 15, 17, 16, 16, 17, 17, 17, 16, 17, 30, -3, -1, 15, 6, 7, 0, 25, -10, -6, 22, -15, -10],
-        'cdd': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11.67, 0, 0, 0, 0, 0, 0, 6.67, 0, 0, 3.67, 0, 0],
         'cdd_max': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11.67, 11.67, 11.67, 0, 0, 0, 0, 0, 0, 6.67, 6.67, 6.67, 3.67, 3.67, 3.67]}
         expected_df = pd.DataFrame(data)
         expected_df['date'] = pd.to_datetime(expected_df['date'])
@@ -187,9 +185,7 @@ class TestNoaaTransformation:
         'awnd': [10, 5, 1, 8, 7, 4, 2, 10, 4, 0, 2, 1, 3, 4, 2, 1, 5, 3, 1, 15, 8, 3, 17, 12, 4, 6, 7],
         'snow': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 0, 2, 1, 0, 6, 4, 2],
         'tavg': [0.1, 15, 17.1, 0, 13, 15, 17, 16, 16, 17, 17, 17, 16, 17, 30, -3, -1, 15, 6, 7, 0, 25, -10, -6, 22, -15, -10],
-        'wci': [19.34, 56.92, 64.42, 20.61, 51.43, 57.46, 63.22, 57.48, 59.67, 74.65, 63.22, 64.42, 60.29, 61.88, 90.48, 24.54, 20.90, 58.13, 42.49,
-        34.19, 20.61, 79.75, -8.83, 3.74, 72.94, -12.08, -1.78],
-        'wci_sum': [140.68, 140.68, 140.68, 129.50, 129.50, 129.50, 180.37, 180.37, 180.37, 202.29, 202.29, 202.29, 212.65, 212.65, 212.65, 103.57, 103.57,
+        'wci_sum': [141.12, 141.12, 141.12, 129.50, 129.50, 129.50, 180.37, 180.37, 180.37, 202.29, 202.29, 202.29, 212.65, 212.65, 212.65, 103.57, 103.57,
         103.57, 97.29, 97.29, 97.29, 74.66, 74.66, 74.66, 59.08, 59.08, 59.08]}
         expected_df = pd.DataFrame(data)
         expected_df['date'] = pd.to_datetime(expected_df['date'])
@@ -294,7 +290,7 @@ class TestEiaTransformation:
     ''' 
     Test class for testing EiaTransformation class 
     '''
-    def test_convert_price_to_float(self, df_convert_price_to_float):
+    def test_convert_column_to_float(self, df_convert_column_to_float):
         '''
         Tests convert_price_to_float function of EiaTransformation class
         '''
@@ -310,7 +306,7 @@ class TestEiaTransformation:
         'value': [3.0, 4.2, 5.1, 6.2],
         'units': ['$/MCF', '$/MCF', '$/MCF', '$/MCF']}
         expected_df = pd.DataFrame(data)
-        result_df = EiaTransformation.convert_price_to_float(df=df_convert_price_to_float, column=['value'])
+        result_df = EiaTransformation.convert_column_to_float(df=df_convert_column_to_float, column='value')
         pd.testing.assert_frame_equal(result_df, expected_df)
 
     def test_natural_gas_prices_lag(self, df_eia_feature_engineering_testing):

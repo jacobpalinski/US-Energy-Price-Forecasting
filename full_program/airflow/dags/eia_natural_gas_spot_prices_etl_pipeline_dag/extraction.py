@@ -1,6 +1,6 @@
 ''' Import modules '''
 from datetime import datetime
-from extraction.eia_api import *
+from dags.extraction.eia_api import *
 
 def natural_gas_spot_prices_extraction():
     ''' Performs data extraction from EIA api for natural gas spot prices '''

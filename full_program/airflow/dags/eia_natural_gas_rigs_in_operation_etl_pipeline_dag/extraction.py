@@ -1,7 +1,7 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.config import *
-from extraction.eia_api import *
+from dags.utils.config import *
+from dags.extraction.eia_api import *
 
 def natural_gas_rigs_in_operation_extraction():
     ''' Performs data extraction from EIA api for monthly natural gas rigs in operation '''

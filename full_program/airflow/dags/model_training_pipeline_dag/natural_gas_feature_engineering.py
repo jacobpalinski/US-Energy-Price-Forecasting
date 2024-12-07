@@ -1,9 +1,9 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.aws import S3
-from utils.config import Config
-from transformation.eia_api_transformation import EiaTransformation
-from transformation.etl_transforms import EtlTransforms
+from dags.utils.aws import S3
+from dags.utils.config import Config
+from dags.transformation.eia_api_transformation import EiaTransformation
+from dags.transformation.etl_transforms import EtlTransforms
 
 def natural_gas_feature_engineering():
     ''' Function that engineers features from natural gas variables in curated training data '''

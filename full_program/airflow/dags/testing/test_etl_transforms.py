@@ -2,8 +2,8 @@
 import json
 import pytest
 import pandas as pd
-from transformation.etl_transforms import *
-from fixtures.fixtures import df_etl_transforms_testing, merge_dataframes_natural_gas_spot_prices_df_no_missing_date, merge_dataframes_natural_gas_spot_prices_df_missing_date, \
+from dags.transformation.etl_transforms import *
+from dags.fixtures.fixtures import df_etl_transforms_testing, merge_dataframes_natural_gas_spot_prices_df_no_missing_date, merge_dataframes_natural_gas_spot_prices_df_missing_date, \
 merge_dataframes_heating_oil_spot_prices_df_no_missing_date, merge_dataframes_heating_oil_spot_prices_df_missing_date, merge_dataframes_natural_gas_monthly_variables_df_no_missing_date, \
 merge_dataframes_natural_gas_monthly_variables_df_missing_date, merge_dataframes_natural_gas_rigs_in_operation_df_no_missing_date, merge_dataframes_natural_gas_rigs_in_operation_df_missing_date, \
 merge_dataframes_daily_weather_df_no_missing_date, merge_dataframes_daily_weather_df_missing_date, df_forwardfill_null_values_end_of_series_with_empty_values,  \
@@ -448,13 +448,16 @@ class TestEtlTransforms:
         'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
         'imports': [1000.0, 1000.0, 1000.0, 1000.0],
         'lng_imports': [20.0, 40.0, 60.0, 60.0],
-        'residential_consumption': [2.1, 2.05, 2.04, 2.04],
-        'commerical_consumption': [475945.0, 475960.0, 475970.0, 475970.0],
-        'total_underground_storage': [6404470.0, 6404480.0, 6404490.0, 6404490.0],
+        'total_consumption_total_underground_storage_ratio': [2.1, 2.05, 2.04, 2.04],
         'natural_gas_rigs_in_operation': [1000.0, 1000.0, 2000.0, 2000.0],
-        'awnd': [10.0, 5.0, 1.0, 1.0],
-        'snow': [5.0, 3.0, 0.0, 0.0],
-        'tavg': [0.0, 15.0, 17.0, 17.0]
+        'hdd_max': [10.0, 5.0, 1.0, 1.0],
+        'cdd_max': [5.0, 3.0, 0.0, 0.0],
+        'wci_sum': [0.0, 15.0, 17.0, 17.0],
+        'snow_sum': [0.0, 2.0, 2.0, 2.0],
+        'min_tavg': [0.0, 1.0, 3.0, 3.0],
+        'max_tavg': [20.0, 3.0, 2.0, 2.0],
+        'max_abs_tavg_diff': [1.0, 3.0, 2.0, 2.0],
+        'max_abs_tavg_diff_relative_to_daily_median': [4.0, 3.0, 2.0, 2.0]
         }
         expected_df = pd.DataFrame(data)
         expected_df['date'] = pd.to_datetime(expected_df['date'])
@@ -469,14 +472,17 @@ class TestEtlTransforms:
         data = {
         'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
         'imports': [1000, 1000, 1000, 2000],
-        'lng_imports': [20, 40, 60, 80],
-        'residential_consumption': [2.1, 2.05, 2.04, 2.06],
-        'commerical_consumption': [475945.0, 475960.0, 475970.0, 475980.0],
-        'total_underground_storage': [6404470.0, 6404480.0, 6404490.0, 6404590.0],
-        'natural_gas_rigs_in_operation': [1000, 1000, 2000, 2000],
-        'awnd': [10, 5, 1, 2],
-        'snow': [5, 3, 0, 3],
-        'tavg': [0, 15, 17, 10]
+        'lng_imports': [20, 40, 60, 50],
+        'total_consumption_total_underground_storage_ratio': [2.1, 2.05, 2.04, 2.06],
+        'natural_gas_rigs_in_operation': [1000, 1000, 2000, 3000],
+        'hdd_max': [10, 5, 1, 2],
+        'cdd_max': [5, 3, 0, 3],
+        'wci_sum': [0, 15, 17, 18],
+        'snow_sum': [0, 2, 2, 4],
+        'min_tavg': [0, 1, 3, 5],
+        'max_tavg': [20, 3, 2, 6],
+        'max_abs_tavg_diff': [1, 3, 2, 4],
+        'max_abs_tavg_diff_relative_to_daily_median': [4, 3, 2, 6]
         }
         expected_df = pd.DataFrame(data)
         expected_df['date'] = pd.to_datetime(expected_df['date'])
@@ -573,9 +579,10 @@ class TestEtlTransforms:
         'max_tavg': [40, 32],
         'max_abs_tavg_diff': [4, 6],
         'max_abs_tavg_diff_relative_to_daily_median': [6, 7],
-        'hdd_sum': [1, 2],
-        'cdd_sum': [0, 3],
+        'hdd_max': [1, 2],
+        'cdd_max': [0, 3],
         'wci_sum': [17, 10],
+        'natural_gas_rigs_in_operation': [1000, 2000],
         'snow_sum': [20, 0]
         }
         expected_df = pd.DataFrame(data)
@@ -584,8 +591,8 @@ class TestEtlTransforms:
         result_df = EtlTransforms.create_test_data(df=merged_df, holdout=0.5)
         pd.testing.assert_frame_equal(result_df, expected_df)
     
-    def test_create_sequences(self):
-        ''' Tests create_sequences function of EtlTransforms class '''
+    def test_generator(self):
+        ''' Tests generator function of EtlTransforms class '''
         x_train = {
         'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
         'imports': [1000, 1000, 1000, 2000],
@@ -609,9 +616,10 @@ class TestEtlTransforms:
         'max_tavg': [25, 30, 40, 32],
         'max_abs_tavg_diff': [10, 12, 4, 6],
         'max_abs_tavg_diff_relative_to_daily_median': [3, 4, 6, 7],
-        'hdd_sum': [10, 5, 1, 2],
-        'cdd_sum': [5, 3, 0, 3],
+        'hdd_max': [10, 5, 1, 2],
+        'cdd_max': [5, 3, 0, 3],
         'wci_sum': [0, 15, 17, 10],
+        'natural_gas_rigs_in_operation': [500, 500, 1000, 2000],
         'snow_sum': [0, 10, 20, 0]
         }
         y_train = {'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
@@ -622,29 +630,86 @@ class TestEtlTransforms:
         y_train_df = pd.DataFrame(y_train)
         y_train_df['date'] = pd.to_datetime(y_train_df['date'])
         y_train_df = y_train_df.set_index('date')
-        expected_x_sequence = np.array([[[1000.  ,   20.  ,    2.1 ,    1.34,    2.06,    4.2 ,    3.05,
-        2.04,    2.6 ,    4.2 ,    3.2 ,    3.6 ,    4.1 ,    2.5 ,
-        2.75,    4.71,    7.05,   -1.  ,   25.  ,   10.  ,    3.  ,
-        10.  ,    5.  ,    0.  ,    0.  ],
-        [1000.  ,   40.  ,    2.05,    1.34,    2.06,    4.2 ,    3.05,
-        2.6 ,    2.71,    6.19,    3.2 ,    3.6 ,    4.1 ,    2.5 ,
-        2.75,    4.71,    7.05,  -10.  ,   30.  ,   12.  ,    4.  ,
-        5.  ,    3.  ,   15.  ,   10.  ]],
-        [[1000.  ,   40.  ,    2.05,    1.34,    2.06,    4.2 ,    3.05,
-        2.6 ,    2.71,    6.19,    3.2 ,    3.6 ,    4.1 ,    2.5 ,
-        2.75,    4.71,    7.05,  -10.  ,   30.  ,   12.  ,    4.  ,
-        5.  ,    3.  ,   15.  ,   10.  ],
-        [1000.  ,   60.  ,    2.04,    1.34,    2.06,    4.2 ,    3.05,
-        2.45,    3.12,    2.5 ,    3.2 ,    3.6 ,    4.1 ,    2.5 ,
-        2.75,    4.71,    7.05,  -20.  ,   40.  ,    4.  ,    6.  ,
-        1.  ,    0.  ,   17.  ,   20.  ]]])
-        expected_y_sequence = np.array([[2.1 ],
+        
+        expected_x_sequence = np.array([[[1000., 20., 2.1, 1.34, 2.06, 4.2, 3.05,
+        2.04, 2.6, 4.2, 3.2, 3.6, 4.1, 2.5,
+        2.75, 4.71, 7.05, -1., 25., 10., 3.,
+        10., 5., 0., 500.0, 0.],
+        [1000., 40., 2.05, 1.34, 2.06, 4.2, 3.05,
+        2.6, 2.71, 6.19, 3.2, 3.6, 4.1, 2.5,
+        2.75, 4.71, 7.05, -10., 30., 12., 4.,
+        5., 3., 15., 500.0, 10.]],
+        [[1000., 40., 2.05, 1.34, 2.06, 4.2, 3.05,
+        2.6, 2.71, 6.19, 3.2, 3.6, 4.1, 2.5,
+        2.75, 4.71, 7.05, -10., 30., 12., 4.,
+        5., 3., 15., 500.0, 10.],
+        [1000., 60., 2.04, 1.34, 2.06, 4.2, 3.05,
+        2.45, 3.12, 2.5, 3.2, 3.6, 4.1, 2.5,
+        2.75, 4.71, 7.05, -20., 40., 4., 6.,
+        1., 0., 17., 1000.0, 20.]]])
+        expected_y_sequence = np.array([[2.1],
         [2.08]])
-        x_sequences, y_sequences = EtlTransforms.create_sequences(x=x_train_df, y=y_train_df, sequence_length=2)
-        assert x_sequences.shape == (2, 2, 25)
+
+        # Collect sequences from generator
+        x_sequences, y_sequences = [], []
+        for x_seq, y_next in EtlTransforms.generator(x=x_train_df, y=y_train_df, sequence_length=2):
+            x_sequences.append(x_seq)
+            y_sequences.append(y_next)
+        
+        # Convert to np.array
+        x_sequences = np.array(x_sequences)
+        y_sequences = np.array(y_sequences)
+
+        # Assertions
+        assert x_sequences.shape == (2, 2, 26)
         assert y_sequences.shape == (2, 1)
         np.testing.assert_array_equal(x_sequences, expected_x_sequence)
         np.testing.assert_array_equal(y_sequences, expected_y_sequence)
+    
+    def test_build_dataset(self):
+        ''' Tests build_dataset function of EtlTransforms class '''
+        x_train = {
+        'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
+        'imports': [1000, 1000, 1000, 2000],
+        'lng_imports': [20, 40, 60, 80],
+        'heating_oil_natural_gas_price_ratio': [2.1, 2.05, 2.04, 2.06],
+        '7day_ew_volatility price ($/MMBTU)': [1.34, 1.34, 1.34, 1.34],
+        '14day_ew_volatility price ($/MMBTU)': [2.06, 2.06, 2.06, 2.06],
+        '30day_ew_volatility price ($/MMBTU)': [4.2, 4.2, 4.2, 4.2],
+        '60day_ew_volatility price ($/MMBTU)': [3.05, 3.05, 3.05, 3.05],
+        'price_1day_lag ($/MMBTU)': [2.04, 2.60, 2.45, 1.23],
+        'price_2day_lag ($/MMBTU)': [2.60, 2.71, 3.12, 4.90],
+        'price_3day_lag ($/MMBTU)': [4.20, 6.19, 2.50, 6.90],
+        '7day_rolling_average price ($/MMBTU)': [3.20, 3.20, 3.20, 3.20],
+        '14day_rolling_average price ($/MMBTU)': [3.60, 3.60, 3.60, 3.60],
+        '30day_rolling_average price ($/MMBTU)': [4.10, 4.10, 4.10, 4.10],
+        '7day_rolling_median price ($/MMBTU)': [2.50, 2.50, 2.50, 2.50],
+        '14day_rolling_median price ($/MMBTU)': [2.75, 2.75, 2.75, 2.75],
+        '30day_rolling_median price ($/MMBTU)': [4.71, 4.71, 4.71, 4.71],
+        'total_consumption_total_underground_storage_ratio': [7.05, 7.05, 7.05, 7.05],
+        'min_tavg': [-1, -10, -20, 3],
+        'max_tavg': [25, 30, 40, 32],
+        'max_abs_tavg_diff': [10, 12, 4, 6],
+        'max_abs_tavg_diff_relative_to_daily_median': [3, 4, 6, 7],
+        'hdd_max': [10, 5, 1, 2],
+        'cdd_max': [5, 3, 0, 3],
+        'wci_sum': [0, 15, 17, 10],
+        'natural_gas_rigs_in_operation': [500, 500, 1000, 2000],
+        'snow_sum': [0, 10, 20, 0]
+        }
+        y_train = {'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
+        'price ($/MMBTU)': [2.1, 2.05, 2.10, 2.08]}
+        x_train_df = pd.DataFrame(x_train)
+        x_train_df['date'] = pd.to_datetime(x_train_df['date'])
+        x_train_df = x_train_df.set_index('date')
+        y_train_df = pd.DataFrame(y_train)
+        y_train_df['date'] = pd.to_datetime(y_train_df['date'])
+        y_train_df = y_train_df.set_index('date')
+        train_dataset = EtlTransforms.build_dataset(x=x_train_df, y=y_train_df, sequence_length=30, batch_size=128)
+        sample = train_dataset.take(1)
+        for element in sample:
+            assert np.array_equal(tf.shape(element[0]).numpy(), np.array([128, 30, 26]))
+            assert np.array_equal(tf.shape(element[1]).numpy(), np.array([128, 1]))
     
     def test_normalisation(self):
         ''' Tests normalisation function of EtlTransforms class '''
@@ -671,9 +736,10 @@ class TestEtlTransforms:
         'max_tavg': [25, 30, 40, 32],
         'max_abs_tavg_diff': [10, 12, 4, 6],
         'max_abs_tavg_diff_relative_to_daily_median': [3, 4, 6, 7],
-        'hdd_sum': [10, 5, 1, 2],
-        'cdd_sum': [5, 3, 0, 3],
+        'hdd_max': [10, 5, 1, 2],
+        'cdd_max': [5, 3, 0, 3],
         'wci_sum': [0, 15, 17, 10],
+        'natural_gas_rigs_in_operation': [500, 500, 1000, 2000],
         'snow_sum': [0, 10, 20, 0]
         }
         x_test = {
@@ -699,9 +765,10 @@ class TestEtlTransforms:
         'max_tavg': [40, 32],
         'max_abs_tavg_diff': [4, 6],
         'max_abs_tavg_diff_relative_to_daily_median': [6, 7],
-        'hdd_sum': [1, 2],
-        'cdd_sum': [0, 3],
+        'hdd_max': [1, 2],
+        'cdd_max': [0, 3],
         'wci_sum': [17, 10],
+        'natural_gas_rigs_in_operation': [1000, 2000],
         'snow_sum': [20, 0]
         }
         x_train_df = pd.DataFrame(x_train)
@@ -710,7 +777,7 @@ class TestEtlTransforms:
         x_test_df = pd.DataFrame(x_test)
         x_test_df['date'] = pd.to_datetime(x_test_df['date'])
         x_test_df = x_test_df.set_index('date')
-        train_df_normalised, test_df_normalised = EtlTransforms.normalisation(train_df=x_train_df, test_df=x_test_df)
+        train_df_normalised, test_df_normalised = EtlTransforms.normalise(train_df=x_train_df, test_df=x_test_df)
         expected_train_data_normalised = {
         'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
         'imports': [0.0, 0.0, 0.0, 4.0],
@@ -734,9 +801,10 @@ class TestEtlTransforms:
         'max_tavg': [-1.1428571428571428, -0.19047619047619047, 1.7142857142857142, 0.19047619047619047],
         'max_abs_tavg_diff': [0.4, 0.8, -0.8, -0.4],
         'max_abs_tavg_diff_relative_to_daily_median': [-0.8, -0.4, 0.4, 0.8],
-        'hdd_sum': [1.4444444444444444, 0.3333333333333333, -0.5555555555555556, -0.3333333333333333],
-        'cdd_sum': [1.6, 0.0, -2.4, 0.0],
+        'hdd_max': [1.4444444444444444, 0.3333333333333333, -0.5555555555555556, -0.3333333333333333],
+        'cdd_max': [1.6, 0.0, -2.4, 0.0],
         'wci_sum': [-1.5625, 0.3125, 0.5625, -0.3125],
+        'natural_gas_rigs_in_operation': [-0.333333, -0.333333, 0.333333, 1.666667],
         'snow_sum': [0.0, 2.3978952727983707, 3.044522437723423, 0.0]
         }
         expected_train_df = pd.DataFrame(expected_train_data_normalised)
@@ -765,9 +833,10 @@ class TestEtlTransforms:
         'max_tavg': [1.7142857142857142, 0.19047619047619047],
         'max_abs_tavg_diff': [-0.8, -0.4],
         'max_abs_tavg_diff_relative_to_daily_median': [0.4, 0.8],
-        'hdd_sum': [-0.5555555555555556, -0.3333333333333333],
-        'cdd_sum': [-2.4, 0.0],
+        'hdd_max': [-0.5555555555555556, -0.3333333333333333],
+        'cdd_max': [-2.4, 0.0],
         'wci_sum': [0.5625, -0.3125],
+        'natural_gas_rigs_in_operation': [0.333333, 1.666667],
         'snow_sum': [3.044522437723423, 0.0]
         }
         expected_test_df = pd.DataFrame(expected_test_data_normalised)

@@ -6,10 +6,10 @@ import requests_mock
 import boto3
 import pandas as pd
 from unittest.mock import patch, MagicMock
-from utils.aws import S3, S3Metadata
-from utils.config import Config
-from extraction.eia_api import *
-from extraction.noaa_api import *
+from dags.utils.aws import S3, S3Metadata
+from dags.utils.config import Config
+from dags.extraction.eia_api import *
+from dags.extraction.noaa_api import *
 
 @pytest.fixture
 def mock_environment_variables(mocker):
@@ -130,11 +130,24 @@ def mock_natural_gas_spot_prices_response():
     return response_dict
 
 @pytest.fixture
+def mock_natural_gas_monthly_variables_response():
+    data = [{"period": "1999-01", "duoarea": "NUS", "area-name": "U.S", "product": "ERTRRG", 
+            "product-name": "Rotary Rigs in Operation-Gas", "process": "XRO", "process-name": "Rotary Rigs in Operation", 
+            "series": "E_ERTRRG_XR0_NUS_C", 'series-description': 'U.S Natural Gas Rotary Rigs in Operation (Count)',
+            "value": "97", "units": "COUNT"},
+            {"period": "1999-02", "duoarea": "NUS", "area-name": "U.S", "product": "ERTRRG", 
+            "product-name": "Rotary Rigs in Operation-Gas", "process": "XRO", "process-name": "Rotary Rigs in Operation", 
+            "series": "E_ERTRRG_XR0_NUS_C", 'series-description': 'U.S Natural Gas Rotary Rigs in Operation (Count)',
+            "value": "97", "units": "COUNT"}]
+    response_dict = {"response": {"data": data}}
+    return response_dict
+
+@pytest.fixture
 def mock_noaa_daily_weather_data_response():
     ''' Mocks data for noaa daily weather data response in NOAA API '''
-    data = [{'date': '1999-01-04', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.3, 'city':'Detroit', 'state': 'Michigan'},
-            {'date': '1999-01-05', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.2, 'city':'Detroit', 'state': 'Michigan'},
-            {'date': '2024-05-24', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.0, 'city':'Detroit', 'state': 'Michigan'}]
+    data = [{'date': datetime(1999, 1, 4, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%S'), 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.3, 'city':'Detroit', 'state': 'Michigan'},
+            {'date': datetime(1999, 1, 5, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%S'), 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.2, 'city':'Detroit', 'state': 'Michigan'},
+            {'date': datetime(2024, 5, 24, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%S'), 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.0, 'city':'Detroit', 'state': 'Michigan'}]
     response_dict = {"results": data}
     return response_dict
 
@@ -150,7 +163,7 @@ def mock_metadata_response():
     return data
 
 @pytest.fixture
-def df_convert_price_to_float():
+def df_convert_column_to_float():
     ''' Dataframe used for testing of convert_price_to_float function of EIATransformation class '''
     data = {'period': ['1999-01', '1999-02', '1999-03', '1999-04'],
         'duoarea': ['NUS-Z00', 'NUS-Z00', 'NUS-Z00', 'NUS-Z00'],
@@ -501,16 +514,19 @@ def df_forwardfill_null_values_end_of_series_with_empty_values():
     Dataframe containing null values end of series used for testing of forwardfill_null_values_end_of_series function 
     '''
     data = {
-        'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
-        'imports': [1000, 1000, 1000, None],
-        'lng_imports': [20, 40, 60, None],
-        'residential_consumption': [2.1, 2.05, 2.04, None],
-        'commerical_consumption': [475945.0, 475960.0, 475970.0, None],
-        'total_underground_storage': [6404470.0, 6404480.0, 6404490.0, None],
-        'natural_gas_rigs_in_operation': [1000, 1000, 2000, None],
-        'awnd': [10, 5, 1, None],
-        'snow': [5, 3, 0, None],
-        'tavg': [0, 15, 17, None]
+    'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
+    'imports': [1000, 1000, 1000, None],
+    'lng_imports': [20, 40, 60, None],
+    'total_consumption_total_underground_storage_ratio': [2.1, 2.05, 2.04, None],
+    'natural_gas_rigs_in_operation': [1000, 1000, 2000, None],
+    'hdd_max': [10, 5, 1, None],
+    'cdd_max': [5, 3, 0, None],
+    'wci_sum': [0, 15, 17, None],
+    'snow_sum': [0, 2, 2, None],
+    'min_tavg': [0, 1, 3, None],
+    'max_tavg': [20, 3, 2, None],
+    'max_abs_tavg_diff': [1, 3, 2, None],
+    'max_abs_tavg_diff_relative_to_daily_median': [4, 3, 2, None]
     }
     df = pd.DataFrame(data)
     df['date'] = pd.to_datetime(df['date'])
@@ -523,16 +539,19 @@ def df_forwardfill_null_values_end_of_series_no_empty_values():
     Dataframe containing no null values end of series used for testing of forwardfill_null_values_end_of_series function
     '''
     data = {
-        'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
-        'imports': [1000, 1000, 1000, 2000],
-        'lng_imports': [20, 40, 60, 80],
-        'residential_consumption': [2.1, 2.05, 2.04, 2.06],
-        'commerical_consumption': [475945.0, 475960.0, 475970.0, 475980.0],
-        'total_underground_storage': [6404470.0, 6404480.0, 6404490.0, 6404590.0],
-        'natural_gas_rigs_in_operation': [1000, 1000, 2000, 2000],
-        'awnd': [10, 5, 1, 2],
-        'snow': [5, 3, 0, 3],
-        'tavg': [0, 15, 17, 10]
+    'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
+    'imports': [1000, 1000, 1000, 2000],
+    'lng_imports': [20, 40, 60, 50],
+    'total_consumption_total_underground_storage_ratio': [2.1, 2.05, 2.04, 2.06],
+    'natural_gas_rigs_in_operation': [1000, 1000, 2000, 3000],
+    'hdd_max': [10, 5, 1, 2],
+    'cdd_max': [5, 3, 0, 3],
+    'wci_sum': [0, 15, 17, 18],
+    'snow_sum': [0, 2, 2, 4],
+    'min_tavg': [0, 1, 3, 5],
+    'max_tavg': [20, 3, 2, 6],
+    'max_abs_tavg_diff': [1, 3, 2, 4],
+    'max_abs_tavg_diff_relative_to_daily_median': [4, 3, 2, 6]
     }
     df = pd.DataFrame(data)
     df['date'] = pd.to_datetime(df['date'])
@@ -631,9 +650,10 @@ def merged_df():
         'max_tavg': [25, 30, 40, 32],
         'max_abs_tavg_diff': [10, 12, 4, 6],
         'max_abs_tavg_diff_relative_to_daily_median': [3, 4, 6, 7],
-        'hdd_sum': [10, 5, 1, 2],
-        'cdd_sum': [5, 3, 0, 3],
+        'hdd_max': [10, 5, 1, 2],
+        'cdd_max': [5, 3, 0, 3],
         'wci_sum': [0, 15, 17, 10],
+        'natural_gas_rigs_in_operation': [500, 500, 1000, 2000],
         'snow_sum': [0, 10, 20, 0]
     }
     df = pd.DataFrame(data)

@@ -1,9 +1,9 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.config import *
-from utils.aws import S3
-from transformation.etl_transforms import EtlTransforms
-from transformation.eia_api_transformation import EiaTransformation
+from dags.utils.config import *
+from dags.utils.aws import S3
+from dags.transformation.etl_transforms import EtlTransforms
+from dags.transformation.eia_api_transformation import EiaTransformation
 
 def convert_date_format():
     ''' Convert date format for date column from extracted natural gas monthly variables '''

@@ -6,7 +6,7 @@ import boto3
 import pandas as pd
 from botocore.exceptions import ClientError
 from dotenv import load_dotenv
-from utils.config import *
+from dags.utils.config import *
 
 # Import environment variables
 load_dotenv()

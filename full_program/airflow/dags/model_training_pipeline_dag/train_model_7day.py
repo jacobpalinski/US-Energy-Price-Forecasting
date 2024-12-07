@@ -2,11 +2,11 @@
 from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
-from utils.aws import S3
-from utils.config import Config
-from transformation.etl_transforms import EtlTransforms
-from modelling.mlflow_model import MlflowModel
-from modelling.model import Model
+from dags.utils.aws import S3
+from dags.utils.config import Config
+from dags.transformation.etl_transforms import EtlTransforms
+from dags.modelling.mlflow_model import MlflowModel
+from dags.modelling.model import Model
 
 def train_model_7day():
     ''' Function that trains model '''

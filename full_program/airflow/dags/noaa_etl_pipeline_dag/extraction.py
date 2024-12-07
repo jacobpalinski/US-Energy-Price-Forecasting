@@ -1,6 +1,6 @@
 ''' Import modules '''
 from datetime import datetime
-from extraction.noaa_api import *
+from dags.extraction.noaa_api import *
 
 def noaa_extraction():
     ''' Performs data extraction from NOAA api '''

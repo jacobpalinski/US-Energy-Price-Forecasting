@@ -1,8 +1,8 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.aws import S3
-from utils.config import Config
-from transformation.etl_transforms import EtlTransforms
+from dags.utils.aws import S3
+from dags.utils.config import Config
+from dags.transformation.etl_transforms import EtlTransforms
 
 def backfill_missing_values():
     ''' Function that backfills missing values as a result of feature engineering '''

@@ -3,8 +3,8 @@ from datetime import datetime
 import json
 import os
 import requests
-from utils.aws import S3, S3Metadata
-from utils.config import *
+from dags.utils.aws import S3, S3Metadata
+from dags.utils.config import *
 from dotenv import load_dotenv
 
 # Import environment variables

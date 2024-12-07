@@ -1,8 +1,8 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.config import *
-from utils.aws import S3
-from transformation.etl_transforms import EtlTransforms
+from dags.utils.config import *
+from dags.utils.aws import S3
+from dags.transformation.etl_transforms import EtlTransforms
 
 def rename_columns():
     ''' Rename columns from extracted natural gas rigs in operation '''

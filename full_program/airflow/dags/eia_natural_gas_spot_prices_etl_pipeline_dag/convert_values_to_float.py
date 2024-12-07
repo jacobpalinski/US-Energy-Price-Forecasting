@@ -1,9 +1,9 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.config import *
-from extraction.eia_api import *
-from transformation.etl_transforms import EtlTransforms
-from transformation.eia_api_transformation import EiaTransformation
+from dags.utils.config import *
+from dags.extraction.eia_api import *
+from dags.transformation.etl_transforms import EtlTransforms
+from dags.transformation.eia_api_transformation import EiaTransformation
 
 def convert_values_to_float():
     ''' Drop null records from extracted natural gas spot prices '''

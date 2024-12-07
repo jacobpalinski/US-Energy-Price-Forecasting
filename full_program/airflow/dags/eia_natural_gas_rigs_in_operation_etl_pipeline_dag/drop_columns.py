@@ -1,8 +1,8 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.config import *
-from extraction.eia_api import *
-from transformation.etl_transforms import EtlTransforms
+from dags.utils.config import *
+from dags.extraction.eia_api import *
+from dags.transformation.etl_transforms import EtlTransforms
 
 def drop_columns():
     ''' Drop irrelevant columns from extracted natural gas rigs in operation '''

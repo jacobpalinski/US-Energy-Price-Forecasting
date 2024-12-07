@@ -1,7 +1,7 @@
 ''' Import modules '''
 from datetime import datetime
-from extraction.noaa_api import *
-from transformation.etl_transforms import EtlTransforms
+from dags.extraction.noaa_api import *
+from dags.transformation.etl_transforms import EtlTransforms
 
 def pivot_data():
     ''' Pivot data from extracted NOAA weather data '''

@@ -1,6 +1,6 @@
 ''' Import modules '''
 from datetime import datetime
-from extraction.eia_api import *
+from dags.extraction.eia_api import *
 
 def heating_oil_spot_prices_extraction():
     ''' Performs data extraction from EIA api for heating oil spot prices '''

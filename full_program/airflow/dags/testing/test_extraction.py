@@ -2,11 +2,12 @@
 import json
 import pytest
 import requests
+from datetime import datetime
 from unittest.mock import patch, MagicMock, Mock
-from extraction.eia_api import EIA
-from extraction.noaa_api import NOAA
-from fixtures.fixtures import mock_environment_variables, mock_boto3_client, mock_eia, mock_noaa, mock_requests_get, mock_get_latest_end_date, mock_update_metadata, mock_eia_headers, \
-mock_noaa_parameters, mock_natural_gas_spot_prices_response, mock_noaa_daily_weather_data_response
+from dags.extraction.eia_api import EIA
+from dags.extraction.noaa_api import NOAA
+from dags.fixtures.fixtures import mock_environment_variables, mock_boto3_client, mock_eia, mock_noaa, mock_requests_get, mock_get_latest_end_date, mock_update_metadata, mock_eia_headers, \
+mock_noaa_parameters, mock_natural_gas_spot_prices_response, mock_natural_gas_monthly_variables_response, mock_noaa_daily_weather_data_response
 
 class TestEIA:
     ''' Test class for testing EIA class '''
@@ -45,7 +46,7 @@ class TestEIA:
                 'direction': 'asc'
                 }],
                 'length': 5000,
-                'start_date': '1999-01-04',
+                'start': '1999-01-04',
                 'offset': 0}),
                 'Content-Type': 'application/json'},
             params = {'api_key': 'api_key'},
@@ -91,7 +92,7 @@ class TestEIA:
                 'direction': 'asc'
                 }],
                 'length': 5000,
-                'start_date': '1999-01-04',
+                'start': '1999-01-04',
                 'offset': offset}),
                 'Content-Type': 'application/json'},
             params = {'api_key': 'api_key'},
@@ -137,7 +138,7 @@ class TestEIA:
                 'direction': 'asc'
                 }],
                 'length': 5000,
-                'start_date': '1999-01-04',
+                'start': '1999-01-04',
                 'offset': offset}),
                 'Content-Type': 'application/json'},
             params = {'api_key': 'api_key'},
@@ -169,16 +170,22 @@ class TestEIA:
         assert isinstance(response[1], requests.RequestException)
         assert str(response[1] == 'API Error')
 
-    def test_eia_api_get_max_date_with_data(self, mock_eia, mock_natural_gas_spot_prices_response):
-        ''' Test get_max_period method of EIA class where data is not None '''
+    def test_eia_api_get_max_date_with_data_non_monthly(self, mock_eia, mock_natural_gas_spot_prices_response):
+        ''' Test get_max_period method of EIA class where data contains daily dates '''
         data = mock_natural_gas_spot_prices_response['response']['data']
-        result = mock_eia.get_max_date(data=data)
+        result = mock_eia.get_max_date(data=data, is_monthly=False)
         assert result == '1999-01-05'
+    
+    def test_eia_api_get_max_date_with_data_monthly(self, mock_eia, mock_natural_gas_monthly_variables_response):
+        ''' Test get_max_period method of EIA class where data contains monthly dates '''
+        data = mock_natural_gas_monthly_variables_response['response']['data']
+        result = mock_eia.get_max_date(data=data, is_monthly=True)
+        assert result == '1999-02-01'
     
     def test_eia_api_get_max_date_with_no_data(self, mock_eia):
         ''' Test get_max_period method of EIA class where data is None '''
         data = []
-        result = mock_eia.get_max_date(data=data)
+        result = mock_eia.get_max_date(data=data, is_monthly=True)
         assert result is None
 
     def test_eia_extract_success(self, mock_environment_variables, mock_eia, mock_requests_get, mock_boto3_client, mock_eia_headers, mock_natural_gas_spot_prices_response,
@@ -210,7 +217,7 @@ class TestEIA:
         mock_eia.extract(endpoint=endpoint, headers=headers, folder=folder, object_key=object_key,
         metadata_folder=metadata_folder, metadata_object_key=metadata_object_key,
         metadata_dataset_key=metadata_dataset_key, start_date_if_none=start_date_if_none,
-        offset=offset)
+        is_monthly=False, offset=offset)
         
         assert mock_requests_get.call_count == 2
         mock_boto3_client.return_value.put_object.assert_called_once()
@@ -244,7 +251,7 @@ class TestEIA:
         mock_eia.extract(endpoint=endpoint, headers=headers, folder=folder, object_key=object_key,
         metadata_folder=metadata_folder, metadata_object_key=metadata_object_key,
         metadata_dataset_key=metadata_dataset_key, start_date_if_none=start_date_if_none,
-        offset=offset)
+        is_monthly=False, offset=offset)
         
         assert mock_requests_get.call_count == 1
         mock_boto3_client.put_data.assert_not_called()
@@ -312,7 +319,7 @@ class TestNOAA:
     def test_noaa_extract_success_with_latest_end_date(self, mock_noaa, mock_environment_variables, mock_requests_get, mock_boto3_client, mock_get_latest_end_date, mock_noaa_parameters, mock_noaa_daily_weather_data_response,
     mock_update_metadata):
         ''' Test extract method of NOAA class where latest end date is not None '''
-        mock_get_latest_end_date.return_value = '1999-01-04'
+        mock_get_latest_end_date.return_value = datetime(1999, 1, 4, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%S')
         mock_response = requests.Response()
         mock_response.status_code = 200
         mock_response._content = json.dumps(mock_noaa_daily_weather_data_response).encode('utf-8')
