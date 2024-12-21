@@ -107,10 +107,10 @@ model_60day = get_most_recent_model(model_name_prefix='GRU_60_day_horizon_14', e
 
 # Define the models and forecast horizons
 forecast_horizons = {
-    '7day': {'model': model_7day, 'sequence_length': 30},
-    '14day': {'model': model_14day, 'sequence_length': 21},
-    '30day': {'model': model_30day, 'sequence_length': 14},
-    '60day': {'model': model_60day, 'sequence_length': 14},
+    '7day': {'model': model_7day, 'sequence_length': 30, 'number_of_predictions': 7},
+    '14day': {'model': model_14day, 'sequence_length': 21, 'number_of_predictions': 14},
+    '30day': {'model': model_30day, 'sequence_length': 14, 'number_of_predictions': 30},
+    '60day': {'model': model_60day, 'sequence_length': 14, 'number_of_predictions': 60},
 }
 
 # Generate business days excluding public holidays for extension of test data
@@ -139,17 +139,25 @@ normalised_test_data_df['snow_sum'] = np.log(normalised_test_data_df['snow_sum']
 for horizon, config in forecast_horizons.items():
     model = config['model']
     sequence_length = config['sequence_length']
+    number_of_predictions = config['number_of_predictions']
 
     # Initialise dataframe and retain last price 
     curated_test_data_df_forecast_horizon_copy = curated_test_data_df.copy()
-    curated_test_data_df_forecast_horizon_copy.loc[extended_dates[0], 'price ($/MMBTU)'] = curated_test_data_df_forecast_horizon_copy[last_date, 'price ($/MMBTU)']
+    '''curated_test_data_df_forecast_horizon_copy.loc[extended_dates[0], 'price ($/MMBTU)'] = curated_test_data_df_forecast_horizon_copy[last_date, 'price ($/MMBTU)']'''
+    
+    # Initialise variable to track count of predictions to ensure number < number_of_predictions
+    predictions_count = 0
 
     # Now loop through the rest of the extended_dates
     for date in extended_dates:
+        # Break loop if number of predictions required for model have been met
+        if predictions_count == number_of_predictions:
+            break
+        
         new_row = pd.DataFrame(index=[date], columns=curated_test_data_df_forecast_horizon_copy.columns)
-        new_row['price ($/MMBTU)'] = curated_test_data_df_forecast_horizon_copy['price ($/MMBTU)'].iloc[-1]
+        '''new_row['price ($/MMBTU)'] = curated_test_data_df_forecast_horizon_copy['price ($/MMBTU)'].iloc[-1]'''
 
-        curated_test_data_df_forecast_horizon_copy = pd.concat([curated_test_data_df_forecast_horizon_copy, new_row])
+        '''curated_test_data_df_forecast_horizon_copy = pd.concat([curated_test_data_df_forecast_horizon_copy, new_row])'''
 
         # Calculate 7, 14 and 30 day rolling averages, medians and expotential weighted volatilities
         rolling_average_natural_gas_price_7day = calculate_moving_average(curated_test_data_df_forecast_horizon_copy, window=7)
@@ -163,26 +171,26 @@ for horizon, config in forecast_horizons.items():
         ew_volatility_natural_gas_price_30day = calculate_ew_volatility(curated_test_data_df_forecast_horizon_copy, window=30)
         
         # Update metrics for the new row
-        curated_test_data_df_forecast_horizon_copy.at[date, '7day_rolling_average price ($/MMBTU)'] = rolling_average_natural_gas_price_7day
-        curated_test_data_df_forecast_horizon_copy.at[date, '14day_rolling_average price ($/MMBTU)'] = rolling_average_natural_gas_price_14day
-        curated_test_data_df_forecast_horizon_copy.at[date, '30day_rolling_average price ($/MMBTU)'] = rolling_average_natural_gas_price_30day
-        curated_test_data_df_forecast_horizon_copy.at[date, '7day_rolling_median price ($/MMBTU)'] = rolling_median_natural_gas_price_7day
-        curated_test_data_df_forecast_horizon_copy.at[date, '14day_rolling_median price ($/MMBTU)'] = rolling_median_natural_gas_price_14day
-        curated_test_data_df_forecast_horizon_copy.at[date, '30day_rolling_median price ($/MMBTU)'] = rolling_median_natural_gas_price_30day
-        curated_test_data_df_forecast_horizon_copy.at[date, '7day_ew_volatility price ($/MMBTU)'] = ew_volatility_natural_gas_price_7day
-        curated_test_data_df_forecast_horizon_copy.at[date, '14day_ew_volatility price ($/MMBTU)'] = ew_volatility_natural_gas_price_14day
-        curated_test_data_df_forecast_horizon_copy.at[date, '30day_ew_volatility price ($/MMBTU)'] = ew_volatility_natural_gas_price_30day
+        new_row.at[date, '7day_rolling_average price ($/MMBTU)'] = rolling_average_natural_gas_price_7day
+        new_row.at[date, '14day_rolling_average price ($/MMBTU)'] = rolling_average_natural_gas_price_14day
+        new_row.at[date, '30day_rolling_average price ($/MMBTU)'] = rolling_average_natural_gas_price_30day
+        new_row.at[date, '7day_rolling_median price ($/MMBTU)'] = rolling_median_natural_gas_price_7day
+        new_row.at[date, '14day_rolling_median price ($/MMBTU)'] = rolling_median_natural_gas_price_14day
+        new_row.at[date, '30day_rolling_median price ($/MMBTU)'] = rolling_median_natural_gas_price_30day
+        new_row.at[date, '7day_ew_volatility price ($/MMBTU)'] = ew_volatility_natural_gas_price_7day
+        new_row.at[date, '14day_ew_volatility price ($/MMBTU)'] = ew_volatility_natural_gas_price_14day
+        new_row.at[date, '30day_ew_volatility price ($/MMBTU)'] = ew_volatility_natural_gas_price_30day
 
-        # Impute values for is_dec_or_jan and weather variables
-        last_row = curated_test_data_df_forecast_horizon_copy.iloc[-1]
+        '''# Impute values for is_dec_or_jan and weather variables
+        last_row = curated_test_data_df_forecast_horizon_copy.iloc[-1]'''
 
-        last_row = EiaTransformation.is_december_or_january(df=last_row)
+        new_row = EiaTransformation.is_december_or_january(df=new_row)
 
-        last_row['month'] = curated_test_data_df_forecast_horizon_copy.index.month
-        last_row['week'] = curated_test_data_df_forecast_horizon_copy.index.week
-        last_row['day'] = curated_test_data_df_forecast_horizon_copy.index.day
+        new_row['month'] = new_row.index.month
+        new_row['week'] = new_row.index.week
+        new_row['day'] = new_row.index.day
 
-        merged_df = pd.merge(last_row, daily_weather_modelling_imputation_df, 
+        merged_df = pd.merge(new_row, daily_weather_modelling_imputation_df, 
         on=['month', 'week', 'day'], how='left', suffixes=('', '_impute'))
         merged_df['min_tavg'] = merged_df['min_tavg'].fillna(merged_df['min_tavg_impute'])
         merged_df['max_tavg'] = merged_df['max_tavg'].fillna(merged_df['max_tavg_impute'])
@@ -193,14 +201,17 @@ for horizon, config in forecast_horizons.items():
         merged_df['wci_sum'] = merged_df['wci_sum'].fillna(merged_df['wci_sum_impute'])
         merged_df['snow_sum'] = merged_df['snow_sum'].fillna(merged_df['snow_sum_impute'])
         
-        curated_test_data_df_forecast_horizon_copy.at[date, 'min_tavg'] = merged_df['min_tavg']
-        curated_test_data_df_forecast_horizon_copy.at[date, 'max_tavg'] = merged_df['max_tavg']
-        curated_test_data_df_forecast_horizon_copy.at[date, 'max_abs_tavg_diff'] = merged_df['max_abs_tavg_diff']
-        curated_test_data_df_forecast_horizon_copy.at[date, 'max_abs_tavg_diff_relative_to_daily_median'] = merged_df['max_abs_tavg_diff_relative_to_daily_median']
-        curated_test_data_df_forecast_horizon_copy.at[date, 'hdd_max'] = merged_df['hdd_max']
-        curated_test_data_df_forecast_horizon_copy.at[date, 'cdd_max'] = merged_df['cdd_max']
-        curated_test_data_df_forecast_horizon_copy.at[date, 'wci_sum'] = merged_df['wci_sum']
-        curated_test_data_df_forecast_horizon_copy.at[date, 'snow_sum'] = merged_df['snow_sum']
+        new_row.at[date, 'min_tavg'] = merged_df.at[date, 'min_tavg']
+        new_row.at[date, 'max_tavg'] = merged_df.at[date, 'max_tavg']
+        new_row.at[date, 'max_abs_tavg_diff'] = merged_df.at[date, 'max_abs_tavg_diff']
+        new_row.at[date, 'max_abs_tavg_diff_relative_to_daily_median'] = merged_df.at[date, 'max_abs_tavg_diff_relative_to_daily_median']
+        new_row.at[date, 'hdd_max'] = merged_df.at[date, 'hdd_max']
+        new_row.at[date, 'cdd_max'] = merged_df.at[date, 'cdd_max']
+        new_row.at[date, 'wci_sum'] = merged_df.at[date, 'wci_sum']
+        new_row.at[date, 'snow_sum'] = merged_df.at[date, 'snow_sum']
+
+        # Concatenate new row to existing dataframe
+        curated_test_data_df_forecast_horizon_copy = pd.concat([curated_test_data_df_forecast_horizon_copy, new_row])
 
         # Forward fill null values for imports, lng_imports, natural_gas_rigs_in_operation, total_consumption_total_underground_storage_ratio
         curated_test_data_df_forecast_horizon_copy = EtlTransforms.forwardfill_null_values_end_of_series(df=curated_test_data_df_forecast_horizon_copy, columns=['imports', 'lng_imports', 'natural_gas_rigs_in_operation',
@@ -209,11 +220,35 @@ for horizon, config in forecast_horizons.items():
         # Normalise test dataframe
         curated_test_data_df_forecast_horizon_copy_X = curated_test_data_df_forecast_horizon_copy.drop('price ($/MMBTU)')
 
+        curated_test_data_df_forecast_horizon_copy_Y = curated_test_data_df_forecast_horizon_copy['price ($/MMBTU)']
+
         curated_test_data_df_forecast_horizon_copy_X[robust_columns] = robust_scaler.transform(curated_test_data_df_forecast_horizon_copy_X[robust_columns])
 
         curated_test_data_df_forecast_horizon_copy_X['snow_sum'] = np.log(curated_test_data_df_forecast_horizon_copy_X['snow_sum'] + 1)
         
         # Create sequences for ML model
+        dataset = EtlTransforms.build_dataset(x=curated_test_data_df_forecast_horizon_copy_X, y=curated_test_data_df_forecast_horizon_copy_Y, sequence_length=sequence_length, batch_size=128)
+
+        # Make predictions on each batch and retrieve last predicted value
+        for x_batch, y_batch in dataset:
+            predictions = model.predict(x_batch)
+            last_prediction = predictions[-1, 0]
+        
+        # Set predicted value as natural gas spot price for a given date
+        curated_test_data_df_forecast_horizon_copy.at[date, 'price ($/MMBTU)'] = last_prediction
+
+        predictions_count += 1
+    
+    s3.put_data(data=curated_training_data_df, folder='full_program/curated/predictions/', object_key=f'predictions_{horizon}')
+
+
+    
+
+
+
+        
+
+
 
 
 
