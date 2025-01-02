@@ -31,4 +31,4 @@ def heating_oil_spot_prices_extraction():
 
     eia.extract(endpoint='petroleum/pri/spt/data/', headers=headers, folder='full_program/extraction/heating_oil_spot_prices/',
     object_key=f'heating_oil_spot_prices_{formatted_date}', metadata_folder='full_program/metadata/', metadata_object_key='metadata', 
-    metadata_dataset_key='heating_oil_spot_prices', start_date_if_none='1999-01-04')
+    metadata_dataset_key='heating_oil_spot_prices', is_monthly=False, start_date_if_none='1999-01-04')

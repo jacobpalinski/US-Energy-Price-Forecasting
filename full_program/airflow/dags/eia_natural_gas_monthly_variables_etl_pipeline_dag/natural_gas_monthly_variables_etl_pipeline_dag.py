@@ -13,12 +13,13 @@ from eia_natural_gas_monthly_variables_etl_pipeline_dag.convert_date_format impo
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2024, 11, 10),
+    'start_date': datetime(2025, 1, 2),
     'retries': 1,
     'retry_delay': timedelta(seconds=30)
 }
 
-with DAG(dag_id='natural_gas_monthly_variables_etl_pipeline', default_args=default_args, schedule_interval = timedelta(30), 
+# Create DAG that runs weekly
+with DAG(dag_id='natural_gas_monthly_variables_etl_pipeline', default_args=default_args, schedule_interval = timedelta(7), 
         catchup=False) as dag:
     natural_gas_monthly_variables_extraction = PythonOperator(
         task_id='natural_gas_monthly_variables_extraction',

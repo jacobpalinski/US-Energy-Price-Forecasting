@@ -1,10 +1,10 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.config import *
-from utils.aws import *
-from extraction.noaa_api import NOAA
-from transformation.etl_transforms import EtlTransforms
-from transformation.noaa_api_transformation import NoaaTransformation
+from dags.utils.config import *
+from dags.utils.aws import *
+from dags.extraction.noaa_api import NOAA
+from dags.transformation.etl_transforms import EtlTransforms
+from dags.transformation.noaa_api_transformation import NoaaTransformation
 
 # Todays date
 today = datetime.now()
@@ -33,10 +33,10 @@ parameters = {'datasetid': 'GHCND',
 'units': 'metric',
 'limit': 1000}
 
-'''noaa.extract(parameters=parameters, folder='full_program/extraction/daily_weather/', 
+noaa.extract(parameters=parameters, folder='full_program/extraction/daily_weather/', 
 object_key = f'daily_weather_{formatted_date}', metadata_folder='metadata/', 
 metadata_object_key='metadata', metadata_dataset_key='daily_weather', 
-start_date_if_none='1999-01-04')'''
+start_date_if_none='1999-01-04')
 daily_weather_json = s3.get_data(folder='full_program/extraction/daily_weather/', object_key=f'daily_weather_{formatted_date}')
 daily_weather_df = EtlTransforms.json_to_df(data=daily_weather_json, date_as_index=False)
 daily_weather_df = NoaaTransformation.modify_date(df=daily_weather_df)

@@ -17,7 +17,7 @@ def calculate_missing_average_temperature():
     s3 = S3(config=config)
 
     # Retrieve extracted data from S3 folder
-    daily_weather_json = s3.get_data(folder='full_program/extraction/daily_weather/', object_key=f'daily_weather_{formatted_date}')
+    daily_weather_json = s3.get_data(folder='full_program/transformation/daily_weather/', object_key=f'daily_weather_{formatted_date}')
     daily_weather_df = EtlTransforms.json_to_df(data=daily_weather_json, date_as_index=False)
 
     # Split dataframe into 20 chunks
@@ -36,4 +36,4 @@ def calculate_missing_average_temperature():
     daily_weather_df = pd.concat(processed_chunks, ignore_index=True)
     
     # Put data in S3
-    s3.put_data(data=daily_weather_df, folder='full_program/extraction/daily_weather/', object_key=f'daily_weather_{formatted_date}')
+    s3.put_data(data=daily_weather_df, folder='full_program/transformation/daily_weather/', object_key=f'daily_weather_{formatted_date}')

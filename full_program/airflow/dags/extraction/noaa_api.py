@@ -119,10 +119,14 @@ class NOAA:
         '''
         data = []
         
-        start_date = self.s3_metadata.get_latest_end_date(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key)
+        latest_end_date = self.s3_metadata.get_latest_end_date(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key)
         increment = timedelta(days=6)
-        if start_date is None:
+        if latest_end_date is None:
             start_date = start_date_if_none
+        else:
+            latest_end_date_datetime = datetime.strptime(latest_end_date, '%Y-%m-%d')
+            latest_end_date_plus_one = latest_end_date_datetime + timedelta(days=1)
+            start_date = latest_end_date_plus_one.strftime('%Y-%m-%d')
         parameters['startdate'] = start_date
         enddate = datetime.strptime(start_date, '%Y-%m-%d')
         parameters['enddate'] = (enddate + increment).strftime('%Y-%m-%d')

@@ -1,8 +1,9 @@
 ''' Import modules '''
 from datetime import datetime
-from utils.config import *
-from utils.aws import *
-from transformation.etl_transforms import EtlTransforms
+import pandas as pd
+from dags.utils.config import *
+from dags.utils.aws import *
+from dags.transformation.etl_transforms import EtlTransforms
 
 # Todays date
 today = datetime.now()
@@ -12,9 +13,12 @@ formatted_date = today.strftime('%Y%m%d')
 config = Config()
 s3 = S3(config=config)
 
-# Retrieve training data for 2024-11-18
-training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key=f'training_data_20241118')
+# Retrieve training data for 2024-12-26 (adjust date if going to update imputation dataframe in future)
+training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key='curated_training_data_20241226')
 training_data_df = EtlTransforms.json_to_df(data=training_data_json, date_as_index=False)
+
+# Convert date column to datetime
+training_data_df['date'] = pd.to_datetime(training_data_df['date'])
 
 # Calculate median for each day of a given year for weather variables
 training_data_df['month'] = training_data_df['date'].dt.month

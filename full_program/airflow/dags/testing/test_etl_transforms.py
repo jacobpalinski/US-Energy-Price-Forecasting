@@ -8,7 +8,7 @@ merge_dataframes_heating_oil_spot_prices_df_no_missing_date, merge_dataframes_he
 merge_dataframes_natural_gas_monthly_variables_df_missing_date, merge_dataframes_natural_gas_rigs_in_operation_df_no_missing_date, merge_dataframes_natural_gas_rigs_in_operation_df_missing_date, \
 merge_dataframes_daily_weather_df_no_missing_date, merge_dataframes_daily_weather_df_missing_date, df_forwardfill_null_values_end_of_series_with_empty_values,  \
 df_forwardfill_null_values_end_of_series_no_empty_values, df_backfill_null_values_start_of_series_with_empty_values, df_backfill_null_values_start_of_series_no_empty_values, \
-merged_df
+merged_df, calculate_rolling_variables_df
 
 class TestEtlTransforms:
     ''' Test class for testing EtlUtils class '''
@@ -462,7 +462,10 @@ class TestEtlTransforms:
         expected_df = pd.DataFrame(data)
         expected_df['date'] = pd.to_datetime(expected_df['date'])
         expected_df = expected_df.set_index('date')
-        result_df = EtlTransforms.forwardfill_null_values_end_of_series(df=df_forwardfill_null_values_end_of_series_with_empty_values)
+        result_df = EtlTransforms.forwardfill_null_values_end_of_series(df=df_forwardfill_null_values_end_of_series_with_empty_values, 
+        columns=['imports', 'lng_imports', 'natural_gas_rigs_in_operation', 
+        'total_consumption_total_underground_storage_ratio', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum', 
+        'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median'])
         pd.testing.assert_frame_equal(result_df, expected_df)
     
     def test_forwardfill_null_values_end_of_series_with_no_empty_values(self, df_forwardfill_null_values_end_of_series_no_empty_values):
@@ -487,7 +490,10 @@ class TestEtlTransforms:
         expected_df = pd.DataFrame(data)
         expected_df['date'] = pd.to_datetime(expected_df['date'])
         expected_df = expected_df.set_index('date')
-        result_df = EtlTransforms.forwardfill_null_values_end_of_series(df=df_forwardfill_null_values_end_of_series_no_empty_values)
+        result_df = EtlTransforms.forwardfill_null_values_end_of_series(df=df_forwardfill_null_values_end_of_series_no_empty_values,
+        columns=['imports', 'lng_imports', 'natural_gas_rigs_in_operation', 
+        'total_consumption_total_underground_storage_ratio', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum', 
+        'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median'])
         pd.testing.assert_frame_equal(result_df, expected_df)
     
     def test_backfill_null_values_start_of_series_with_empty_values(self, df_backfill_null_values_start_of_series_with_empty_values):
@@ -844,6 +850,25 @@ class TestEtlTransforms:
         expected_test_df = expected_test_df.set_index('date')
         pd.testing.assert_frame_equal(train_df_normalised, expected_train_df)
         pd.testing.assert_frame_equal(test_df_normalised, expected_test_df)
+    
+    def test_calculate_moving_average(self, calculate_rolling_variables_df):
+        ''' Tests calculate_moving_average function of EtlTransforms class '''
+        expected_average = 3
+        calculated_average = EtlTransforms.calculate_moving_average(df=calculate_rolling_variables_df, window=5)
+        assert calculated_average == expected_average
+    
+    def test_calculate_rolling_median(self, calculate_rolling_variables_df):
+        ''' Tests calculate_rolling_median function of EtlTransforms class '''
+        expected_median = 3
+        calculated_median = EtlTransforms.calculate_rolling_median(df=calculate_rolling_variables_df, window=5)
+        assert calculated_median == expected_median
+    
+    def test_calculate_ew_volatility(self, calculate_rolling_variables_df):
+        ''' Tests calculate_ew_volatility function of EtlTransforms class '''
+        expected_ew_volatility = 1.1416241873418624
+        calculated_ew_volatility = EtlTransforms.calculate_ew_volatility(df=calculate_rolling_variables_df, window=2)
+        assert calculated_ew_volatility == expected_ew_volatility
+
 
 
 

@@ -13,7 +13,7 @@ from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.convert_date_format impo
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2024, 11, 10),
+    'start_date': datetime(2024, 12, 10),
     'retries': 1,
     'retry_delay': timedelta(seconds=30)
 }

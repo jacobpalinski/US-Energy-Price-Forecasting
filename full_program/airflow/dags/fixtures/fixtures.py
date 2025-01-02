@@ -661,6 +661,21 @@ def merged_df():
     df = df.set_index('date')
     return df
 
+@pytest.fixture
+def calculate_rolling_variables_df():
+    ''' 
+    Dataframe to be used for testing of the calculate_moving_average, calculate_rolling_median and calculate_ew_volatility
+    functions used in generate_forecasts DAG task
+    '''
+    data = {'date': ['1999-01-04', '1999-01-05', '1999-01-06', '1999-01-07', '1999-01-08'],
+    'price ($/MMBTU)': [1, 2, 3, 4, 5]}
+    df = pd.DataFrame(data)
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.set_index('date')
+    return df
+
+
+
 
 
 

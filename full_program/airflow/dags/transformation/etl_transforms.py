@@ -201,7 +201,7 @@ class EtlTransforms:
         return df
     
     @classmethod
-    def forwardfill_null_values_end_of_series(cls, df: pd.DataFrame) -> pd.DataFrame:
+    def forwardfill_null_values_end_of_series(cls, df: pd.DataFrame, columns: list) -> pd.DataFrame:
         '''
         Forward fills null values for monthly natural gas variables and weather variables at the
         end of time series
@@ -212,11 +212,11 @@ class EtlTransforms:
         Returns:
             pd.DataFrame: Returns dataframe with columns with null values end of series forward filled
         '''
-        columns_to_ffill = ['imports', 'lng_imports', 'natural_gas_rigs_in_operation', 
+        '''columns_to_ffill = ['imports', 'lng_imports', 'natural_gas_rigs_in_operation', 
         'total_consumption_total_underground_storage_ratio', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum', 
-        'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median']
+        'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median']'''
         
-        for col in columns_to_ffill:
+        for col in columns:
             last_valid_index = df[col].last_valid_index()
             df.loc[last_valid_index:, col] = df.loc[last_valid_index:, col].ffill()
         
@@ -274,8 +274,8 @@ class EtlTransforms:
         """
         num_samples = len(y) - sequence_length
         for i in range(num_samples):
-            x_seq = x.iloc[i:i + sequence_length]
-            y_next = y.iloc[i + sequence_length]
+            x_seq = x[i:i + sequence_length]
+            y_next = y[i + sequence_length]
             yield x_seq, y_next
 
     @classmethod
@@ -329,6 +329,35 @@ class EtlTransforms:
         
         # Return normalised dataframes
         return train_df, test_df
+
+    @classmethod
+    def calculate_moving_average(cls, df: pd.DataFrame, window: int) -> float:
+        ''' Calculate moving average price ($/MMBTU) based on a given window '''
+        if len(df) >= window:
+            return df['price ($/MMBTU)'].iloc[-window:].mean()
+        else:
+            return None
+    
+    @classmethod
+    def calculate_rolling_median(cls, df: pd.DataFrame, window: int) -> float:
+        ''' Calculate the median price (%/MMBTU) based on a given window '''
+        if len(df) >= window:
+            return df['price ($/MMBTU)'].iloc[-window:].median()
+        else:
+            return None
+    
+    @classmethod
+    def calculate_ew_volatility(cls, df: pd.DataFrame, window: int) -> float:
+        ''' Calculate the expotential weighted volatility of price (%/MMBTU) based on a given window '''
+        if len(df) >= window:
+            return df['price ($/MMBTU)'].ewm(span=window, min_periods=window).std().iloc[-1]
+        else:
+            return None
+    
+
+
+    
+
         
         
         

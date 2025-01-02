@@ -28,6 +28,10 @@ def natural_gas_feature_engineering():
     curated_training_data_df = EiaTransformation.total_consumption_to_total_underground_storage_ratio(df=curated_training_data_df)
     curated_training_data_df = EiaTransformation.is_december_or_january(df=curated_training_data_df)
 
+    # Drop irrelevant columns
+    curated_training_data_df = EtlTransforms.drop_columns(df=curated_training_data_df, columns=['commercial_consumption', 'residential_consumption', 
+    'total_underground_storage', 'price_heating_oil ($/GAL)'])
+
     # Reset index so date column is stored as json
     curated_training_data_df = curated_training_data_df.reset_index()
 

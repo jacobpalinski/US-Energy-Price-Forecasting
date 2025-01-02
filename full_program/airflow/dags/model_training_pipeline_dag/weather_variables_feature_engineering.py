@@ -28,6 +28,12 @@ def weather_variables_feature_engineering():
     curated_training_data_df = NoaaTransformation.max_abs_tavg_diff(df=curated_training_data_df)
     curated_training_data_df = NoaaTransformation.max_abs_tavg_diff_relative_to_daily_median(df=curated_training_data_df)
 
+    # Drop irrelvant columns
+    curated_training_data_df = EtlTransforms.drop_columns(df=curated_training_data_df, columns=['city', 'state', 'quarter', 'tmin', 'tmax', 'tavg', 'snow', 'awnd'])
+
+    # Drop duplicated records
+    curated_training_data_df = curated_training_data_df.drop_duplicates()
+
     # Reset index so date column is stored as json
     curated_training_data_df = curated_training_data_df.reset_index()
 

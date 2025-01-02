@@ -31,4 +31,4 @@ def natural_gas_spot_prices_extraction():
 
     eia.extract(endpoint='natural-gas/pri/fut/data/', headers=headers, folder='full_program/extraction/natural_gas_spot_prices/',
     object_key=f'natural_gas_spot_prices_{formatted_date}', metadata_folder='full_program/metadata/', metadata_object_key='metadata', 
-    metadata_dataset_key='natural_gas_spot_prices', start_date_if_none='1999-01-04')
+    metadata_dataset_key='natural_gas_spot_prices', is_monthly=False, start_date_if_none='1999-01-04')

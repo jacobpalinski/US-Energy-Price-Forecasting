@@ -11,12 +11,13 @@ from eia_heating_oil_spot_prices_etl_pipeline_dag.convert_values_to_float import
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2024, 11, 10),
+    'start_date': datetime(2025, 2, 1),
     'retries': 1,
     'retry_delay': timedelta(seconds=30)
 }
 
-with DAG(dag_id='heating_oil_spot_prices_etl_pipeline', default_args=default_args, schedule_interval = timedelta(30), 
+# Create DAG that runs weekly
+with DAG(dag_id='heating_oil_spot_prices_etl_pipeline', default_args=default_args, schedule_interval = timedelta(7), 
         catchup=False) as dag:
     heating_oil_spot_prices_extraction = PythonOperator(
         task_id='heating_oil_spot_prices_extraction',

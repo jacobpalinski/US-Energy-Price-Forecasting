@@ -20,7 +20,7 @@ def drop_columns():
 
     # Drop irrelevant columns from curated_training_data_df
     curated_training_data_df = EtlTransforms.drop_columns(df=curated_training_data_df, columns=['city', 'state', 'quarter', 'tmin', 'tmax', 'tavg', 'snow', 
-    'commercial_consumption', 'residential_consumption', 'total_underground_storage'])
+    'commercial_consumption', 'residential_consumption', 'total_underground_storage', 'awnd', 'price_heating_oil ($/GAL)'])
 
     # Reset index so date column is stored as json
     curated_training_data_df = curated_training_data_df.reset_index()

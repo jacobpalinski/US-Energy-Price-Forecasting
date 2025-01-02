@@ -19,7 +19,11 @@ def forwardfill_missing_values():
     curated_training_data_df = EtlTransforms.json_to_df(data=curated_training_data_json, date_as_index=True)
 
     # Backfill missing values
-    curated_training_data_df = EtlTransforms.forwardfill_null_values_end_of_series(df=curated_training_data_df)
+    curated_training_data_df = EtlTransforms.forwardfill_null_values_end_of_series(df=curated_training_data_df, 
+    columns=['imports', 'lng_imports', 'natural_gas_rigs_in_operation',
+    'total_consumption_total_underground_storage_ratio', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum', 
+    'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median'
+    ])
 
     # Reset index so date column is stored as json
     curated_training_data_df = curated_training_data_df.reset_index()

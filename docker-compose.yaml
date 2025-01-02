@@ -228,6 +228,8 @@ services:
       - mlflow
     volumes:
       - ${AIRFLOW_PROJ_DIR:-.}/streamlit:/app  # Mount the Streamlit application directory
+      - ${AIRFLOW_PROJ_DIR:-.}/airflow/dags:/opt/airflow/dags
+      - ./.env:/opt/airflow/.env
   
   testing:
     build:

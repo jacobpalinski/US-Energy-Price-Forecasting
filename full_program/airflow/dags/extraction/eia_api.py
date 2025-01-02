@@ -1,5 +1,6 @@
 ''' Import modules '''
-from datetime import datetime
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 import json
 import os
 import requests
@@ -36,7 +37,7 @@ class EIA:
         self.s3 = s3
         self.s3_metadata = s3_metadata
 
-    def api_request(self, endpoint: str, headers: dict, metadata_folder: str, metadata_object_key: str, metadata_dataset_key: str, start_date_if_none: str, offset=0) -> requests.Response:
+    def api_request(self, endpoint: str, headers: dict, metadata_folder: str, metadata_object_key: str, metadata_dataset_key: str, start_date_if_none: str, is_monthly: bool, offset=0) -> requests.Response:
         '''
         Makes an API request to a specific endpoint of the Energy Information Administration API
         
@@ -55,9 +56,16 @@ class EIA:
         '''
         url = self.base_url + endpoint
         params = {'api_key': self.eia_api_key}
-        start_date = self.s3_metadata.get_latest_end_date(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key) # Varies depending on metadata for given dataset
-        if start_date is None:
+        latest_end_date = self.s3_metadata.get_latest_end_date(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key) # Varies depending on metadata for given dataset
+        if latest_end_date is None:
             start_date = start_date_if_none
+        else:
+            latest_end_date_datetime = datetime.strptime(latest_end_date, '%Y-%m-%d')
+            if is_monthly is True:
+                latest_end_date_plus_one = latest_end_date_datetime + relativedelta(months=1)
+            else:
+                latest_end_date_plus_one = latest_end_date_datetime + timedelta(days=1)
+            start_date = latest_end_date_plus_one.strftime('%Y-%m-%d')
         headers['start'] = start_date
         headers['offset'] = offset
         headers = {
@@ -112,7 +120,8 @@ class EIA:
         data = []
         while True:
             response = self.api_request(endpoint=endpoint, headers=headers, metadata_folder=metadata_folder, metadata_object_key=metadata_object_key,
-                                       metadata_dataset_key = metadata_dataset_key, start_date_if_none=start_date_if_none, offset=offset)
+                                       metadata_dataset_key = metadata_dataset_key, start_date_if_none=start_date_if_none,
+                                        is_monthly=is_monthly, offset=offset)
             if response.status_code == 200 and len(response.json()['response']['data']) > 0:
                 results = response.json()['response']['data']
                 data.extend(results)
