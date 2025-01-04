@@ -1,0 +1,33 @@
+[2024-11-17T06:37:12.354+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes permission to 509
+[2024-11-17T06:37:12.355+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes'
+[2024-11-17T06:37:12.395+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes permission to 509
+[2024-11-17T06:37:12.397+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes'
+[2024-11-17T06:37:12.444+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.merge_dataframes manual__2024-11-17T06:35:32.466493+00:00 [queued]>
+[2024-11-17T06:37:12.459+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.merge_dataframes manual__2024-11-17T06:35:32.466493+00:00 [queued]>
+[2024-11-17T06:37:12.460+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2024-11-17T06:37:12.479+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): merge_dataframes> on 2024-11-17 06:35:32.466493+00:00
+[2024-11-17T06:37:12.497+0000] {standard_task_runner.py:57} INFO - Started process 127807 to run task
+[2024-11-17T06:37:12.500+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'merge_dataframes', 'manual__2024-11-17T06:35:32.466493+00:00', '--job-id', '254', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpwy4pkjd0']
+[2024-11-17T06:37:12.505+0000] {standard_task_runner.py:85} INFO - Job 254: Subtask merge_dataframes
+[2024-11-17T06:37:12.579+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes permission to 509
+[2024-11-17T06:37:12.580+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T06:35:32.466493+00:00/task_id=merge_dataframes'
+[2024-11-17T06:37:12.583+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.merge_dataframes manual__2024-11-17T06:35:32.466493+00:00 [running]> on host 16801ac1f6e4
+[2024-11-17T06:37:12.697+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='merge_dataframes' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T06:35:32.466493+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-17T06:35:32.466493+00:00'
+[2024-11-17T06:37:51.298+0000] {logging_mixin.py:151} INFO - Error retrieving metadata: An error occurred (NoSuchKey) when calling the GetObject operation: The specified key does not exist.
+[2024-11-17T06:37:53.237+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/merge_datasets.py", line 27, in merge_dataframes
+    natural_gas_monthly_variables_df = EtlTransforms.json_to_df(data=natural_gas_monthly_variables_json, date_as_index=True)
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 59, in json_to_df
+    df = df.set_index('date')
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/frame.py", line 5859, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['date'] are in the columns"
+[2024-11-17T06:37:53.269+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=model_training_pipeline, task_id=merge_dataframes, execution_date=20241117T063532, start_date=20241117T063712, end_date=20241117T063753
+[2024-11-17T06:37:53.301+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 254 for task merge_dataframes ("None of ['date'] are in the columns"; 127807)
+[2024-11-17T06:37:53.363+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-17T06:37:53.414+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,115 @@
+[2024-11-23T05:40:43.403+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model permission to 509
+[2024-11-23T05:40:43.404+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model'
+[2024-11-23T05:40:43.427+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model permission to 509
+[2024-11-23T05:40:43.428+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model'
+[2024-11-23T05:40:43.450+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-23T05:36:03.003828+00:00 [queued]>
+[2024-11-23T05:40:43.457+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-23T05:36:03.003828+00:00 [queued]>
+[2024-11-23T05:40:43.457+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2024-11-23T05:40:43.469+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model> on 2024-11-23 05:36:03.003828+00:00
+[2024-11-23T05:40:43.479+0000] {standard_task_runner.py:57} INFO - Started process 1635 to run task
+[2024-11-23T05:40:43.481+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model', 'manual__2024-11-23T05:36:03.003828+00:00', '--job-id', '373', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpyw2n7xcy']
+[2024-11-23T05:40:43.483+0000] {standard_task_runner.py:85} INFO - Job 373: Subtask train_model
+[2024-11-23T05:40:43.525+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model permission to 509
+[2024-11-23T05:40:43.525+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T05:36:03.003828+00:00/task_id=train_model'
+[2024-11-23T05:40:43.526+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model manual__2024-11-23T05:36:03.003828+00:00 [running]> on host 2445c017a334
+[2024-11-23T05:40:43.596+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-23T05:36:03.003828+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-23T05:36:03.003828+00:00'
+[2024-11-23T05:44:58.413+0000] {logging_mixin.py:151} INFO - Data has been normalised
+[2024-11-23T05:44:58.910+0000] {logging_mixin.py:151} WARNING - 2024/11/23 05:44:58 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-23T05:44:59.066+0000] {logging_mixin.py:151} INFO -  X_train columns : Index(['price_heating_oil ($/GAL)', 'commercial_consumption', 'imports',
+       'lng_imports', 'residential_consumption', 'total_underground_storage',
+       'natural_gas_rigs_in_operation', 'city', 'state', 'quarter', 'awnd',
+       'snow', 'tavg', 'tmax', 'tmin', 'price_1day_lag ($/MMBTU)',
+       'price_2day_lag ($/MMBTU)', 'price_3day_lag ($/MMBTU)',
+       'heating_oil_natural_gas_price_ratio',
+       '7day_ew_volatility price ($/MMBTU)',
+       '14day_ew_volatility price ($/MMBTU)',
+       '30day_ew_volatility price ($/MMBTU)',
+       '60day_ew_volatility price ($/MMBTU)',
+       '7day_rolling_average price ($/MMBTU)',
+       '14day_rolling_average price ($/MMBTU)',
+       '30day_rolling_average price ($/MMBTU)',
+       '7day_rolling_median price ($/MMBTU)',
+       '14day_rolling_median price ($/MMBTU)',
+       '30day_rolling_median price ($/MMBTU)',
+       'total_consumption_total_underground_storage_ratio', 'is_dec_or_jan',
+       'hdd_max', 'cdd_max', 'wci', 'wci_sum', 'snow_sum', 'min_tavg',
+       'max_tavg', 'max_abs_tavg_diff',
+       'max_abs_tavg_diff_relative_to_daily_median'],
+      dtype='object')
+[2024-11-23T05:44:59.104+0000] {logging_mixin.py:151} INFO -  Null values by column: price_heating_oil ($/GAL)                                0
+commercial_consumption                                   0
+imports                                                  0
+lng_imports                                              0
+residential_consumption                                  0
+total_underground_storage                                0
+natural_gas_rigs_in_operation                            0
+city                                                     0
+state                                                    0
+quarter                                                  0
+awnd                                                    42
+snow                                                 44893
+tavg                                                     2
+tmax                                                    17
+tmin                                                    17
+price_1day_lag ($/MMBTU)                                 0
+price_2day_lag ($/MMBTU)                                 0
+price_3day_lag ($/MMBTU)                                 0
+heating_oil_natural_gas_price_ratio                      0
+7day_ew_volatility price ($/MMBTU)                       0
+14day_ew_volatility price ($/MMBTU)                      0
+30day_ew_volatility price ($/MMBTU)                      0
+60day_ew_volatility price ($/MMBTU)                      0
+7day_rolling_average price ($/MMBTU)                     0
+14day_rolling_average price ($/MMBTU)                    0
+30day_rolling_average price ($/MMBTU)                    0
+7day_rolling_median price ($/MMBTU)                      0
+14day_rolling_median price ($/MMBTU)                     0
+30day_rolling_median price ($/MMBTU)                     0
+total_consumption_total_underground_storage_ratio     1144
+is_dec_or_jan                                            0
+hdd_max                                                  0
+cdd_max                                                  0
+wci                                                     44
+wci_sum                                                  0
+snow_sum                                                 0
+min_tavg                                                 0
+max_tavg                                                 0
+max_abs_tavg_diff                                        0
+max_abs_tavg_diff_relative_to_daily_median               0
+dtype: int64
+[2024-11-23T05:44:59.105+0000] {logging_mixin.py:151} INFO - X_train shape: (168220, 40)
+[2024-11-23T05:44:59.105+0000] {logging_mixin.py:151} INFO - X_test shape: (33644, 40)
+[2024-11-23T05:44:59.125+0000] {logging_mixin.py:151} WARNING - 2024/11/23 05:44:59 INFO mlflow.tracking._tracking_service.client: 🏃 View run GRU_7_day_horizon_30_20241123 at: http://mlflow:5000/#/experiments/1/runs/0b71fb394b9f40c28c081b3400008a09.
+[2024-11-23T05:44:59.126+0000] {logging_mixin.py:151} WARNING - 2024/11/23 05:44:59 INFO mlflow.tracking._tracking_service.client: 🧪 View experiment at: http://mlflow:5000/#/experiments/1.
+[2024-11-23T05:44:59.141+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/train_model.py", line 74, in train_model
+    Model.train_model(x_train=X_train, y_train=y_train, x_test=X_test, y_test=y_test, time_steps=30, experiment_id=experiment_id, forecast_horizon=7, batch_size=128)
+  File "/opt/airflow/dags/modelling/model.py", line 53, in train_model
+    x_batch, y_batch = next(train_gen)
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 276, in create_sequences
+    y_batch.append(y.iloc[i + sequence_length].to_numpy().reshape(-1, 1))
+AttributeError: 'numpy.float64' object has no attribute 'to_numpy'
+[2024-11-23T05:44:59.158+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=model_training_pipeline, task_id=train_model, execution_date=20241123T053603, start_date=20241123T054043, end_date=20241123T054459
+[2024-11-23T05:44:59.171+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 373 for task train_model ('numpy.float64' object has no attribute 'to_numpy'; 1635)
+[2024-11-23T05:44:59.245+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-23T05:44:59.262+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

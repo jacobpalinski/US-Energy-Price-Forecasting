@@ -1,0 +1,52 @@
+[2024-10-10T10:24:49.959+0000] {processor.py:157} INFO - Started process (PID=171) to work on /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:24:49.960+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/testing/test_etl_utils.py for tasks to queue
+[2024-10-10T10:24:49.960+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:24:49.960+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:24:49.970+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:24:49.969+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/testing/test_etl_utils.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 839, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 976, in get_code
+  File "<frozen importlib._bootstrap_external>", line 906, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/testing/test_etl_utils.py", line 34
+    {'date': '2024-05-24', 'datatype': 'AWND', 'value': 4.0, 'city': 'Detroit', 'state': 'Michigan'}]
+    ^
+SyntaxError: invalid syntax
+[2024-10-10T10:24:49.971+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:24:49.988+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/testing/test_etl_utils.py took 0.031 seconds
+[2024-10-10T10:25:20.149+0000] {processor.py:157} INFO - Started process (PID=176) to work on /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:20.150+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/testing/test_etl_utils.py for tasks to queue
+[2024-10-10T10:25:20.151+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:25:20.150+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:20.160+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:25:20.159+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/testing/test_etl_utils.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 839, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 976, in get_code
+  File "<frozen importlib._bootstrap_external>", line 906, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/testing/test_etl_utils.py", line 34
+    {'date': '2024-05-24', 'datatype': 'AWND', 'value': 4.0, 'city': 'Detroit', 'state': 'Michigan'}]
+    ^
+SyntaxError: invalid syntax
+[2024-10-10T10:25:20.160+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:20.176+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/testing/test_etl_utils.py took 0.029 seconds
+[2024-10-10T10:25:22.176+0000] {processor.py:157} INFO - Started process (PID=181) to work on /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:22.176+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/testing/test_etl_utils.py for tasks to queue
+[2024-10-10T10:25:22.177+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:25:22.177+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:22.183+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:25:22.182+0000] {dagbag.py:324} INFO - File /opt/airflow/dags/testing/test_etl_utils.py assumed to contain no DAGs. Skipping.
+[2024-10-10T10:25:22.183+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:22.203+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/testing/test_etl_utils.py took 0.030 seconds
+[2024-10-10T10:25:52.391+0000] {processor.py:157} INFO - Started process (PID=186) to work on /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:52.392+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/testing/test_etl_utils.py for tasks to queue
+[2024-10-10T10:25:52.393+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:25:52.393+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:52.398+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:25:52.398+0000] {dagbag.py:324} INFO - File /opt/airflow/dags/testing/test_etl_utils.py assumed to contain no DAGs. Skipping.
+[2024-10-10T10:25:52.399+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:25:52.410+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/testing/test_etl_utils.py took 0.021 seconds
+[2024-10-10T10:26:22.571+0000] {processor.py:157} INFO - Started process (PID=191) to work on /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:26:22.571+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/testing/test_etl_utils.py for tasks to queue
+[2024-10-10T10:26:22.572+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:26:22.572+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:26:22.577+0000] {logging_mixin.py:151} INFO - [2024-10-10T10:26:22.577+0000] {dagbag.py:324} INFO - File /opt/airflow/dags/testing/test_etl_utils.py assumed to contain no DAGs. Skipping.
+[2024-10-10T10:26:22.577+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/testing/test_etl_utils.py
+[2024-10-10T10:26:22.588+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/testing/test_etl_utils.py took 0.019 seconds

@@ -1,0 +1,36 @@
+[2024-11-18T09:55:33.133+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model permission to 509
+[2024-11-18T09:55:33.134+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model'
+[2024-11-18T09:55:33.188+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model permission to 509
+[2024-11-18T09:55:33.189+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model'
+[2024-11-18T09:55:33.220+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-18T09:55:28.568481+00:00 [queued]>
+[2024-11-18T09:55:33.234+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-18T09:55:28.568481+00:00 [queued]>
+[2024-11-18T09:55:33.234+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-18T09:55:33.258+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model> on 2024-11-18 09:55:28.568481+00:00
+[2024-11-18T09:55:33.288+0000] {standard_task_runner.py:57} INFO - Started process 17755 to run task
+[2024-11-18T09:55:33.308+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model', 'manual__2024-11-18T09:55:28.568481+00:00', '--job-id', '311', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpt8iwsq_2']
+[2024-11-18T09:55:33.314+0000] {standard_task_runner.py:85} INFO - Job 311: Subtask train_model
+[2024-11-18T09:55:33.456+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model permission to 509
+[2024-11-18T09:55:33.456+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-18T09:55:28.568481+00:00/task_id=train_model'
+[2024-11-18T09:55:33.459+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model manual__2024-11-18T09:55:28.568481+00:00 [running]> on host 16801ac1f6e4
+[2024-11-18T09:55:33.615+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-18T09:55:28.568481+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-18T09:55:28.568481+00:00'
+[2024-11-18T09:59:17.040+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/train_model.py", line 35, in train_model
+    X_train, X_test = EtlTransforms.normalisation(train_df=X_train, test_df=X_test)
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 301, in normalisation
+    train_df[robust_columns] = robust_scaler.fit_transform(train_df[robust_columns])
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/frame.py", line 3767, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 5877, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 5941, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['hdd_sum', 'cdd_sum'] not in index"
+[2024-11-18T09:59:17.098+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=model_training_pipeline, task_id=train_model, execution_date=20241118T095528, start_date=20241118T095533, end_date=20241118T095917
+[2024-11-18T09:59:17.146+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 311 for task train_model ("['hdd_sum', 'cdd_sum'] not in index"; 17755)
+[2024-11-18T09:59:17.223+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-18T09:59:17.243+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

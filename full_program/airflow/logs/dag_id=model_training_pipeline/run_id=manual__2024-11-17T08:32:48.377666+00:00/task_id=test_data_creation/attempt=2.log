@@ -1,0 +1,28 @@
+[2024-11-17T08:49:33.013+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation permission to 509
+[2024-11-17T08:49:33.014+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation'
+[2024-11-17T08:49:33.065+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation permission to 509
+[2024-11-17T08:49:33.066+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation'
+[2024-11-17T08:49:33.113+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.test_data_creation manual__2024-11-17T08:32:48.377666+00:00 [queued]>
+[2024-11-17T08:49:33.131+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.test_data_creation manual__2024-11-17T08:32:48.377666+00:00 [queued]>
+[2024-11-17T08:49:33.133+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2024-11-17T08:49:33.184+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): test_data_creation> on 2024-11-17 08:32:48.377666+00:00
+[2024-11-17T08:49:33.205+0000] {standard_task_runner.py:57} INFO - Started process 153981 to run task
+[2024-11-17T08:49:33.210+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'test_data_creation', 'manual__2024-11-17T08:32:48.377666+00:00', '--job-id', '287', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpgdyso51q']
+[2024-11-17T08:49:33.215+0000] {standard_task_runner.py:85} INFO - Job 287: Subtask test_data_creation
+[2024-11-17T08:49:33.316+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation permission to 509
+[2024-11-17T08:49:33.317+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:32:48.377666+00:00/task_id=test_data_creation'
+[2024-11-17T08:49:33.320+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.test_data_creation manual__2024-11-17T08:32:48.377666+00:00 [running]> on host 16801ac1f6e4
+[2024-11-17T08:49:33.518+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='test_data_creation' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T08:32:48.377666+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-17T08:32:48.377666+00:00'
+[2024-11-17T08:53:46.871+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/test_data_creation.py", line 22, in test_data_creation
+    curated_test_data_df = EtlTransforms.create_test_data(df=curated_training_data_df)
+TypeError: create_test_data() missing 1 required positional argument: 'holdout'
+[2024-11-17T08:53:46.897+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=model_training_pipeline, task_id=test_data_creation, execution_date=20241117T083248, start_date=20241117T084933, end_date=20241117T085346
+[2024-11-17T08:53:46.931+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 287 for task test_data_creation (create_test_data() missing 1 required positional argument: 'holdout'; 153981)
+[2024-11-17T08:53:47.048+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-17T08:53:47.101+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

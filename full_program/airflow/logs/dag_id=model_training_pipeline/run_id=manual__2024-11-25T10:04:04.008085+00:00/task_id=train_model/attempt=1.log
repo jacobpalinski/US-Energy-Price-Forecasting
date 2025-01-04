@@ -1,0 +1,35 @@
+[2024-11-25T10:04:13.000+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model permission to 509
+[2024-11-25T10:04:13.001+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model'
+[2024-11-25T10:04:13.040+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model permission to 509
+[2024-11-25T10:04:13.040+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model'
+[2024-11-25T10:04:13.072+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-25T10:04:04.008085+00:00 [queued]>
+[2024-11-25T10:04:13.083+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-25T10:04:04.008085+00:00 [queued]>
+[2024-11-25T10:04:13.083+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-25T10:04:13.102+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model> on 2024-11-25 10:04:04.008085+00:00
+[2024-11-25T10:04:13.116+0000] {standard_task_runner.py:57} INFO - Started process 1596 to run task
+[2024-11-25T10:04:13.119+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model', 'manual__2024-11-25T10:04:04.008085+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpcmbnlk71']
+[2024-11-25T10:04:13.122+0000] {standard_task_runner.py:85} INFO - Job 29: Subtask train_model
+[2024-11-25T10:04:13.186+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model permission to 509
+[2024-11-25T10:04:13.187+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-25T10:04:04.008085+00:00/task_id=train_model'
+[2024-11-25T10:04:13.188+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model manual__2024-11-25T10:04:04.008085+00:00 [running]> on host 71596b931411
+[2024-11-25T10:04:13.293+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-25T10:04:04.008085+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-25T10:04:04.008085+00:00'
+[2024-11-25T10:08:53.842+0000] {logging_mixin.py:151} INFO - Data has been normalised
+[2024-11-25T10:08:53.869+0000] {logging_mixin.py:151} INFO - Current Directory:  /opt/***
+[2024-11-25T10:09:08.962+0000] {logging_mixin.py:151} INFO - Sequences have been saved to /opt/***/dags/x_sequences_train_7day.npy and /opt/***/dags/y_sequences_train_7day.npy and 168190 and 168190
+[2024-11-25T10:09:08.965+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/train_model.py", line 43, in train_model
+    EtlTransforms.create_sequences(x=X_train, y=y_train, sequence_length=30, output_dir='/opt/airflow/dags/', batch_size=128, type='train_7day')
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 343, in create_sequences
+    print(os.path.getsize(output_file_x))
+  File "/usr/local/lib/python3.8/genericpath.py", line 50, in getsize
+    return os.stat(filename).st_size
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/dags/x_sequences_train_7day.npy'
+[2024-11-25T10:09:08.985+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=model_training_pipeline, task_id=train_model, execution_date=20241125T100404, start_date=20241125T100413, end_date=20241125T100908
+[2024-11-25T10:09:09.006+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 29 for task train_model ([Errno 2] No such file or directory: '/opt/airflow/dags/x_sequences_train_7day.npy'; 1596)
+[2024-11-25T10:09:09.126+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-25T10:09:09.287+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,44 @@
+[2024-11-10T06:39:54.141+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction permission to 509
+[2024-11-10T06:39:54.141+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction'
+[2024-11-10T06:39:54.166+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction permission to 509
+[2024-11-10T06:39:54.167+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction'
+[2024-11-10T06:39:54.194+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: noaa_etl_pipeline.noaa_extraction manual__2024-11-10T06:39:52.138720+00:00 [queued]>
+[2024-11-10T06:39:54.201+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: noaa_etl_pipeline.noaa_extraction manual__2024-11-10T06:39:52.138720+00:00 [queued]>
+[2024-11-10T06:39:54.201+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-10T06:39:54.214+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): noaa_extraction> on 2024-11-10 06:39:52.138720+00:00
+[2024-11-10T06:39:54.220+0000] {standard_task_runner.py:57} INFO - Started process 63567 to run task
+[2024-11-10T06:39:54.223+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'noaa_etl_pipeline', 'noaa_extraction', 'manual__2024-11-10T06:39:52.138720+00:00', '--job-id', '79', '--raw', '--subdir', 'DAGS_FOLDER/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py', '--cfg-path', '/tmp/tmp3b8fr3cu']
+[2024-11-10T06:39:54.224+0000] {standard_task_runner.py:85} INFO - Job 79: Subtask noaa_extraction
+[2024-11-10T06:39:54.263+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction permission to 509
+[2024-11-10T06:39:54.263+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=noaa_extraction'
+[2024-11-10T06:39:54.265+0000] {task_command.py:415} INFO - Running <TaskInstance: noaa_etl_pipeline.noaa_extraction manual__2024-11-10T06:39:52.138720+00:00 [running]> on host 16801ac1f6e4
+[2024-11-10T06:39:54.336+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='noaa_etl_pipeline' AIRFLOW_CTX_TASK_ID='noaa_extraction' AIRFLOW_CTX_EXECUTION_DATE='2024-11-10T06:39:52.138720+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-10T06:39:52.138720+00:00'
+[2024-11-10T06:39:55.547+0000] {logging_mixin.py:151} INFO - 1999-01-04
+[2024-11-10T06:39:57.719+0000] {logging_mixin.py:151} INFO - 1999-01-10
+[2024-11-10T06:39:59.498+0000] {logging_mixin.py:151} INFO - 1999-01-16
+[2024-11-10T06:40:01.446+0000] {logging_mixin.py:151} INFO - 1999-01-22
+[2024-11-10T06:40:03.340+0000] {logging_mixin.py:151} INFO - 1999-01-28
+[2024-11-10T06:40:05.954+0000] {logging_mixin.py:151} INFO - 1999-02-03
+[2024-11-10T06:40:08.000+0000] {logging_mixin.py:151} INFO - 1999-02-09
+[2024-11-10T06:40:10.196+0000] {logging_mixin.py:151} INFO - 1999-02-15
+[2024-11-10T06:40:12.671+0000] {logging_mixin.py:151} INFO - 1999-02-21
+[2024-11-10T06:40:14.467+0000] {logging_mixin.py:151} INFO - 1999-02-27
+[2024-11-10T06:40:16.576+0000] {logging_mixin.py:151} INFO - 1999-03-05
+[2024-11-10T06:40:18.342+0000] {logging_mixin.py:151} INFO - 1999-03-11
+[2024-11-10T06:40:20.351+0000] {logging_mixin.py:151} INFO - 1999-03-17
+[2024-11-10T06:40:24.075+0000] {logging_mixin.py:151} INFO - 1999-03-23
+[2024-11-10T06:40:26.607+0000] {logging_mixin.py:151} INFO - 1999-03-29
+[2024-11-10T06:40:29.081+0000] {logging_mixin.py:151} INFO - 1999-04-04
+[2024-11-10T06:40:31.646+0000] {logging_mixin.py:151} INFO - 1999-04-10
+[2024-11-10T06:40:34.322+0000] {logging_mixin.py:151} INFO - 1999-04-16
+[2024-11-10T06:40:37.119+0000] {logging_mixin.py:151} INFO - 1999-04-22
+[2024-11-10T06:40:39.856+0000] {logging_mixin.py:151} INFO - 1999-04-28
+[2024-11-10T06:40:44.702+0000] {logging_mixin.py:151} INFO - 1999-05-04
+[2024-11-10T06:40:47.646+0000] {logging_mixin.py:151} INFO - 1999-05-10
+[2024-11-10T06:40:50.596+0000] {logging_mixin.py:151} INFO - 1999-05-16
+[2024-11-10T06:40:53.152+0000] {logging_mixin.py:151} INFO - 1999-05-22
+[2024-11-10T06:40:54.802+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2024-11-10T06:40:54.805+0000] {process_utils.py:131} INFO - Sending 15 to group 63567. PIDs of all processes in the group: [63567]
+[2024-11-10T06:40:54.805+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 63567
+[2024-11-10T06:40:54.806+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2024-11-10T06:40:54.858+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=63567, status='terminated', exitcode=0, started='06:39:53') (63567) terminated with exit code 0

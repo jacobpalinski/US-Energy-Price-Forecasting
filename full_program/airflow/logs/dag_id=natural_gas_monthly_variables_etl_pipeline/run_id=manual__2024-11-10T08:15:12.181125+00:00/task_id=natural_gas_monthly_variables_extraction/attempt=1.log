@@ -1,0 +1,38 @@
+[2024-11-10T08:15:14.422+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction permission to 509
+[2024-11-10T08:15:14.423+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction'
+[2024-11-10T08:15:14.447+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction permission to 509
+[2024-11-10T08:15:14.447+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction'
+[2024-11-10T08:15:14.481+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: natural_gas_monthly_variables_etl_pipeline.natural_gas_monthly_variables_extraction manual__2024-11-10T08:15:12.181125+00:00 [queued]>
+[2024-11-10T08:15:14.490+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: natural_gas_monthly_variables_etl_pipeline.natural_gas_monthly_variables_extraction manual__2024-11-10T08:15:12.181125+00:00 [queued]>
+[2024-11-10T08:15:14.490+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-10T08:15:14.503+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): natural_gas_monthly_variables_extraction> on 2024-11-10 08:15:12.181125+00:00
+[2024-11-10T08:15:14.511+0000] {standard_task_runner.py:57} INFO - Started process 75853 to run task
+[2024-11-10T08:15:14.513+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'natural_gas_monthly_variables_etl_pipeline', 'natural_gas_monthly_variables_extraction', 'manual__2024-11-10T08:15:12.181125+00:00', '--job-id', '91', '--raw', '--subdir', 'DAGS_FOLDER/eia_natural_gas_monthly_variables_etl_pipeline_dag/natural_gas_monthly_variables_etl_pipeline_dag.py', '--cfg-path', '/tmp/tmpeeoyssrj']
+[2024-11-10T08:15:14.518+0000] {standard_task_runner.py:85} INFO - Job 91: Subtask natural_gas_monthly_variables_extraction
+[2024-11-10T08:15:14.562+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction permission to 509
+[2024-11-10T08:15:14.563+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=natural_gas_monthly_variables_etl_pipeline/run_id=manual__2024-11-10T08:15:12.181125+00:00/task_id=natural_gas_monthly_variables_extraction'
+[2024-11-10T08:15:14.564+0000] {task_command.py:415} INFO - Running <TaskInstance: natural_gas_monthly_variables_etl_pipeline.natural_gas_monthly_variables_extraction manual__2024-11-10T08:15:12.181125+00:00 [running]> on host 16801ac1f6e4
+[2024-11-10T08:15:14.639+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='natural_gas_monthly_variables_etl_pipeline' AIRFLOW_CTX_TASK_ID='natural_gas_monthly_variables_extraction' AIRFLOW_CTX_EXECUTION_DATE='2024-11-10T08:15:12.181125+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-10T08:15:12.181125+00:00'
+[2024-11-10T08:15:23.470+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 41, in natural_gas_monthly_variables_extraction
+    eia.extract(endpoint='natural-gas/sum/lsum/data/', headers=headers, folder='full_program/extraction/natural_gas_monthly_variables/',
+  File "/opt/airflow/dags/extraction/eia_api.py", line 122, in extract
+    max_date = self.get_max_date(data, is_monthly=is_monthly)
+  File "/opt/airflow/dags/extraction/eia_api.py", line 85, in get_max_date
+    dates = [datetime.strptime(item['period'], '%Y-%m-%d') for item in data]
+  File "/opt/airflow/dags/extraction/eia_api.py", line 85, in <listcomp>
+    dates = [datetime.strptime(item['period'], '%Y-%m-%d') for item in data]
+  File "/usr/local/lib/python3.8/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/local/lib/python3.8/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '1999-01' does not match format '%Y-%m-%d'
+[2024-11-10T08:15:23.488+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=natural_gas_monthly_variables_etl_pipeline, task_id=natural_gas_monthly_variables_extraction, execution_date=20241110T081512, start_date=20241110T081514, end_date=20241110T081523
+[2024-11-10T08:15:23.500+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 91 for task natural_gas_monthly_variables_extraction (time data '1999-01' does not match format '%Y-%m-%d'; 75853)
+[2024-11-10T08:15:23.515+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-10T08:15:23.535+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

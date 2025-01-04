@@ -1,0 +1,45 @@
+[2024-11-17T08:16:40.108+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values permission to 509
+[2024-11-17T08:16:40.109+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values'
+[2024-11-17T08:16:40.146+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values permission to 509
+[2024-11-17T08:16:40.146+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values'
+[2024-11-17T08:16:40.175+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.forwardfill_missing_values manual__2024-11-17T08:16:31.841403+00:00 [queued]>
+[2024-11-17T08:16:40.184+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.forwardfill_missing_values manual__2024-11-17T08:16:31.841403+00:00 [queued]>
+[2024-11-17T08:16:40.185+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-17T08:16:40.201+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): forwardfill_missing_values> on 2024-11-17 08:16:31.841403+00:00
+[2024-11-17T08:16:40.214+0000] {standard_task_runner.py:57} INFO - Started process 147557 to run task
+[2024-11-17T08:16:40.218+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'forwardfill_missing_values', 'manual__2024-11-17T08:16:31.841403+00:00', '--job-id', '282', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpipob_g_y']
+[2024-11-17T08:16:40.223+0000] {standard_task_runner.py:85} INFO - Job 282: Subtask forwardfill_missing_values
+[2024-11-17T08:16:40.280+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values permission to 509
+[2024-11-17T08:16:40.281+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-17T08:16:31.841403+00:00/task_id=forwardfill_missing_values'
+[2024-11-17T08:16:40.282+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.forwardfill_missing_values manual__2024-11-17T08:16:31.841403+00:00 [running]> on host 16801ac1f6e4
+[2024-11-17T08:16:40.377+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='forwardfill_missing_values' AIRFLOW_CTX_EXECUTION_DATE='2024-11-17T08:16:31.841403+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-17T08:16:31.841403+00:00'
+[2024-11-17T08:21:14.687+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 3653, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'commerical_consumption'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/forwardfill_missing_values.py", line 22, in forwardfill_missing_values
+    curated_training_data_df = EtlTransforms.forwardfill_null_values_end_of_series(df=curated_training_data_df)
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 216, in forwardfill_null_values_end_of_series
+    last_valid_index = df[col].last_valid_index()
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 3655, in get_loc
+    raise KeyError(key) from err
+KeyError: 'commerical_consumption'
+[2024-11-17T08:21:14.730+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=model_training_pipeline, task_id=forwardfill_missing_values, execution_date=20241117T081631, start_date=20241117T081640, end_date=20241117T082114
+[2024-11-17T08:21:14.755+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 282 for task forwardfill_missing_values ('commerical_consumption'; 147557)
+[2024-11-17T08:21:14.835+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-17T08:21:14.871+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

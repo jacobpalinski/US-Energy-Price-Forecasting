@@ -1,0 +1,224 @@
+[2024-11-24T06:09:56.654+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model permission to 509
+[2024-11-24T06:09:56.655+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model'
+[2024-11-24T06:09:56.678+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model permission to 509
+[2024-11-24T06:09:56.678+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model'
+[2024-11-24T06:09:56.700+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-24T06:09:52.679856+00:00 [queued]>
+[2024-11-24T06:09:56.707+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-24T06:09:52.679856+00:00 [queued]>
+[2024-11-24T06:09:56.708+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-24T06:09:56.719+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model> on 2024-11-24 06:09:52.679856+00:00
+[2024-11-24T06:09:56.729+0000] {standard_task_runner.py:57} INFO - Started process 19530 to run task
+[2024-11-24T06:09:56.731+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model', 'manual__2024-11-24T06:09:52.679856+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpc0_mqsr3']
+[2024-11-24T06:09:56.734+0000] {standard_task_runner.py:85} INFO - Job 12: Subtask train_model
+[2024-11-24T06:09:56.774+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model permission to 509
+[2024-11-24T06:09:56.774+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-24T06:09:52.679856+00:00/task_id=train_model'
+[2024-11-24T06:09:56.776+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model manual__2024-11-24T06:09:52.679856+00:00 [running]> on host 71596b931411
+[2024-11-24T06:09:56.848+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-24T06:09:52.679856+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-24T06:09:52.679856+00:00'
+[2024-11-24T06:13:39.632+0000] {logging_mixin.py:151} INFO - Data has been normalised
+[2024-11-24T06:13:39.673+0000] {logging_mixin.py:151} INFO - [    price_heating_oil ($/GAL)  ...  max_abs_tavg_diff_relative_to_daily_median
+0                       0.346  ...                                    2.680101
+1                       0.346  ...                                    2.680101
+2                       0.346  ...                                    2.680101
+3                       0.346  ...                                    2.680101
+4                       0.346  ...                                    2.680101
+5                       0.346  ...                                    2.680101
+6                       0.346  ...                                    2.680101
+7                       0.346  ...                                    2.680101
+8                       0.346  ...                                    2.680101
+9                       0.346  ...                                    2.680101
+10                      0.346  ...                                    2.680101
+11                      0.346  ...                                    2.680101
+12                      0.346  ...                                    2.680101
+13                      0.346  ...                                    2.680101
+14                      0.346  ...                                    2.680101
+15                      0.346  ...                                    2.680101
+16                      0.346  ...                                    2.680101
+17                      0.346  ...                                    2.680101
+18                      0.346  ...                                    2.680101
+19                      0.346  ...                                    2.680101
+20                      0.346  ...                                    2.680101
+21                      0.346  ...                                    2.680101
+22                      0.346  ...                                    2.680101
+23                      0.346  ...                                    2.680101
+24                      0.346  ...                                    2.680101
+25                      0.346  ...                                    2.680101
+26                      0.338  ...                                    2.732997
+27                      0.338  ...                                    2.732997
+28                      0.338  ...                                    2.732997
+29                      0.338  ...                                    2.732997
+
+[30 rows x 26 columns]]
+[2024-11-24T06:13:39.674+0000] {logging_mixin.py:151} INFO - [2.05]
+[2024-11-24T06:13:39.702+0000] {logging_mixin.py:151} INFO - [    price_heating_oil ($/GAL)  ...  max_abs_tavg_diff_relative_to_daily_median
+0                       0.346  ...                                    2.680101
+1                       0.346  ...                                    2.680101
+2                       0.346  ...                                    2.680101
+3                       0.346  ...                                    2.680101
+4                       0.346  ...                                    2.680101
+5                       0.346  ...                                    2.680101
+6                       0.346  ...                                    2.680101
+7                       0.346  ...                                    2.680101
+8                       0.346  ...                                    2.680101
+9                       0.346  ...                                    2.680101
+10                      0.346  ...                                    2.680101
+11                      0.346  ...                                    2.680101
+12                      0.346  ...                                    2.680101
+13                      0.346  ...                                    2.680101
+14                      0.346  ...                                    2.680101
+15                      0.346  ...                                    2.680101
+16                      0.346  ...                                    2.680101
+17                      0.346  ...                                    2.680101
+18                      0.346  ...                                    2.680101
+19                      0.346  ...                                    2.680101
+20                      0.346  ...                                    2.680101
+
+[21 rows x 26 columns]]
+[2024-11-24T06:13:39.702+0000] {logging_mixin.py:151} INFO - [2.1]
+[2024-11-24T06:13:39.727+0000] {logging_mixin.py:151} INFO - [    price_heating_oil ($/GAL)  ...  max_abs_tavg_diff_relative_to_daily_median
+0                       0.346  ...                                    2.680101
+1                       0.346  ...                                    2.680101
+2                       0.346  ...                                    2.680101
+3                       0.346  ...                                    2.680101
+4                       0.346  ...                                    2.680101
+5                       0.346  ...                                    2.680101
+6                       0.346  ...                                    2.680101
+7                       0.346  ...                                    2.680101
+8                       0.346  ...                                    2.680101
+9                       0.346  ...                                    2.680101
+10                      0.346  ...                                    2.680101
+11                      0.346  ...                                    2.680101
+12                      0.346  ...                                    2.680101
+13                      0.346  ...                                    2.680101
+
+[14 rows x 26 columns]]
+[2024-11-24T06:13:39.727+0000] {logging_mixin.py:151} INFO - [2.1]
+[2024-11-24T06:13:39.753+0000] {logging_mixin.py:151} INFO - [    price_heating_oil ($/GAL)  ...  max_abs_tavg_diff_relative_to_daily_median
+0                       0.346  ...                                    2.680101
+1                       0.346  ...                                    2.680101
+2                       0.346  ...                                    2.680101
+3                       0.346  ...                                    2.680101
+4                       0.346  ...                                    2.680101
+5                       0.346  ...                                    2.680101
+6                       0.346  ...                                    2.680101
+7                       0.346  ...                                    2.680101
+8                       0.346  ...                                    2.680101
+9                       0.346  ...                                    2.680101
+10                      0.346  ...                                    2.680101
+11                      0.346  ...                                    2.680101
+12                      0.346  ...                                    2.680101
+13                      0.346  ...                                    2.680101
+
+[14 rows x 26 columns]]
+[2024-11-24T06:13:39.754+0000] {logging_mixin.py:151} INFO - [2.1]
+[2024-11-24T06:13:39.784+0000] {logging_mixin.py:151} INFO - [    price_heating_oil ($/GAL)  ...  max_abs_tavg_diff_relative_to_daily_median
+0                       1.831  ...                                   -0.531486
+1                       1.831  ...                                   -0.531486
+2                       1.831  ...                                   -0.531486
+3                       1.831  ...                                   -0.531486
+4                       1.831  ...                                   -0.531486
+5                       1.831  ...                                   -0.531486
+6                       1.831  ...                                   -0.531486
+7                       1.831  ...                                   -0.531486
+8                       1.831  ...                                   -0.531486
+9                       1.831  ...                                   -0.531486
+10                      1.831  ...                                   -0.531486
+11                      1.831  ...                                   -0.531486
+12                      1.831  ...                                   -0.531486
+13                      1.831  ...                                   -0.531486
+14                      1.831  ...                                   -0.531486
+15                      1.831  ...                                   -0.531486
+16                      1.831  ...                                   -0.531486
+17                      1.831  ...                                   -0.531486
+18                      1.831  ...                                   -0.531486
+19                      1.831  ...                                   -0.531486
+20                      1.831  ...                                   -0.531486
+21                      1.831  ...                                   -0.531486
+22                      1.831  ...                                   -0.531486
+23                      1.831  ...                                   -0.531486
+24                      1.831  ...                                   -0.531486
+25                      1.831  ...                                   -0.531486
+26                      1.801  ...                                   -0.901763
+27                      1.801  ...                                   -0.901763
+28                      1.801  ...                                   -0.901763
+29                      1.801  ...                                   -0.901763
+
+[30 rows x 26 columns]]
+[2024-11-24T06:13:39.784+0000] {logging_mixin.py:151} INFO - [2.33]
+[2024-11-24T06:13:39.810+0000] {logging_mixin.py:151} INFO - [    price_heating_oil ($/GAL)  ...  max_abs_tavg_diff_relative_to_daily_median
+0                       1.831  ...                                   -0.531486
+1                       1.831  ...                                   -0.531486
+2                       1.831  ...                                   -0.531486
+3                       1.831  ...                                   -0.531486
+4                       1.831  ...                                   -0.531486
+5                       1.831  ...                                   -0.531486
+6                       1.831  ...                                   -0.531486
+7                       1.831  ...                                   -0.531486
+8                       1.831  ...                                   -0.531486
+9                       1.831  ...                                   -0.531486
+10                      1.831  ...                                   -0.531486
+11                      1.831  ...                                   -0.531486
+12                      1.831  ...                                   -0.531486
+13                      1.831  ...                                   -0.531486
+14                      1.831  ...                                   -0.531486
+15                      1.831  ...                                   -0.531486
+16                      1.831  ...                                   -0.531486
+17                      1.831  ...                                   -0.531486
+18                      1.831  ...                                   -0.531486
+19                      1.831  ...                                   -0.531486
+20                      1.831  ...                                   -0.531486
+
+[21 rows x 26 columns]]
+[2024-11-24T06:13:39.811+0000] {logging_mixin.py:151} INFO - [2.36]
+[2024-11-24T06:13:39.835+0000] {logging_mixin.py:151} INFO - [    price_heating_oil ($/GAL)  ...  max_abs_tavg_diff_relative_to_daily_median
+0                       1.831  ...                                   -0.531486
+1                       1.831  ...                                   -0.531486
+2                       1.831  ...                                   -0.531486
+3                       1.831  ...                                   -0.531486
+4                       1.831  ...                                   -0.531486
+5                       1.831  ...                                   -0.531486
+6                       1.831  ...                                   -0.531486
+7                       1.831  ...                                   -0.531486
+8                       1.831  ...                                   -0.531486
+9                       1.831  ...                                   -0.531486
+10                      1.831  ...                                   -0.531486
+11                      1.831  ...                                   -0.531486
+12                      1.831  ...                                   -0.531486
+13                      1.831  ...                                   -0.531486
+
+[14 rows x 26 columns]]
+[2024-11-24T06:13:39.835+0000] {logging_mixin.py:151} INFO - [2.36]
+[2024-11-24T06:13:39.859+0000] {logging_mixin.py:151} INFO - [    price_heating_oil ($/GAL)  ...  max_abs_tavg_diff_relative_to_daily_median
+0                       1.831  ...                                   -0.531486
+1                       1.831  ...                                   -0.531486
+2                       1.831  ...                                   -0.531486
+3                       1.831  ...                                   -0.531486
+4                       1.831  ...                                   -0.531486
+5                       1.831  ...                                   -0.531486
+6                       1.831  ...                                   -0.531486
+7                       1.831  ...                                   -0.531486
+8                       1.831  ...                                   -0.531486
+9                       1.831  ...                                   -0.531486
+10                      1.831  ...                                   -0.531486
+11                      1.831  ...                                   -0.531486
+12                      1.831  ...                                   -0.531486
+13                      1.831  ...                                   -0.531486
+
+[14 rows x 26 columns]]
+[2024-11-24T06:13:39.860+0000] {logging_mixin.py:151} INFO - [2.36]
+[2024-11-24T06:13:39.860+0000] {logging_mixin.py:151} INFO - sequences successfully created
+[2024-11-24T06:13:39.860+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/train_model.py", line 54, in train_model
+    Model.train_model(output_dir='/opt/airflow/sequences', time_steps=30, experiment_id=experiment_id, forecast_horizon=7)
+  File "/opt/airflow/dags/modelling/model.py", line 29, in train_model
+    x_train = np.load(output_file_x, allow_pickle=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/numpy/lib/npyio.py", line 405, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/sequences/x_sequences_train_7day.npy'
+[2024-11-24T06:13:39.876+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=model_training_pipeline, task_id=train_model, execution_date=20241124T060952, start_date=20241124T060956, end_date=20241124T061339
+[2024-11-24T06:13:39.889+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 12 for task train_model ([Errno 2] No such file or directory: '/opt/airflow/sequences/x_sequences_train_7day.npy'; 19530)
+[2024-11-24T06:13:39.948+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-24T06:13:39.964+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

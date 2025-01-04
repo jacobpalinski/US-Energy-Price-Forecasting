@@ -1,0 +1,57 @@
+[2024-11-21T10:07:07.930+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model permission to 509
+[2024-11-21T10:07:07.930+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model'
+[2024-11-21T10:07:07.968+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model permission to 509
+[2024-11-21T10:07:07.969+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model'
+[2024-11-21T10:07:07.996+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-21T10:07:00.541777+00:00 [queued]>
+[2024-11-21T10:07:08.008+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-21T10:07:00.541777+00:00 [queued]>
+[2024-11-21T10:07:08.009+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-21T10:07:08.043+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model> on 2024-11-21 10:07:00.541777+00:00
+[2024-11-21T10:07:08.061+0000] {standard_task_runner.py:57} INFO - Started process 13607 to run task
+[2024-11-21T10:07:08.063+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model', 'manual__2024-11-21T10:07:00.541777+00:00', '--job-id', '339', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpyrtzvlki']
+[2024-11-21T10:07:08.067+0000] {standard_task_runner.py:85} INFO - Job 339: Subtask train_model
+[2024-11-21T10:07:08.125+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model permission to 509
+[2024-11-21T10:07:08.125+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-21T10:07:00.541777+00:00/task_id=train_model'
+[2024-11-21T10:07:08.127+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model manual__2024-11-21T10:07:00.541777+00:00 [running]> on host 16801ac1f6e4
+[2024-11-21T10:07:08.220+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-21T10:07:00.541777+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-21T10:07:00.541777+00:00'
+[2024-11-21T10:15:07.176+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.178+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.202+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.203+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.219+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.220+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.235+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.236+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.252+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.253+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.269+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.270+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.285+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.286+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.304+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.304+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.322+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.323+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.340+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.341+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.358+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.358+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.375+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.375+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.393+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.393+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.411+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.412+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.429+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.430+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.446+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.447+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.464+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.465+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.484+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.485+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.502+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.503+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:15:07.524+0000] {logging_mixin.py:151} INFO - Processing training data chunk with 8411 rows
+[2024-11-21T10:15:07.524+0000] {logging_mixin.py:151} INFO - Processing test data chunk with 8411 rows
+[2024-11-21T10:17:05.860+0000] {local_task_job_runner.py:228} INFO - Task exited with return code -9
+[2024-11-21T10:17:06.257+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

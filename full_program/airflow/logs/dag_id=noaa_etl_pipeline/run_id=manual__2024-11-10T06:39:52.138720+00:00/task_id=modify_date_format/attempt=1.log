@@ -1,0 +1,106 @@
+[2024-11-10T06:39:54.135+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format permission to 509
+[2024-11-10T06:39:54.136+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format'
+[2024-11-10T06:39:54.161+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format permission to 509
+[2024-11-10T06:39:54.161+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format'
+[2024-11-10T06:39:54.190+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: noaa_etl_pipeline.modify_date_format manual__2024-11-10T06:39:52.138720+00:00 [queued]>
+[2024-11-10T06:39:54.197+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: noaa_etl_pipeline.modify_date_format manual__2024-11-10T06:39:52.138720+00:00 [queued]>
+[2024-11-10T06:39:54.198+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-10T06:39:54.211+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): modify_date_format> on 2024-11-10 06:39:52.138720+00:00
+[2024-11-10T06:39:54.219+0000] {standard_task_runner.py:57} INFO - Started process 63566 to run task
+[2024-11-10T06:39:54.221+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'noaa_etl_pipeline', 'modify_date_format', 'manual__2024-11-10T06:39:52.138720+00:00', '--job-id', '78', '--raw', '--subdir', 'DAGS_FOLDER/noaa_etl_pipeline_dag/noaa_etl_pipeline_dag.py', '--cfg-path', '/tmp/tmpb_ntt_vx']
+[2024-11-10T06:39:54.223+0000] {standard_task_runner.py:85} INFO - Job 78: Subtask modify_date_format
+[2024-11-10T06:39:54.263+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format permission to 509
+[2024-11-10T06:39:54.264+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=noaa_etl_pipeline/run_id=manual__2024-11-10T06:39:52.138720+00:00/task_id=modify_date_format'
+[2024-11-10T06:39:54.265+0000] {task_command.py:415} INFO - Running <TaskInstance: noaa_etl_pipeline.modify_date_format manual__2024-11-10T06:39:52.138720+00:00 [running]> on host 16801ac1f6e4
+[2024-11-10T06:39:54.336+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='noaa_etl_pipeline' AIRFLOW_CTX_TASK_ID='modify_date_format' AIRFLOW_CTX_EXECUTION_DATE='2024-11-10T06:39:52.138720+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-10T06:39:52.138720+00:00'
+[2024-11-10T06:40:49.751+0000] {local_task_job_runner.py:294} WARNING - State of this instance has been externally set to failed. Terminating instance.
+[2024-11-10T06:40:49.754+0000] {process_utils.py:131} INFO - Sending 15 to group 63566. PIDs of all processes in the group: [63566]
+[2024-11-10T06:40:49.754+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 63566
+[2024-11-10T06:40:49.755+0000] {taskinstance.py:1632} ERROR - Received SIGTERM. Terminating subprocesses.
+[2024-11-10T06:40:49.756+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/httpsession.py", line 465, in send
+    urllib_response = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 714, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 415, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/awsrequest.py", line 96, in request
+    rval = super().request(method, url, body, headers, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 244, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/local/lib/python3.8/http/client.py", line 1256, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/local/lib/python3.8/http/client.py", line 1302, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.8/http/client.py", line 1251, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/awsrequest.py", line 130, in _send_output
+    self._handle_expect_response(message_body)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/awsrequest.py", line 176, in _handle_expect_response
+    self._send_message_body(message_body)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/awsrequest.py", line 209, in _send_message_body
+    self.send(message_body)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/awsrequest.py", line 223, in send
+    return super().send(str)
+  File "/usr/local/lib/python3.8/http/client.py", line 969, in send
+    self.sock.sendall(datablock)
+  File "/usr/local/lib/python3.8/ssl.py", line 1204, in sendall
+    v = self.send(byte_view[count:])
+  File "/usr/local/lib/python3.8/ssl.py", line 1173, in send
+    return self._sslobj.write(data)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1634, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/noaa_etl_pipeline_dag/modify_date_format.py", line 28, in modify_date_format
+    s3.put_data(data=daily_weather_df, folder='full_program/extraction/daily_weather/', object_key=f'daily_weather_{formatted_date}')
+  File "/opt/airflow/dags/utils/aws.py", line 96, in put_data
+    self.s3_client.put_object(Bucket=self.bucket, Key=folder + object_key,
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 535, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 963, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/client.py", line 986, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 202, in _send_request
+    while self._needs_retry(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 354, in _needs_retry
+    responses = self._event_emitter.emit(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 207, in __call__
+    if self._checker(**checker_kwargs):
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 284, in __call__
+    should_retry = self._should_retry(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 307, in _should_retry
+    return self._checker(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 363, in __call__
+    checker_response = checker(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 247, in __call__
+    return self._check_caught_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 281, in _do_get_response
+    http_response = self._send(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/endpoint.py", line 377, in _send
+    return self.http_session.send(request)
+  File "/home/airflow/.local/lib/python3.8/site-packages/botocore/httpsession.py", line 510, in send
+    raise HTTPClientError(error=e)
+botocore.exceptions.HTTPClientError: An HTTP Client raised an unhandled exception: Task received SIGTERM signal
+[2024-11-10T06:40:49.779+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=noaa_etl_pipeline, task_id=modify_date_format, execution_date=20241110T063952, start_date=20241110T063954, end_date=20241110T064049
+[2024-11-10T06:40:49.793+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 78 for task modify_date_format (An HTTP Client raised an unhandled exception: Task received SIGTERM signal; 63566)
+[2024-11-10T06:40:49.847+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=63566, status='terminated', exitcode=1, started='06:39:53') (63566) terminated with exit code 1

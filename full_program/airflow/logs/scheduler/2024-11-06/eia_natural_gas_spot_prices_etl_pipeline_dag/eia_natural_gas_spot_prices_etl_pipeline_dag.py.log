@@ -1,0 +1,576 @@
+[2024-11-06T13:46:55.641+0000] {processor.py:157} INFO - Started process (PID=1047) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:46:55.643+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:46:55.646+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:46:55.645+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:46:56.813+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:46:56.787+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:46:56.821+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:46:56.870+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.237 seconds
+[2024-11-06T13:47:27.239+0000] {processor.py:157} INFO - Started process (PID=1059) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:47:27.241+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:47:27.243+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:47:27.242+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:47:28.189+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:47:28.170+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:47:28.193+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:47:28.234+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.000 seconds
+[2024-11-06T13:47:59.109+0000] {processor.py:157} INFO - Started process (PID=1071) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:47:59.112+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:47:59.115+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:47:59.114+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:48:00.909+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:48:00.828+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:48:00.927+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:48:00.973+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.873 seconds
+[2024-11-06T13:48:31.675+0000] {processor.py:157} INFO - Started process (PID=1083) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:48:31.677+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:48:31.679+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:48:31.678+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:48:32.759+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:48:32.734+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:48:32.765+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:48:32.804+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.139 seconds
+[2024-11-06T13:49:03.176+0000] {processor.py:157} INFO - Started process (PID=1095) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:49:03.178+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:49:03.180+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:49:03.179+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:49:04.221+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:49:04.199+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:49:04.224+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:49:04.274+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.105 seconds
+[2024-11-06T13:49:35.112+0000] {processor.py:157} INFO - Started process (PID=1107) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:49:35.114+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:49:35.117+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:49:35.116+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:49:36.916+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:49:36.836+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:49:36.938+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:49:36.987+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.880 seconds
+[2024-11-06T13:50:07.642+0000] {processor.py:157} INFO - Started process (PID=1119) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:50:07.644+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:50:07.646+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:50:07.645+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:50:08.706+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:50:08.684+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:50:08.711+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:50:08.747+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.111 seconds
+[2024-11-06T13:50:39.234+0000] {processor.py:157} INFO - Started process (PID=1131) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:50:39.236+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:50:39.240+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:50:39.239+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:50:41.072+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:50:40.991+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:50:41.094+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:50:41.143+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.916 seconds
+[2024-11-06T13:51:11.598+0000] {processor.py:157} INFO - Started process (PID=1143) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:51:11.602+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:51:11.606+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:51:11.605+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:51:14.053+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:51:13.889+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:51:14.080+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:51:14.133+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 2.542 seconds
+[2024-11-06T13:51:44.659+0000] {processor.py:157} INFO - Started process (PID=1155) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:51:44.664+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:51:44.669+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:51:44.669+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:51:46.840+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:51:46.732+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:51:46.861+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:51:46.901+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 2.250 seconds
+[2024-11-06T13:52:17.665+0000] {processor.py:157} INFO - Started process (PID=1173) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:52:17.667+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:52:17.669+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:52:17.668+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:52:18.779+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:52:18.758+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:52:18.785+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:52:18.819+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.159 seconds
+[2024-11-06T13:52:49.084+0000] {processor.py:157} INFO - Started process (PID=1191) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:52:49.085+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:52:49.087+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:52:49.087+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:52:50.015+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:52:49.996+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:52:50.020+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:52:50.066+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.987 seconds
+[2024-11-06T13:53:20.519+0000] {processor.py:157} INFO - Started process (PID=1209) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:53:20.520+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:53:20.522+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:53:20.522+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:53:21.482+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:53:21.462+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:53:21.487+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:53:21.530+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.017 seconds
+[2024-11-06T13:53:52.593+0000] {processor.py:157} INFO - Started process (PID=1227) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:53:52.596+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:53:52.598+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:53:52.598+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:53:54.447+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:53:54.355+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:53:54.468+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:53:54.506+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.919 seconds
+[2024-11-06T13:54:25.112+0000] {processor.py:157} INFO - Started process (PID=1245) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:54:25.117+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:54:25.120+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:54:25.120+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:54:26.128+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:54:26.117+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:54:26.130+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:54:26.151+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.047 seconds
+[2024-11-06T13:54:56.591+0000] {processor.py:157} INFO - Started process (PID=1263) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:54:56.591+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:54:56.592+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:54:56.592+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:54:57.093+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:54:57.073+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:54:57.095+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:54:57.114+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.525 seconds
+[2024-11-06T13:55:27.921+0000] {processor.py:157} INFO - Started process (PID=1281) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:55:27.923+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:55:27.925+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:55:27.924+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:55:29.050+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:55:28.983+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:55:29.068+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:55:29.094+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.176 seconds
+[2024-11-06T13:55:59.644+0000] {processor.py:157} INFO - Started process (PID=1299) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:55:59.646+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:55:59.648+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:55:59.648+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:56:00.700+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:56:00.660+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:56:00.710+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:56:00.731+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 1.091 seconds
+[2024-11-06T13:56:31.224+0000] {processor.py:157} INFO - Started process (PID=1317) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:56:31.225+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:56:31.225+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:56:31.225+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:56:31.705+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:56:31.696+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:56:31.707+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:56:31.729+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.508 seconds
+[2024-11-06T13:57:02.674+0000] {processor.py:157} INFO - Started process (PID=1335) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:57:02.675+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:57:02.675+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:57:02.675+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:57:03.096+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:57:03.087+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:57:03.099+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:57:03.118+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.447 seconds
+[2024-11-06T13:57:33.360+0000] {processor.py:157} INFO - Started process (PID=1353) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:57:33.361+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:57:33.362+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:57:33.361+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:57:33.769+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:57:33.760+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:57:33.771+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:57:33.793+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.436 seconds
+[2024-11-06T13:58:04.142+0000] {processor.py:157} INFO - Started process (PID=1371) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:58:04.143+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:58:04.143+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:58:04.143+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:58:04.562+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:58:04.553+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:58:04.566+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:58:04.589+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.449 seconds
+[2024-11-06T13:58:34.981+0000] {processor.py:157} INFO - Started process (PID=1389) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:58:34.982+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:58:34.983+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:58:34.983+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:58:35.468+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:58:35.458+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:58:35.470+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:58:35.489+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.510 seconds
+[2024-11-06T13:59:05.886+0000] {processor.py:157} INFO - Started process (PID=1407) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:59:05.887+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:59:05.888+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:59:05.888+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:59:06.497+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:59:06.485+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:59:06.499+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:59:06.520+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.637 seconds
+[2024-11-06T13:59:37.023+0000] {processor.py:157} INFO - Started process (PID=1425) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:59:37.024+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T13:59:37.025+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:59:37.025+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:59:37.602+0000] {logging_mixin.py:151} INFO - [2024-11-06T13:59:37.591+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T13:59:37.605+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T13:59:37.625+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.606 seconds
+[2024-11-06T14:00:07.889+0000] {processor.py:157} INFO - Started process (PID=1443) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:00:07.890+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T14:00:07.890+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:00:07.890+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:00:08.285+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:00:08.277+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T14:00:08.286+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:00:08.303+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.417 seconds
+[2024-11-06T14:00:38.624+0000] {processor.py:157} INFO - Started process (PID=1461) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:00:38.624+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T14:00:38.625+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:00:38.625+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:00:39.159+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:00:39.148+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T14:00:39.161+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:00:39.181+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.560 seconds
+[2024-11-06T14:01:09.380+0000] {processor.py:157} INFO - Started process (PID=1479) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:01:09.380+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T14:01:09.381+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:01:09.381+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:01:09.774+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:01:09.765+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T14:01:09.775+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:01:09.792+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.415 seconds
+[2024-11-06T14:01:40.186+0000] {processor.py:157} INFO - Started process (PID=1497) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:01:40.187+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T14:01:40.188+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:01:40.187+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:01:40.728+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:01:40.717+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T14:01:40.730+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:01:40.759+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.575 seconds
+[2024-11-06T14:02:11.298+0000] {processor.py:157} INFO - Started process (PID=1515) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:02:11.298+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T14:02:11.299+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:02:11.299+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:02:11.738+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:02:11.730+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T14:02:11.740+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:02:11.758+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.462 seconds
+[2024-11-06T14:02:41.981+0000] {processor.py:157} INFO - Started process (PID=1533) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:02:41.981+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T14:02:41.982+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:02:41.982+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:02:42.390+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:02:42.381+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T14:02:42.392+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:02:42.409+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.430 seconds
+[2024-11-06T14:03:12.651+0000] {processor.py:157} INFO - Started process (PID=1551) to work on /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:03:12.651+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py for tasks to queue
+[2024-11-06T14:03:12.652+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:03:12.652+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:03:13.042+0000] {logging_mixin.py:151} INFO - [2024-11-06T14:03:13.033+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py", line 6, in <module>
+    from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_columns import drop_columns
+  File "/opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/drop_columns.py", line 4, in <module>
+    from transformation.etl_transforms import EtlTransforms
+  File "/opt/airflow/dags/transformation/etl_transforms.py", line 5, in <module>
+    from sklearn.preprocessing import RobustScaler
+ModuleNotFoundError: No module named 'sklearn'
+[2024-11-06T14:03:13.044+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py
+[2024-11-06T14:03:13.059+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_spot_prices_etl_pipeline_dag/eia_natural_gas_spot_prices_etl_pipeline_dag.py took 0.411 seconds

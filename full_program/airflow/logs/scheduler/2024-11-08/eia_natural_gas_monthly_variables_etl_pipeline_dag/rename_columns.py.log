@@ -1,0 +1,360 @@
+[2024-11-08T23:49:52.641+0000] {processor.py:157} INFO - Started process (PID=171) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:49:52.643+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:49:52.648+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:49:52.647+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:49:56.556+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:49:56.543+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:49:56.558+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:49:56.585+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 3.949 seconds
+[2024-11-08T23:50:27.456+0000] {processor.py:157} INFO - Started process (PID=255) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:50:27.457+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:50:27.459+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:50:27.459+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:50:28.435+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:50:28.421+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:50:28.439+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:50:28.464+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 1.013 seconds
+[2024-11-08T23:50:59.417+0000] {processor.py:157} INFO - Started process (PID=319) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:50:59.418+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:50:59.420+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:50:59.420+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:51:00.546+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:51:00.534+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:51:00.549+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:51:00.576+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 1.165 seconds
+[2024-11-08T23:51:31.017+0000] {processor.py:157} INFO - Started process (PID=383) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:51:31.018+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:51:31.019+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:51:31.019+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:51:31.715+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:51:31.692+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:51:31.718+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:51:31.738+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.724 seconds
+[2024-11-08T23:52:01.811+0000] {processor.py:157} INFO - Started process (PID=450) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:52:01.812+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:52:01.813+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:52:01.813+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:52:02.545+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:52:02.535+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:52:02.547+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:52:02.567+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.759 seconds
+[2024-11-08T23:52:32.993+0000] {processor.py:157} INFO - Started process (PID=511) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:52:32.994+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:52:32.997+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:52:32.996+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:52:34.043+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:52:34.031+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:52:34.045+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:52:34.063+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 1.075 seconds
+[2024-11-08T23:53:04.556+0000] {processor.py:157} INFO - Started process (PID=575) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:53:04.557+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:53:04.559+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:53:04.559+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:53:06.006+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:53:05.992+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:53:06.009+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:53:06.034+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 1.544 seconds
+[2024-11-08T23:53:36.246+0000] {processor.py:157} INFO - Started process (PID=639) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:53:36.247+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:53:36.248+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:53:36.248+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:53:37.091+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:53:37.078+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:53:37.095+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:53:37.125+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.882 seconds
+[2024-11-08T23:54:07.895+0000] {processor.py:157} INFO - Started process (PID=703) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:54:07.897+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:54:07.899+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:54:07.897+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:54:08.609+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:54:08.568+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:54:08.613+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:54:08.645+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.753 seconds
+[2024-11-08T23:54:39.281+0000] {processor.py:157} INFO - Started process (PID=767) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:54:39.282+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:54:39.283+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:54:39.283+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:54:39.813+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:54:39.802+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:54:39.815+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:54:39.836+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.560 seconds
+[2024-11-08T23:55:10.033+0000] {processor.py:157} INFO - Started process (PID=831) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:55:10.034+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:55:10.035+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:55:10.035+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:55:10.567+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:55:10.553+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:55:10.569+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:55:10.595+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.566 seconds
+[2024-11-08T23:55:41.188+0000] {processor.py:157} INFO - Started process (PID=895) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:55:41.190+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:55:41.191+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:55:41.190+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:55:41.773+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:55:41.745+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:55:41.776+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:55:41.799+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.614 seconds
+[2024-11-08T23:56:12.400+0000] {processor.py:157} INFO - Started process (PID=959) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:56:12.401+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:56:12.402+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:56:12.402+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:56:12.907+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:56:12.896+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:56:12.910+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:56:12.931+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.535 seconds
+[2024-11-08T23:56:43.415+0000] {processor.py:157} INFO - Started process (PID=1023) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:56:43.416+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:56:43.417+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:56:43.416+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:56:43.906+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:56:43.894+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:56:43.909+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:56:43.931+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.520 seconds
+[2024-11-08T23:57:14.346+0000] {processor.py:157} INFO - Started process (PID=1087) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:57:14.349+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:57:14.352+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:57:14.351+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:57:14.886+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:57:14.874+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:57:14.888+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:57:14.912+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.569 seconds
+[2024-11-08T23:57:45.191+0000] {processor.py:157} INFO - Started process (PID=1151) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:57:45.192+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:57:45.195+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:57:45.194+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:57:46.056+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:57:46.009+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:57:46.069+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:57:46.097+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.910 seconds
+[2024-11-08T23:58:16.267+0000] {processor.py:157} INFO - Started process (PID=1218) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:58:16.268+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:58:16.269+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:58:16.269+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:58:16.849+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:58:16.838+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:58:16.852+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:58:16.872+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.608 seconds
+[2024-11-08T23:58:47.236+0000] {processor.py:157} INFO - Started process (PID=1279) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:58:47.239+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:58:47.241+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:58:47.241+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:58:47.781+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:58:47.769+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:58:47.783+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:58:47.805+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.571 seconds
+[2024-11-08T23:59:18.253+0000] {processor.py:157} INFO - Started process (PID=1343) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:59:18.254+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:59:18.256+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:59:18.255+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:59:18.793+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:59:18.780+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:59:18.795+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:59:18.817+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.568 seconds
+[2024-11-08T23:59:49.209+0000] {processor.py:157} INFO - Started process (PID=1407) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:59:49.211+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py for tasks to queue
+[2024-11-08T23:59:49.212+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:59:49.212+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:59:49.769+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:59:49.758+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py", line 3, in <module>
+    from extraction.eia_api import *
+  File "/opt/airflow/dags/extraction/eia_api.py", line 6, in <module>
+    from utils.aws import S3, S3Metadata
+  File "/opt/airflow/dags/utils/aws.py", line 9, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:59:49.771+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py
+[2024-11-08T23:59:49.791+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/rename_columns.py took 0.587 seconds

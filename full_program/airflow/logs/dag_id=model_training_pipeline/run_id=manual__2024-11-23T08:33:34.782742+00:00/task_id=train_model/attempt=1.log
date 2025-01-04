@@ -1,0 +1,120 @@
+[2024-11-23T08:33:43.676+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model permission to 509
+[2024-11-23T08:33:43.676+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model'
+[2024-11-23T08:33:43.716+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model permission to 509
+[2024-11-23T08:33:43.717+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model'
+[2024-11-23T08:33:43.746+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-23T08:33:34.782742+00:00 [queued]>
+[2024-11-23T08:33:43.755+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_training_pipeline.train_model manual__2024-11-23T08:33:34.782742+00:00 [queued]>
+[2024-11-23T08:33:43.755+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2024-11-23T08:33:43.771+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): train_model> on 2024-11-23 08:33:34.782742+00:00
+[2024-11-23T08:33:43.787+0000] {standard_task_runner.py:57} INFO - Started process 26241 to run task
+[2024-11-23T08:33:43.790+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_training_pipeline', 'train_model', 'manual__2024-11-23T08:33:34.782742+00:00', '--job-id', '386', '--raw', '--subdir', 'DAGS_FOLDER/model_training_pipeline_dag/model_training_dag.py', '--cfg-path', '/tmp/tmpo6_v_o19']
+[2024-11-23T08:33:43.793+0000] {standard_task_runner.py:85} INFO - Job 386: Subtask train_model
+[2024-11-23T08:33:43.847+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model permission to 509
+[2024-11-23T08:33:43.847+0000] {logging_mixin.py:151} INFO - Failed to change /opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=model_training_pipeline/run_id=manual__2024-11-23T08:33:34.782742+00:00/task_id=train_model'
+[2024-11-23T08:33:43.850+0000] {task_command.py:415} INFO - Running <TaskInstance: model_training_pipeline.train_model manual__2024-11-23T08:33:34.782742+00:00 [running]> on host 2445c017a334
+[2024-11-23T08:33:43.949+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_training_pipeline' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-23T08:33:34.782742+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-23T08:33:34.782742+00:00'
+[2024-11-23T08:36:48.025+0000] {logging_mixin.py:151} INFO - Data has been normalised
+[2024-11-23T08:36:48.972+0000] {logging_mixin.py:151} WARNING - 2024/11/23 08:36:48 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-23T08:36:49.239+0000] {logging_mixin.py:151} INFO -  X_train columns : Index(['price_heating_oil ($/GAL)', 'imports', 'lng_imports',
+       'natural_gas_rigs_in_operation', 'price_1day_lag ($/MMBTU)',
+       'price_2day_lag ($/MMBTU)', 'price_3day_lag ($/MMBTU)',
+       'heating_oil_natural_gas_price_ratio',
+       '7day_ew_volatility price ($/MMBTU)',
+       '14day_ew_volatility price ($/MMBTU)',
+       '30day_ew_volatility price ($/MMBTU)',
+       '60day_ew_volatility price ($/MMBTU)',
+       '7day_rolling_average price ($/MMBTU)',
+       '14day_rolling_average price ($/MMBTU)',
+       '30day_rolling_average price ($/MMBTU)',
+       '7day_rolling_median price ($/MMBTU)',
+       '14day_rolling_median price ($/MMBTU)',
+       '30day_rolling_median price ($/MMBTU)',
+       'total_consumption_total_underground_storage_ratio', 'is_dec_or_jan',
+       'hdd_max', 'cdd_max', 'min_tavg', 'max_tavg', 'max_abs_tavg_diff',
+       'max_abs_tavg_diff_relative_to_daily_median'],
+      dtype='object')
+[2024-11-23T08:36:49.255+0000] {logging_mixin.py:151} INFO -  Null values by column: price_heating_oil ($/GAL)                            0
+imports                                              0
+lng_imports                                          0
+natural_gas_rigs_in_operation                        0
+price_1day_lag ($/MMBTU)                             0
+price_2day_lag ($/MMBTU)                             0
+price_3day_lag ($/MMBTU)                             0
+heating_oil_natural_gas_price_ratio                  0
+7day_ew_volatility price ($/MMBTU)                   0
+14day_ew_volatility price ($/MMBTU)                  0
+30day_ew_volatility price ($/MMBTU)                  0
+60day_ew_volatility price ($/MMBTU)                  0
+7day_rolling_average price ($/MMBTU)                 0
+14day_rolling_average price ($/MMBTU)                0
+30day_rolling_average price ($/MMBTU)                0
+7day_rolling_median price ($/MMBTU)                  0
+14day_rolling_median price ($/MMBTU)                 0
+30day_rolling_median price ($/MMBTU)                 0
+total_consumption_total_underground_storage_ratio    0
+is_dec_or_jan                                        0
+hdd_max                                              0
+cdd_max                                              0
+min_tavg                                             0
+max_tavg                                             0
+max_abs_tavg_diff                                    0
+max_abs_tavg_diff_relative_to_daily_median           0
+dtype: int64
+[2024-11-23T08:36:49.255+0000] {logging_mixin.py:151} INFO - X_train shape: (168220, 26)
+[2024-11-23T08:36:49.256+0000] {logging_mixin.py:151} INFO - X_test shape: (33644, 26)
+[2024-11-23T08:36:49.293+0000] {logging_mixin.py:151} INFO - Batch shape: (128, 30, 26), (128,)
+[2024-11-23T08:36:49.446+0000] {logging_mixin.py:151} INFO - Epoch 1/150
+[2024-11-23T08:38:13.912+0000] {logging_mixin.py:151} INFO - 1313/1313 - 84s - loss: 0.8163 - val_loss: 0.9021 - 84s/epoch - 64ms/step
+[2024-11-23T08:38:13.914+0000] {logging_mixin.py:151} INFO - Epoch 2/150
+[2024-11-23T08:38:13.919+0000] {data_adapter.py:1380} WARNING - Your input ran out of data; interrupting training. Make sure that your dataset or generator can generate at least `steps_per_epoch * epochs` batches (in this case, 196950 batches). You may need to use the repeat() function when building your dataset.
+[2024-11-23T08:38:13.950+0000] {data_adapter.py:1380} WARNING - Your input ran out of data; interrupting training. Make sure that your dataset or generator can generate at least `steps_per_epoch * epochs` batches (in this case, 263 batches). You may need to use the repeat() function when building your dataset.
+[2024-11-23T08:38:14.134+0000] {logging_mixin.py:151} WARNING - 2024/11/23 08:38:14 INFO mlflow.tracking._tracking_service.client: 🏃 View run GRU_7_day_horizon_30_20241123 at: http://mlflow:5000/#/experiments/1/runs/6761333f610442c69a97d5a0b4831c18.
+[2024-11-23T08:38:14.135+0000] {logging_mixin.py:151} WARNING - 2024/11/23 08:38:14 INFO mlflow.tracking._tracking_service.client: 🧪 View experiment at: http://mlflow:5000/#/experiments/1.
+[2024-11-23T08:38:14.173+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/model_training_pipeline_dag/train_model.py", line 74, in train_model
+    Model.train_model(x_train=X_train, y_train=y_train, x_test=X_test, y_test=y_test, time_steps=30, experiment_id=experiment_id, forecast_horizon=7, batch_size=128)
+  File "/opt/airflow/dags/modelling/model.py", line 56, in train_model
+    model.fit(train_gen, epochs=150, batch_size=batch_size, validation_data=test_gen, verbose=2,
+  File "/home/airflow/.local/lib/python3.8/site-packages/keras/src/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/opt/airflow/dags/modelling/mlflowcallback.py", line 26, in on_epoch_end
+    mlflow.log_metric("val_loss", logs.get("val_loss"), step=epoch)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/fluent.py", line 874, in log_metric
+    return MlflowClient().log_metric(
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/client.py", line 1525, in log_metric
+    return self._tracking_client.log_metric(
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/tracking/_tracking_service/client.py", line 582, in log_metric
+    self.store.log_metric(run_id, metric)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/store/tracking/rest_store.py", line 404, in log_metric
+    self._call_endpoint(LogMetric, req_body)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/store/tracking/rest_store.py", line 82, in _call_endpoint
+    return call_endpoint(self.get_host_creds(), endpoint, method, json_body, response_proto)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/utils/rest_utils.py", line 370, in call_endpoint
+    response = verify_rest_response(response, endpoint)
+  File "/home/airflow/.local/lib/python3.8/site-packages/mlflow/utils/rest_utils.py", line 240, in verify_rest_response
+    raise RestException(json.loads(response.text))
+mlflow.exceptions.RestException: INVALID_PARAMETER_VALUE: Missing value for required parameter 'value'. See the API docs for more information about request parameters.
+[2024-11-23T08:38:14.199+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=model_training_pipeline, task_id=train_model, execution_date=20241123T083334, start_date=20241123T083343, end_date=20241123T083814
+[2024-11-23T08:38:14.222+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 386 for task train_model (INVALID_PARAMETER_VALUE: Missing value for required parameter 'value'. See the API docs for more information about request parameters.; 26241)
+[2024-11-23T08:38:14.350+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-11-23T08:38:14.380+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

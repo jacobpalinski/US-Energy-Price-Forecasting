@@ -1,0 +1,280 @@
+[2024-11-08T23:49:56.818+0000] {processor.py:157} INFO - Started process (PID=208) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:49:56.831+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:49:56.839+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:49:56.839+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:49:56.882+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:49:56.875+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:49:56.885+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:49:56.929+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.116 seconds
+[2024-11-08T23:50:28.623+0000] {processor.py:157} INFO - Started process (PID=272) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:50:28.624+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:50:28.625+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:50:28.625+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:50:28.646+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:50:28.641+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:50:28.650+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:50:28.680+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.060 seconds
+[2024-11-08T23:51:00.725+0000] {processor.py:157} INFO - Started process (PID=336) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:51:00.726+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:51:00.727+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:51:00.727+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:51:00.745+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:51:00.741+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:51:00.746+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:51:00.773+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.052 seconds
+[2024-11-08T23:51:31.782+0000] {processor.py:157} INFO - Started process (PID=398) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:51:31.784+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:51:31.785+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:51:31.784+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:51:31.805+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:51:31.800+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:51:31.807+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:51:31.829+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.050 seconds
+[2024-11-08T23:52:02.701+0000] {processor.py:157} INFO - Started process (PID=464) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:52:02.701+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:52:02.703+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:52:02.702+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:52:02.723+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:52:02.718+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:52:02.724+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:52:02.752+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.054 seconds
+[2024-11-08T23:52:34.177+0000] {processor.py:157} INFO - Started process (PID=528) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:52:34.178+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:52:34.179+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:52:34.179+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:52:34.196+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:52:34.193+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:52:34.198+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:52:34.222+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.047 seconds
+[2024-11-08T23:53:06.087+0000] {processor.py:157} INFO - Started process (PID=590) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:53:06.088+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:53:06.089+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:53:06.089+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:53:06.109+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:53:06.105+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:53:06.111+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:53:06.144+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.061 seconds
+[2024-11-08T23:53:37.279+0000] {processor.py:157} INFO - Started process (PID=656) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:53:37.280+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:53:37.281+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:53:37.281+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:53:37.303+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:53:37.297+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:53:37.305+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:53:37.332+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.058 seconds
+[2024-11-08T23:54:08.819+0000] {processor.py:157} INFO - Started process (PID=720) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:54:08.821+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:54:08.822+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:54:08.821+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:54:08.847+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:54:08.842+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:54:08.849+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:54:08.881+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.066 seconds
+[2024-11-08T23:54:39.951+0000] {processor.py:157} INFO - Started process (PID=784) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:54:39.952+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:54:39.953+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:54:39.953+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:54:39.969+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:54:39.965+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:54:39.971+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:54:39.996+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.048 seconds
+[2024-11-08T23:55:10.668+0000] {processor.py:157} INFO - Started process (PID=846) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:55:10.669+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:55:10.670+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:55:10.670+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:55:10.687+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:55:10.683+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:55:10.689+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:55:10.712+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.047 seconds
+[2024-11-08T23:55:41.851+0000] {processor.py:157} INFO - Started process (PID=910) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:55:41.852+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:55:41.853+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:55:41.853+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:55:41.881+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:55:41.877+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:55:41.883+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:55:41.908+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.060 seconds
+[2024-11-08T23:56:12.968+0000] {processor.py:157} INFO - Started process (PID=974) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:56:12.969+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:56:12.970+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:56:12.970+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:56:12.986+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:56:12.982+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:56:12.988+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:56:13.009+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.043 seconds
+[2024-11-08T23:56:44.038+0000] {processor.py:157} INFO - Started process (PID=1040) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:56:44.039+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:56:44.040+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:56:44.040+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:56:44.057+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:56:44.053+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:56:44.059+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:56:44.079+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.044 seconds
+[2024-11-08T23:57:15.026+0000] {processor.py:157} INFO - Started process (PID=1104) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:57:15.027+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:57:15.028+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:57:15.028+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:57:15.047+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:57:15.043+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:57:15.049+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:57:15.074+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.052 seconds
+[2024-11-08T23:57:46.277+0000] {processor.py:157} INFO - Started process (PID=1168) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:57:46.278+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:57:46.281+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:57:46.280+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:57:46.371+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:57:46.349+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:57:46.378+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:57:46.405+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.133 seconds
+[2024-11-08T23:58:16.861+0000] {processor.py:157} INFO - Started process (PID=1230) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:58:16.862+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:58:16.863+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:58:16.863+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:58:16.892+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:58:16.887+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:58:16.894+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:58:16.916+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.058 seconds
+[2024-11-08T23:58:47.842+0000] {processor.py:157} INFO - Started process (PID=1294) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:58:47.843+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:58:47.844+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:58:47.843+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:58:47.860+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:58:47.856+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:58:47.861+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:58:47.881+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.041 seconds
+[2024-11-08T23:59:18.953+0000] {processor.py:157} INFO - Started process (PID=1360) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:59:18.954+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:59:18.955+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:59:18.955+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:59:18.974+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:59:18.970+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:59:18.975+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:59:19.001+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.052 seconds
+[2024-11-08T23:59:49.831+0000] {processor.py:157} INFO - Started process (PID=1422) to work on /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:59:49.832+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py for tasks to queue
+[2024-11-08T23:59:49.833+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:59:49.832+0000] {dagbag.py:539} INFO - Filling up the DagBag from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:59:49.850+0000] {logging_mixin.py:151} INFO - [2024-11-08T23:59:49.846+0000] {dagbag.py:347} ERROR - Failed to import: /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/dagbag.py", line 343, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py", line 3, in <module>
+    from full_program.airflow.dags.utils.config import *
+ModuleNotFoundError: No module named 'full_program'
+[2024-11-08T23:59:49.852+0000] {processor.py:841} WARNING - No viable dags retrieved from /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py
+[2024-11-08T23:59:49.875+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/eia_natural_gas_monthly_variables_etl_pipeline_dag/extraction.py took 0.048 seconds
