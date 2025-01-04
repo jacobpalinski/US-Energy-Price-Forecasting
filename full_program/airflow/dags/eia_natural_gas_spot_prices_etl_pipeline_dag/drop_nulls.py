@@ -17,7 +17,7 @@ def drop_nulls():
     natural_gas_spot_prices_json = s3.get_data(folder='full_program/transformation/natural_gas_spot_prices/', object_key=f'natural_gas_spot_prices_{formatted_date}')
     natural_gas_spot_prices_df = EtlTransforms.json_to_df(data=natural_gas_spot_prices_json, date_as_index=False)
 
-    # Drop null values from natural_gas_spot_df
+    # Drop null values from natural_gas_spot_prices_df
     natural_gas_spot_prices_df = EtlTransforms.drop_null(df=natural_gas_spot_prices_df)
     
     # Put data in S3

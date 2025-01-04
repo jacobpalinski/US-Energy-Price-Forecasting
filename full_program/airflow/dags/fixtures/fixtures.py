@@ -13,7 +13,9 @@ from dags.extraction.noaa_api import *
 
 @pytest.fixture
 def mock_environment_variables(mocker):
-    ''' Mocks environment variables for testing '''
+    ''' 
+    Mocks environment variables for testing 
+    '''
     mocker.patch.dict(os.environ, {
         'AWS_ACCESS_KEY_ID': 'access-key',
         'AWS_SECRET_ACCESS_KEY': 'secret-key',
@@ -24,14 +26,18 @@ def mock_environment_variables(mocker):
 
 @pytest.fixture
 def mock_s3(mocker, mock_environment_variables):
-    ''' Mocks S3 class for testing '''
+    ''' 
+    Mocks S3 class for testing 
+    '''
     config = Config()
     s3 = S3(config=config)
     return s3
 
 @pytest.fixture
 def mock_s3_metadata(mocker, mock_environment_variables):
-    ''' Mocks S3Metadata class for testing '''
+    ''' 
+    Mocks S3Metadata class for testing 
+    '''
     config = Config()
     s3 = S3(config)
     s3_metadata = S3Metadata(config=config)
@@ -39,19 +45,25 @@ def mock_s3_metadata(mocker, mock_environment_variables):
 
 @pytest.fixture
 def mock_boto3_client(mocker):
-    ''' Mocks boto3.client for testing '''
+    ''' 
+    Mocks boto3.client for testing 
+    '''
     mock_s3_client = mocker.patch('boto3.client', return_value=MagicMock())
     yield mock_s3_client
 
 @pytest.fixture
 def mock_get_data(mocker, mock_s3):
-    ''' Mocks get_data method of S3 object '''
+    ''' 
+    Mocks get_data method of S3 object 
+    '''
     mock_s3_get_data = mocker.patch.object(mock_s3, 'get_data')
     return mock_s3_get_data
 
 @pytest.fixture
 def mock_eia(mocker, mock_environment_variables):
-    ''' Mocks EIA class for testing '''
+    ''' 
+    Mocks EIA class for testing 
+    '''
     config = Config()
     s3 = S3(config=config)
     s3_metadata = S3Metadata(config=config)
@@ -60,7 +72,9 @@ def mock_eia(mocker, mock_environment_variables):
 
 @pytest.fixture
 def mock_noaa(mocker, mock_environment_variables):
-    ''' Mocks NOAA class for testing '''
+    ''' 
+    Mocks NOAA class for testing 
+    '''
     config = Config()
     s3 = S3(config=config)
     s3_metadata = S3Metadata(config=config)
@@ -69,24 +83,32 @@ def mock_noaa(mocker, mock_environment_variables):
 
 @pytest.fixture
 def mock_requests_get(mocker):
-    ''' Mocks requests.get for testing '''
+    ''' 
+    Mocks requests.get for testing 
+    '''
     return mocker.patch('requests.get')
 
 @pytest.fixture
 def mock_get_latest_end_date(mocker):
-    ''' Mocks get_latest_end_date method of S3Metadata class '''
+    ''' 
+    Mocks get_latest_end_date method of S3Metadata class 
+    '''
     mock_s3metadata_get_latest_end_date = mocker.patch.object(S3Metadata, 'get_latest_end_date')
     return mock_s3metadata_get_latest_end_date
 
 @pytest.fixture
 def mock_update_metadata(mocker):
-    ''' Mocks update_metadata method of S3Metadata class '''
+    ''' 
+    Mocks update_metadata method of S3Metadata class 
+    '''
     mock_s3metadata_get_latest_end_date = mocker.patch.object(S3Metadata, 'update_metadata')
     return mock_s3metadata_get_latest_end_date
 
 @pytest.fixture
 def mock_eia_headers():
-    ''' Mocks headers used in EIA api_request and extract methods '''
+    ''' 
+    Mocks headers used in EIA api_request and extract methods 
+    '''
     headers = {
         'api_key': 'api_key',
         'frequency': 'daily',
@@ -104,7 +126,9 @@ def mock_eia_headers():
 
 @pytest.fixture
 def mock_noaa_parameters():
-    ''' Mocks parameters used in NOAA api_request and extract methods '''
+    ''' 
+    Mocks parameters used in NOAA api_request and extract methods 
+    '''
     parameters = {'datasetid': 'GHCND',
         'datatypeid': ['AWND'],
         'stationid': 'GHCND:USW00094847',
@@ -115,7 +139,9 @@ def mock_noaa_parameters():
 
 @pytest.fixture
 def mock_natural_gas_spot_prices_response():
-    ''' Mocks data for natural gas spot prices response in EIA API '''
+    ''' 
+    Mocks data for natural gas spot prices response in EIA API 
+    '''
     data = [{"period": "1999-01-04", "duoarea": "RGC", "area-name": "NA", "product": "EPG0", 
             "product-name": "Natural Gas", "process": "PS0", "process-name": "Spot Price", 
             "series": "RNGWHHD", 
@@ -131,6 +157,9 @@ def mock_natural_gas_spot_prices_response():
 
 @pytest.fixture
 def mock_natural_gas_monthly_variables_response():
+    ''' 
+    Mocks data for natural gas monthly variables response in EIA API 
+    '''
     data = [{"period": "1999-01", "duoarea": "NUS", "area-name": "U.S", "product": "ERTRRG", 
             "product-name": "Rotary Rigs in Operation-Gas", "process": "XRO", "process-name": "Rotary Rigs in Operation", 
             "series": "E_ERTRRG_XR0_NUS_C", 'series-description': 'U.S Natural Gas Rotary Rigs in Operation (Count)',
@@ -144,7 +173,9 @@ def mock_natural_gas_monthly_variables_response():
 
 @pytest.fixture
 def mock_noaa_daily_weather_data_response():
-    ''' Mocks data for noaa daily weather data response in NOAA API '''
+    ''' 
+    Mocks data for noaa daily weather data response in NOAA API 
+    '''
     data = [{'date': datetime(1999, 1, 4, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%S'), 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.3, 'city':'Detroit', 'state': 'Michigan'},
             {'date': datetime(1999, 1, 5, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%S'), 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.2, 'city':'Detroit', 'state': 'Michigan'},
             {'date': datetime(2024, 5, 24, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%S'), 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.0, 'city':'Detroit', 'state': 'Michigan'}]
@@ -153,7 +184,9 @@ def mock_noaa_daily_weather_data_response():
 
 @pytest.fixture
 def mock_metadata_response():
-    ''' Mocks metadata that is retrieved from S3 bucket to get latest load date for a given dataset '''
+    ''' 
+    Mocks metadata that is retrieved from S3 bucket to get latest load date for a given dataset 
+    '''
     data = {
         'natural_gas_spot_prices': ['1999-01-04'],
         'natural_gas_rigs_in_operation': [],
@@ -164,7 +197,9 @@ def mock_metadata_response():
 
 @pytest.fixture
 def df_convert_column_to_float():
-    ''' Dataframe used for testing of convert_price_to_float function of EIATransformation class '''
+    ''' 
+    Dataframe used for testing of convert_price_to_float function of EIATransformation class 
+    '''
     data = {'period': ['1999-01', '1999-02', '1999-03', '1999-04'],
         'duoarea': ['NUS-Z00', 'NUS-Z00', 'NUS-Z00', 'NUS-Z00'],
         'area-name': ['US.', 'US.', 'US.', 'US.'],
@@ -181,7 +216,9 @@ def df_convert_column_to_float():
 
 @pytest.fixture
 def df_etl_transforms_testing():
-    ''' Dataframe to be used for testing of EtlUtils class '''
+    ''' 
+    Dataframe to be used for testing of EtlUtils class 
+    '''
     data = [{'date': '1999-01-04', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.3, 'city': 'Detroit', 'state': 'Michigan'},
     {'date': '1999-01-04', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.3, 'city': 'Detroit', 'state': 'Michigan'},
     {'date': '1999-01-05', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.2, 'city': 'Detroit', 'state': 'Michigan'},
@@ -192,7 +229,9 @@ def df_etl_transforms_testing():
 
 @pytest.fixture
 def df_noaa_transformation_testing():
-    ''' Dataframe to be used for testing of NoaaTransformation class '''
+    ''' 
+    Dataframe to be used for testing of NoaaTransformation class 
+    '''
     data = [{'date': '1999-01-04', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.3, 'city': 'Detroit', 'state': 'Michigan'},
     {'date': '1999-01-05', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.2, 'city': 'Detroit', 'state': 'Michigan'},
     {'date': '2000-01-02', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.0, 'city': 'Detroit', 'state': 'Michigan'},

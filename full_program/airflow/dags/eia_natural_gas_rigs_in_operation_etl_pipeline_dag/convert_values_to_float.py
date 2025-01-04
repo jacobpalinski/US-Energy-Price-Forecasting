@@ -19,7 +19,7 @@ def convert_values_to_float():
     natural_gas_rigs_in_operation_json = s3.get_data(folder='full_program/transformation/natural_gas_rigs_in_operation/', object_key=f'natural_gas_rigs_in_operation_{formatted_date}')
     natural_gas_rigs_in_operation_df = EtlTransforms.json_to_df(data=natural_gas_rigs_in_operation_json, date_as_index=False)
 
-    # Drop null values from natural_gas_spot_df
+    # Convert column values to float
     natural_gas_rigs_in_operation_df = EiaTransformation.convert_column_to_float(df=natural_gas_rigs_in_operation_df, column='value')
     
     # Put data in S3

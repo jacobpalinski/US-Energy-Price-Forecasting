@@ -18,8 +18,7 @@ class MLflowCallback(Callback):
 
         Args:
             epoch (int): Epoch number
-            logs (dict): Contains metrics computed during training of each
-            epoch
+            logs (dict): Contains metrics computed during training of each epoch
         '''
         if logs is not None:
             mlflow.log_metric("loss", logs.get("loss"), step=epoch)

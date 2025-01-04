@@ -14,26 +14,24 @@ class EtlTransforms:
 
     Methods
     -------
-    json_to_df(cls, data):
+    json_to_df(cls, data, date_as_index):
         Converts json data to a dataframe
     df_to_json(cls, df):
-        Converts dataframe to a json file
+        Converts dataframe to a json format
     drop_columns(cls, df, columns):
         Drops columns from dataframe and returns modified dataframe
     drop_duplicates(cls, df):
         Drops duplicate rows from dataframe and returns modified dataframe
-    rename_columns(cls, df):
+    rename_columns(cls, df, renamed_columns):
         Renames columns in dataframe and returns dataframe with new column names
-    pivot_columns(cls, df):
+    pivot_columns(cls, df, index, column, value):
         Pivots columns in dataframe and returns modified dataframe
     drop_null(cls, df):
         Drops all null rows in dataframe and returns modified dataframe
-    set_date_index(cls, df):
-        Sets date as index for given dataframe 
     merge_dataframes(cls, daily_weather_df,  natural_gas_monthly_variables_df, 
     natural_gas_rigs_in_operation_df, natural_gas_spot_prices_df, heating_oil_spot_prices_df):
         Merges dataframes representing each of the transformed sources from transformation folder in S3 Bucket
-    forwardfill_null_values_end_of_series(cls, df):
+    forwardfill_null_values_end_of_series(cls, df, columns):
         Forward fills null values for monthly natural gas variables and weather variables at the
         end of time series
     backfill_null_values_start_of_series(cls, df):
@@ -43,8 +41,18 @@ class EtlTransforms:
         Creates test data to be used when evaluating training model performance
     create_sequence(x, y, sequence_length):
         Creates sequences for LSTM
+    generator(cls, x, y, sequence_length):
+        Creates sequences for LSTM using generator
+    build_dataset(cls, x, y, sequence_length, batch_size):
+        Build tensorflow dataset from generated sequences
     normalisation(cls, df, fit_transform):
         Normalises dataframe before training machine learning model on dataframe
+    calculate_moving_average(cls, df: pd.DataFrame, window: int):
+        Calculate moving average price ($/MMBTU) based on a given window
+    calculate_rolling_median(cls, df: pd.DataFrame, window: int):
+        Calculate the median price (%/MMBTU) based on a given window
+    calculate_ew_volatility(cls, df: pd.DataFrame, window: int):
+        Calculate the expotential weighted volatility of price (%/MMBTU) based on a given window
     '''
     @classmethod
     def json_to_df(cls, data: json, date_as_index: bool) -> pd.DataFrame:
@@ -53,6 +61,7 @@ class EtlTransforms:
 
         Args:
             data (json): Data in json format to be converted to dataframe
+            date_as_index: Indictates whether or not to set date as index in resulting dataframe
         
         Returns:
             pd.DataFrame: Returns json data as a dataframe
@@ -66,7 +75,7 @@ class EtlTransforms:
     @classmethod
     def df_to_json(cls, df: pd.DataFrame) -> json:
         '''
-        Converts dataframe to a json file
+        Converts dataframe to a json format
 
         Args:
             df (pd.DataFrame): Pandas dataframe to be converted to json format
@@ -154,21 +163,6 @@ class EtlTransforms:
         return df
     
     @classmethod
-    def set_date_index(cls, df: pd.DataFrame) -> pd.DataFrame:
-        ''' 
-        Sets date as index for given dataframe 
-        
-        Args:
-          df (pd.DataFrame): Pandas dataframe where date is going to be set as index
-
-        Returns:
-            pd.DataFrame: Dataframe with date as index
-        '''
-        df['date'] = pd.to_datetime(df['date'])
-        df = df.set_index('date')
-        return df
-    
-    @classmethod
     def merge_dataframes(cls, daily_weather_df: pd.DataFrame,  natural_gas_monthly_variables_df: pd.DataFrame, 
     natural_gas_rigs_in_operation_df: pd.DataFrame, natural_gas_spot_prices_df: pd.DataFrame, heating_oil_spot_prices_df: pd.DataFrame):
         '''
@@ -208,14 +202,11 @@ class EtlTransforms:
 
         Args:
             df (pd.DataFrame): Merged dataframe
+            columns (list): Column where null values end of series are going to be forward filled
         
         Returns:
             pd.DataFrame: Returns dataframe with columns with null values end of series forward filled
         '''
-        '''columns_to_ffill = ['imports', 'lng_imports', 'natural_gas_rigs_in_operation', 
-        'total_consumption_total_underground_storage_ratio', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum', 
-        'min_tavg', 'max_tavg', 'max_abs_tavg_diff', 'max_abs_tavg_diff_relative_to_daily_median']'''
-        
         for col in columns:
             last_valid_index = df[col].last_valid_index()
             df.loc[last_valid_index:, col] = df.loc[last_valid_index:, col].ffill()
@@ -249,11 +240,11 @@ class EtlTransforms:
         Args:
             df (pd.DataFrame): Dataframe to be used to create test data
             holdout (float): Percentage of dataframe to be used as test data
-            Percentage expressed as value between 0 and 1
+            Percentage expressed as decimal value between 0 and 1
         
         Returns:
             pd.DataFrame: Holdout dataframe
-          '''
+        '''
         n_rows = len(df)
         n_holdout_rows = int(n_rows * holdout)
         holdout_df = df.iloc[-n_holdout_rows:]
@@ -261,8 +252,8 @@ class EtlTransforms:
 
     @classmethod
     def generator(cls, x: pd.DataFrame, y: pd.DataFrame, sequence_length: int) -> None:
-        """
-        Creates sequences for LSTM
+        '''
+        Creates sequences for LSTM using generator
 
         Args:
             x (pd.DataFrame): Dataframe of input variables into the model
@@ -271,7 +262,7 @@ class EtlTransforms:
 
         Returns:
             np.array: Returns array of sequences for both input and output variables
-        """
+        '''
         num_samples = len(y) - sequence_length
         for i in range(num_samples):
             x_seq = x[i:i + sequence_length]
@@ -280,9 +271,18 @@ class EtlTransforms:
 
     @classmethod
     def build_dataset(cls, x: pd.DataFrame, y: pd.DataFrame, sequence_length: int, batch_size: int) -> tf.data.Dataset:
-        """
-        Build dataset from generator
-        """
+        '''
+        Build tensorflow dataset from generated sequences
+
+        Args:
+            x (pd.DataFrame): Dataframe of input variables into the model
+            y (pd.DataFrame): Dataframe of output variables into the model
+            sequence_length (int): Number of elements in each sequence
+            batch_size (int): Size of batches to be created
+        
+        Returns:
+            tf.data.Dataset: Tensorflow dataset
+        '''
         dataset = tf.data.Dataset.from_generator(
             cls.generator,
             args=(x, y, sequence_length),
@@ -300,8 +300,8 @@ class EtlTransforms:
 
         Args: 
             df (pd.DataFrame): Merged dataframe
-            fit_transform (bool): True or False value indicating whether or not data
-            is to be transformed and have a model fit to it
+            train_df: Dataframe containing training data
+            test_df: Dataframe containting test data
 
         Returns:
             pd.Dataframe: Returns dataframe with normalised data
@@ -332,7 +332,16 @@ class EtlTransforms:
 
     @classmethod
     def calculate_moving_average(cls, df: pd.DataFrame, window: int) -> float:
-        ''' Calculate moving average price ($/MMBTU) based on a given window '''
+        ''' 
+        Calculate moving average price ($/MMBTU) based on a given window
+
+        Args: 
+            df (pd.DataFrame): Dataframe
+            window: Window moving average is being calculated for
+
+        Returns:
+            float: Moving average
+        '''
         if len(df) >= window:
             return df['price ($/MMBTU)'].iloc[-window:].mean()
         else:
@@ -340,7 +349,16 @@ class EtlTransforms:
     
     @classmethod
     def calculate_rolling_median(cls, df: pd.DataFrame, window: int) -> float:
-        ''' Calculate the median price (%/MMBTU) based on a given window '''
+        ''' 
+        Calculate the median price (%/MMBTU) based on a given window
+
+        Args: 
+            df (pd.DataFrame): Dataframe
+            window: Window rolling median is being calculated for
+
+        Returns:
+            float: Rolling median
+        '''
         if len(df) >= window:
             return df['price ($/MMBTU)'].iloc[-window:].median()
         else:
@@ -348,7 +366,17 @@ class EtlTransforms:
     
     @classmethod
     def calculate_ew_volatility(cls, df: pd.DataFrame, window: int) -> float:
-        ''' Calculate the expotential weighted volatility of price (%/MMBTU) based on a given window '''
+        ''' 
+        Calculate the expotential weighted volatility of price (%/MMBTU) based on a given window
+
+        Args: 
+            df (pd.DataFrame): Dataframe
+            window: Window expotential weighted volatility is being calculated for
+
+        Returns:
+            float: Expotential weighted volatility
+        
+        '''
         if len(df) >= window:
             return df['price ($/MMBTU)'].ewm(span=window, min_periods=window).std().iloc[-1]
         else:

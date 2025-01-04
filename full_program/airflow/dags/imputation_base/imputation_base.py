@@ -37,6 +37,8 @@ noaa.extract(parameters=parameters, folder='full_program/extraction/daily_weathe
 object_key = f'daily_weather_{formatted_date}', metadata_folder='metadata/', 
 metadata_object_key='metadata', metadata_dataset_key='daily_weather', 
 start_date_if_none='1999-01-04')
+
+# Create dataframe to be used for imputation of missing weather variables as part of ETL process
 daily_weather_json = s3.get_data(folder='full_program/extraction/daily_weather/', object_key=f'daily_weather_{formatted_date}')
 daily_weather_df = EtlTransforms.json_to_df(data=daily_weather_json, date_as_index=False)
 daily_weather_df = NoaaTransformation.modify_date(df=daily_weather_df)

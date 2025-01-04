@@ -16,12 +16,11 @@ class S3:
     ''' 
     S3 Bucket Class for storage + retrieval of extracted content 
     
-    Class Variables
-    ---------------
+    Instance Variables
+    ------------------
     access_key_id (str): AWS Access Key
     secret_access_key (str): AWS Secret Access Key
     bucket (str): AWS S3 bucket for storage + retrieval
-    s3_client (boto3.client): Boto3 S3 connection client
 
     Methods
     -------
@@ -102,12 +101,11 @@ class S3Metadata(S3):
     ''' 
     Class for updating and retrieving metadata from S3 folder 
         
-    Class Variables
+    Instance Variables
     ---------------
     access_key_id (str): AWS Access Key
     secret_access_key (str): AWS Secret Access Key
     bucket (str): AWS S3 bucket for storage + retrieval
-    s3_client (boto3.client): Boto3 S3 connection client
 
     Methods
     --------------

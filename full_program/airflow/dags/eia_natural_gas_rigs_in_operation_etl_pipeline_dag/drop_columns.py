@@ -18,7 +18,7 @@ def drop_columns():
     natural_gas_rigs_in_operation_json = s3.get_data(folder='full_program/extraction/natural_gas_rigs_in_operation/', object_key=f'natural_gas_rigs_in_operation_{formatted_date}')
     natural_gas_rigs_in_operation_df = EtlTransforms.json_to_df(data=natural_gas_rigs_in_operation_json, date_as_index=False)
 
-    # Drop null values from natural_gas_spot_df
+    # Drop null values from natural_gas_rigs_in_operation_df
     natural_gas_rigs_in_operation_df = EtlTransforms.drop_columns(df=natural_gas_rigs_in_operation_df, columns=['duoarea', 'area-name', 'product', 'product-name', 'process',
     'series', 'series-description', 'units'])
     

@@ -28,7 +28,7 @@ training_data_df['day'] = training_data_df['date'].dt.day
 daily_weather_modelling_imputation_df = training_data_df.groupby(['month', 'week', 'day'])[['min_tavg', 'max_tavg', 'max_abs_tavg_diff', 
 'max_abs_tavg_diff_relative_to_daily_median', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum']].median().reset_index()
 
-# Store data in S3 bucket
+# Store data in S3 bucket to be used for imputation as part of forecasting
 s3.put_data(data=daily_weather_modelling_imputation_df, folder='full_program/curated/imputation/', object_key=f'daily_weather_modelling_imputation_base_{formatted_date}')
 
 

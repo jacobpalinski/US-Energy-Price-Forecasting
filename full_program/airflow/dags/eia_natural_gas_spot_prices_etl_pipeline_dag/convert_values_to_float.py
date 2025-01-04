@@ -6,7 +6,7 @@ from dags.transformation.etl_transforms import EtlTransforms
 from dags.transformation.eia_api_transformation import EiaTransformation
 
 def convert_values_to_float():
-    ''' Drop null records from extracted natural gas spot prices '''
+    ''' Convert column values to float for natural gas spot prices '''
     # Todays date
     today = datetime.now()
     formatted_date = today.strftime('%Y%m%d')

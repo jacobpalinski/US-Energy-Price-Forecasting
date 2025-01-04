@@ -25,11 +25,13 @@ class NOAA:
     natural gas consumption across the US. Weather in these locations is going
     to have the greatest impact on price.
 
-    Class Variables
-    ---------------
+    Instance Variables
+    ------------------
     token (str): Token to be used for API requests
     url (str): Url to be used to extract historical weather data
     locations (dict): Dictionary consisting of stationid : [city, state] key + values
+    s3 (S3): s3 bucket where data is to be extracted to
+    s3 (S3Metadata): s3 metadata storage location
 
     Methods
     -------
@@ -70,9 +72,11 @@ class NOAA:
         Returns:
             requests.Response: Response object from API request
         '''
+        # Max attempts variable created to repeat requests when a given request fails
         max_attempts = 3
         attempt = 0
 
+        # Repeat requests when number of attempts < max_attempts
         while attempt < max_attempts:
             try:
                 response = requests.get(url = self.base_url, headers = {'token': self.token},
@@ -117,8 +121,10 @@ class NOAA:
             metadata_dataset_key (str): Dataset key from metadata where latest end date is being retrieved for
             start_date_if_none (str): Date to be used for start_date key in headers if there are no dates for a given metadata dataset key
         '''
+        # Initialise data variable to store result from api_request
         data = []
         
+        # Retrieve lastest end date. Latest end date used as start date in API request
         latest_end_date = self.s3_metadata.get_latest_end_date(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key)
         increment = timedelta(days=6)
         if latest_end_date is None:
@@ -131,6 +137,7 @@ class NOAA:
         enddate = datetime.strptime(start_date, '%Y-%m-%d')
         parameters['enddate'] = (enddate + increment).strftime('%Y-%m-%d')
 
+        # Append results to data as long as data exists for a given API request
         while True:
             print(parameters['startdate'])
             response = self.api_request(parameters=parameters)
@@ -151,9 +158,11 @@ class NOAA:
             parameters['startdate'] = (startdate + increment).strftime('%Y-%m-%d')
             parameters['enddate'] = (enddate + increment).strftime('%Y-%m-%d')
         
+        # Retrieve maximum date in records extracted
         max_date = self.get_max_date(data)
         if max_date is None:
             return
+        # Append results to S3 bucket folder and update latest date extracted from a given url in metadata
         else:
             self.s3.put_data(data=data, folder=folder, object_key=object_key)
             self.s3_metadata.update_metadata(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key, new_date=max_date)

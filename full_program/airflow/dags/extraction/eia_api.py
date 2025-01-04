@@ -15,18 +15,20 @@ class EIA:
     '''
     Class for extracting data from Energy Information Administration API
     
-    Class Variables
-    ---------------
+    Instance Variables
+    ------------------
     api_key (str): API key for making requests
     base_url (str): Base url to be used by all requests
+    s3 (S3): s3 bucket where data is to be extracted to
+    s3 (S3Metadata): s3 metadata storage location
 
     Methods
     -------
-    api_request(cls, endpoint, headers, metadata_folder, metadata_object_key, metadata_dataset_key, start_date_if_none, offset):
+    api_request(cls, endpoint, headers, metadata_folder, metadata_object_key, metadata_dataset_key, start_date_if_none, is_monthly, offset):
         Makes an API request to a specific endpoint of the Energy Information Administration API
-    get_max_date(cls, data):
+    get_max_date(cls, data, is_monthly):
         Retrieves latest end date from data extracted to be logged in metadata
-    extract(cls, endpoint, headers, folder, object_key, metadata_folder, metadata_object_key, metadata_dataset_key, start_date_if_none, offset):
+    extract(cls, endpoint, headers, folder, object_key, metadata_folder, metadata_object_key, metadata_dataset_key, start_date_if_none, is_monthly, offset):
         Extracts data from a request to a specific endpoint and puts data in a S3 endpoint.
         Maybe multiple requests to a specific endpoint as the API can only return 5000 results
         at once hence adjustment of offset maybe necessary
@@ -48,14 +50,20 @@ class EIA:
             metadata_object_key (str): Metadata object where latest end date is being retrieved from
             metadata_dataset_key (str): Dataset key from metadata where latest end date is being retrieved for
             start_date_if_none (str): Date to be used for start_date key in headers if there are no dates for a given metadata dataset key
+            is_monthly (bool): Used to identify whether data is extract has daily or monthly granularity
             offset (int): Offset in the results. Incremented for results that contain over 5000
             units of data
         
         Returns:
             requests.Response: Response object from API request
         '''
+        # Create url for data extraction
         url = self.base_url + endpoint
+
+        # Initialise api key as parameter
         params = {'api_key': self.eia_api_key}
+
+        # Retrieve latest end date. Latest end date to be used as start date in api request
         latest_end_date = self.s3_metadata.get_latest_end_date(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key) # Varies depending on metadata for given dataset
         if latest_end_date is None:
             start_date = start_date_if_none
@@ -66,12 +74,16 @@ class EIA:
             else:
                 latest_end_date_plus_one = latest_end_date_datetime + timedelta(days=1)
             start_date = latest_end_date_plus_one.strftime('%Y-%m-%d')
+        
+        # Set headers
         headers['start'] = start_date
         headers['offset'] = offset
         headers = {
             'X-Params': json.dumps(headers),
             'Content-Type': 'application/json'
         }
+
+        # Make request
         try: 
             response = requests.get(url, headers=headers,  params=params, timeout=30)
             return response
@@ -83,7 +95,8 @@ class EIA:
         Retrieves latest end date from data extracted to be logged in metadata
         Args:
             data (list): Records in extracted data
-        
+            is_monthly (bool): Used to identify whether data is extract has daily or monthly granularity
+
         Returns:
             str: Latest end date in string format 
         '''
@@ -95,7 +108,7 @@ class EIA:
             dates = [datetime.strptime(item['period'], '%Y-%m') for item in data]
         
         max_date = max(dates)
-        max_date_str = max_date.strftime('%Y-%m-%d')
+        max_date_str = max_date.strftime('%Y-%m-%d') # Conversion required for monthly date granularity
         return max_date_str
         
     def extract(self, endpoint: str, headers: dict, folder: str, object_key: str, metadata_folder: str, 
@@ -114,10 +127,14 @@ class EIA:
             metadata_object_key (str): Metadata object where latest end date is being retrieved from
             metadata_dataset_key (str): Dataset key from metadata where latest end date is being retrieved for
             start_date_if_none (str): Date to be used for start_date key in headers if there are no dates for a given metadata dataset key
+            is_monthly (bool): Used to identify whether data is extract has daily or monthly granularity
             offset (int): Offset in the results. Incremented for results that contain over 5000
             units of data
         '''
+        # Initialise data variable to store result from api_request
         data = []
+
+        # Append results to data as long as data exists for a given API request
         while True:
             response = self.api_request(endpoint=endpoint, headers=headers, metadata_folder=metadata_folder, metadata_object_key=metadata_object_key,
                                        metadata_dataset_key = metadata_dataset_key, start_date_if_none=start_date_if_none,
@@ -128,9 +145,12 @@ class EIA:
                 offset += 5000
             else:
                 break
+        
+        # Retrieve maximum date in records extracted
         max_date = self.get_max_date(data, is_monthly=is_monthly)
         if max_date is None:
             return
+        # Append results to S3 bucket folder and update latest date extracted from a given url in metadata
         else:
             self.s3.put_data(data=data, folder=folder, object_key=object_key)
             self.s3_metadata.update_metadata(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key, new_date=max_date)
