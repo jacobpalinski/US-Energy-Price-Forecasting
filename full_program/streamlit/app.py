@@ -9,6 +9,9 @@ from dags.utils.aws import S3
 from dags.utils.config import Config
 from dags.transformation.etl_transforms import EtlTransforms
 
+# Set wide mode in streamlit as default layout
+st.set_page_config(layout='wide')
+
 # Instantiate classes for Config, S3
 config = Config()
 s3 = S3(config=config)
