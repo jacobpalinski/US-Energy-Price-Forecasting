@@ -11,7 +11,7 @@ from eia_heating_oil_spot_prices_etl_pipeline_dag.convert_values_to_float import
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2025, 2, 1),
+    'start_date': datetime(2025, 1, 2),
     'retries': 1,
     'retry_delay': timedelta(seconds=30)
 }
