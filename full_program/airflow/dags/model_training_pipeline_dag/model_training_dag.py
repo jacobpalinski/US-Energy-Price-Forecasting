@@ -30,7 +30,7 @@ default_args = {
 }
 
 # Create DAG that runs on a weekly basis
-with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_interval = timedelta(7), 
+with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_interval = timedelta(days=7, hours=12), 
         catchup=False) as dag:
     check_natural_gas_spot_prices_s3 = S3KeySensor(
         task_id='check_natural_gas_spot_prices_s3',

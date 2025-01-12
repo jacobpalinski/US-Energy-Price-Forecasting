@@ -19,7 +19,7 @@ default_args = {
 }
 
 # Create DAG that runs weekly
-with DAG(dag_id='noaa_etl_pipeline', default_args=default_args, schedule_interval = timedelta(7), 
+with DAG(dag_id='noaa_etl_pipeline', default_args=default_args, schedule_interval = timedelta(days=7, hours=2), 
         catchup=False) as dag:
     noaa_extraction = PythonOperator(
         task_id='noaa_extraction',
