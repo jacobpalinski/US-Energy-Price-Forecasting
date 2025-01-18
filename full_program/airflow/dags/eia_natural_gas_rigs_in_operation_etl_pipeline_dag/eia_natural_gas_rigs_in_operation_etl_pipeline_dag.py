@@ -22,7 +22,7 @@ default_args = {
 with DAG(dag_id='natural_gas_rigs_in_operation_etl_pipeline', default_args=default_args, schedule_interval = timedelta(days=7, hours=2), 
         catchup=False) as dag:
     natural_gas_rigs_in_operation_extraction = PythonOperator(
-        task_id='natural_gas_monthly_variables_extraction',
+        task_id='natural_gas_rigs_in_operation_extraction',
         python_callable=natural_gas_rigs_in_operation_extraction
     )
     drop_columns = PythonOperator(
