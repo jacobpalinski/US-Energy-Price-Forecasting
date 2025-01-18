@@ -163,13 +163,12 @@ class EtlTransforms:
         return df
     
     @classmethod
-    def merge_dataframes(cls, daily_weather_df: pd.DataFrame,  natural_gas_monthly_variables_df: pd.DataFrame, 
+    def merge_dataframes(cls, natural_gas_monthly_variables_df: pd.DataFrame, 
     natural_gas_rigs_in_operation_df: pd.DataFrame, natural_gas_spot_prices_df: pd.DataFrame, heating_oil_spot_prices_df: pd.DataFrame):
         '''
-        Merges dataframes representing each of the transformed sources from transformation folder in S3 Bucket
+        Merges dataframes representing each of the natural gas sources from transformation folder in S3 Bucket
 
         Args:
-            daily_weather_df (pd.DataFrame): Daily weather data df
             natural_gas_monthly_variables_df (pd.DataFrame): Natural gas monthly variables dataframe
             natural_gas_rigs_in_operation_df (pd.DataFrame): Monthly natural gas rigs in operation dataframe
             natural_gas_spot_prices_df (pd.DataFrame): Natural gas spot prices dataframe
@@ -191,7 +190,6 @@ class EtlTransforms:
         df = df.drop(columns=['year_month', 'date_y'], axis=1)
         df = df.set_index('date_x')
         df.index.name = 'date'
-        df = pd.merge(df, daily_weather_df, left_index=True, right_index=True)
         return df
     
     @classmethod

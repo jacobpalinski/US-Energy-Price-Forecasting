@@ -13,6 +13,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   mlflow:
+    image: 320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/ng-forecasting/mlflow
     build:
       context: .
       dockerfile: dockerfile.mlflow
@@ -214,6 +215,7 @@ services:
       - airflow
   
   streamlit:
+    image: 320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/ng-forecasting/streamlit
     build:
       context: .
       dockerfile: dockerfile.streamlit
@@ -232,6 +234,7 @@ services:
       - ./.env:/opt/airflow/.env
   
   testing:
+    image: 320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/ng-forecasting/testing
     build:
       context: .
       dockerfile: dockerfile.testing

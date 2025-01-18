@@ -18,7 +18,7 @@ def forwardfill_missing_values():
     curated_training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key=f'curated_training_data_{formatted_date}')
     curated_training_data_df = EtlTransforms.json_to_df(data=curated_training_data_json, date_as_index=True)
 
-    # Backfill missing values
+    # Forwardfill missing values
     curated_training_data_df = EtlTransforms.forwardfill_null_values_end_of_series(df=curated_training_data_df, 
     columns=['imports', 'lng_imports', 'natural_gas_rigs_in_operation',
     'total_consumption_total_underground_storage_ratio', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum', 

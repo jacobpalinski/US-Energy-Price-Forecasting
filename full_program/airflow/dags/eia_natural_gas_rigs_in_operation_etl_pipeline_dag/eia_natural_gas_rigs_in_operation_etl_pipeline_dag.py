@@ -9,11 +9,12 @@ from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.pivot_data import pivot_
 from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.rename_columns import rename_columns
 from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.convert_values_to_float import convert_values_to_float
 from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.convert_date_format import convert_date_format
+from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.extend_previous_data import extend_previous_data
 
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2025, 1, 2),
+    'start_date': datetime(2025, 1, 23),
     'retries': 1,
     'retry_delay': timedelta(seconds=30)
 }
@@ -48,5 +49,9 @@ with DAG(dag_id='natural_gas_rigs_in_operation_etl_pipeline', default_args=defau
         task_id='convert_date_format',
         python_callable=convert_date_format
     )
+    extend_previous_data = PythonOperator(
+        task_id='extend_previous_data',
+        python_callable=extend_previous_data
+    )
     natural_gas_rigs_in_operation_extraction >> drop_columns >> drop_nulls >> convert_values_to_float \
-    >> pivot_data >> rename_columns >> convert_date_format
+    >> pivot_data >> rename_columns >> convert_date_format >> extend_previous_data
