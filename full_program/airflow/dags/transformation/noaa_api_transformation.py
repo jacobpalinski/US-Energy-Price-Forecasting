@@ -51,7 +51,7 @@ class NoaaTransformation:
     @classmethod
     def imputation_df(cls, df: pd.DataFrame) -> pd.DataFrame:
         '''
-        Creates dataframe that computes mean values for TMIN, TMAX, AWND, PRCP and SNOW
+        Creates dataframe that computes mean values for TMIN, TMAX, AWND and median SNOW
         for all cities across all quarters
 
         Args:

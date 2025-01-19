@@ -23,8 +23,6 @@ def modify_date_format():
 
     # Convert date column to string
     daily_weather_df['date'] = daily_weather_df['date'].dt.strftime('%Y-%m-%d')
-
-    print('Date format successfully converted')
     
     # Put data in S3
     s3.put_data(data=daily_weather_df, folder='full_program/transformation/daily_weather/', object_key=f'daily_weather_{formatted_date}')
