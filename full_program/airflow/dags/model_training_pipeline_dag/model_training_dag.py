@@ -22,7 +22,7 @@ formatted_date = today.strftime('%Y%m%d')
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2025, 1, 23),
+    'start_date': datetime(2025, 2, 28),
     'retries': 1,
     'retry_delay': timedelta(seconds=30)
 }

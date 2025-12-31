@@ -12,7 +12,7 @@ from eia_natural_gas_spot_prices_etl_pipeline_dag.extend_previous_data import ex
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
-    'start_date': datetime(2025, 1, 23),
+    'start_date': datetime(2025, 2, 28),
     'retries': 1,
     'retry_delay': timedelta(seconds=30)
 }
@@ -44,4 +44,5 @@ with DAG(dag_id='natural_gas_spot_prices_etl_pipeline', default_args=default_arg
         task_id='extend_previous_data',
         python_callable = extend_previous_data
     )
-    natural_gas_spot_prices_extraction >> drop_columns >> drop_nulls >> convert_values_to_float >> rename_columns >> extend_previous_data
+    natural_gas_spot_prices_extraction >> drop_columns >> drop_nulls >> convert_values_to_float >> rename_columns \
+    >> extend_previous_data

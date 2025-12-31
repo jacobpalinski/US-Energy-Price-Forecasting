@@ -24,14 +24,23 @@ def weather_variables_feature_engineering():
     curated_training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key=f'curated_training_data_{formatted_date}')
     curated_training_data_df = EtlTransforms.json_to_df(data=curated_training_data_json, date_as_index=True)
 
+    chunk_size = 10000
+    processed_chunks = []
+
     # Create features from natural gas variables in curated training data
-    daily_weather_df = NoaaTransformation.maximum_hdd(df=daily_weather_df)
-    daily_weather_df = NoaaTransformation.maximum_cdd(df=daily_weather_df)
-    daily_weather_df = NoaaTransformation.wci_sum(df=daily_weather_df)
-    daily_weather_df = NoaaTransformation.snow_sum(df=daily_weather_df)
-    daily_weather_df = NoaaTransformation.min_and_max_average_temperature(df=daily_weather_df)
-    daily_weather_df = NoaaTransformation.max_abs_tavg_diff(df=daily_weather_df)
-    daily_weather_df = NoaaTransformation.max_abs_tavg_diff_relative_to_daily_median(df=daily_weather_df)
+    for start in range(0, len(daily_weather_df), chunk_size):
+        chunk = daily_weather_df.iloc[start: start + chunk_size]
+        chunk = NoaaTransformation.maximum_hdd(df=chunk)
+        chunk = NoaaTransformation.maximum_cdd(df=chunk)
+        chunk = NoaaTransformation.wci_sum(df=chunk)
+        chunk = NoaaTransformation.snow_sum(df=chunk)
+        chunk = NoaaTransformation.min_and_max_average_temperature(df=chunk)
+        chunk = NoaaTransformation.max_abs_tavg_diff(df=chunk)
+        chunk = NoaaTransformation.max_abs_tavg_diff_relative_to_daily_median(df=chunk)
+        processed_chunks.append(chunk)
+
+    # Combine processed chunks
+    daily_weather_df = pd.concat(processed_chunks)
 
     # Drop irrelevant columns
     daily_weather_df = EtlTransforms.drop_columns(df=daily_weather_df, columns=['city', 'state', 'quarter', 'tmin', 'tmax', 'tavg', 'snow', 'awnd'])
