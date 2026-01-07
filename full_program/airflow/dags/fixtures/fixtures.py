@@ -196,7 +196,7 @@ def mock_metadata_response():
     return data
 
 @pytest.fixture
-def df_convert_column_to_float():
+def df_convert_column_to_numeric():
     ''' 
     Dataframe used for testing of convert_price_to_float function of EIATransformation class 
     '''

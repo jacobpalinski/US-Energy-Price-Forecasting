@@ -25,8 +25,15 @@ def extend_previous_data():
     natural_gas_spot_prices_df_current = EtlTransforms.json_to_df(data=natural_gas_spot_prices_json_current, date_as_index=True)
     natural_gas_spot_prices_df_previous = EtlTransforms.json_to_df(data=natural_gas_spot_prices_json_previous, date_as_index=True)
 
-    # Combine previous and current datasets
-    natural_gas_spot_prices_df = pd.concat([natural_gas_spot_prices_df_previous, natural_gas_spot_prices_df_current])
+    # Check if previous data exists
+    if natural_gas_spot_prices_json_previous: 
+        natural_gas_spot_prices_df_previous = EtlTransforms.json_to_df(data=natural_gas_spot_prices_json_previous, date_as_index=True)
+
+        # Combine previous and current datasets
+        natural_gas_spot_prices_df = pd.concat([natural_gas_spot_prices_df_previous, natural_gas_spot_prices_df_current])
+
+    else:
+        natural_gas_spot_prices_df = natural_gas_spot_prices_df_current
 
     # Reset index
     natural_gas_spot_prices_df = natural_gas_spot_prices_df.reset_index()

@@ -8,6 +8,7 @@ from eia_natural_gas_spot_prices_etl_pipeline_dag.drop_nulls import drop_nulls
 from eia_natural_gas_spot_prices_etl_pipeline_dag.rename_columns import rename_columns
 from eia_natural_gas_spot_prices_etl_pipeline_dag.convert_values_to_float import convert_values_to_float
 from eia_natural_gas_spot_prices_etl_pipeline_dag.extend_previous_data import extend_previous_data
+from eia_natural_gas_spot_prices_etl_pipeline_dag.data_quality_checks import data_quality_checks
 
 # Create default arguments for DAG
 default_args = {
@@ -44,5 +45,10 @@ with DAG(dag_id='natural_gas_spot_prices_etl_pipeline', default_args=default_arg
         task_id='extend_previous_data',
         python_callable = extend_previous_data
     )
+    data_quality_checks = PythonOperator(
+        task_id='data_quality_checks',
+        python_callable = extend_previous_data
+    )
+
     natural_gas_spot_prices_extraction >> drop_columns >> drop_nulls >> convert_values_to_float >> rename_columns \
-    >> extend_previous_data
+    >> extend_previous_data >> data_quality_checks

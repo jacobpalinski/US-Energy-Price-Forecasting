@@ -21,14 +21,20 @@ def extend_previous_curated_data():
 
     # Retrieve curated training data from S3 folder
     current_curated_training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key=f'curated_training_data_{formatted_date}')
-    curated_training_data_df = EtlTransforms.json_to_df(data=current_curated_training_data_json, date_as_index=True)
+    current_curated_training_data_df = EtlTransforms.json_to_df(data=current_curated_training_data_json, date_as_index=True)
 
     # Retrieve previous training data from S3 folder
     previous_curated_training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key=f'curated_training_data_{formatted_previous_date}')
-    previous_curated_training_data_df = EtlTransforms.json_to_df(data=previous_curated_training_data_json, date_as_index=True)
 
-    # Concatenate dataframes ensuring index is ordered
-    curated_training_data_df = pd.concat([previous_curated_training_data_df, curated_training_data_df], sort=False).sort_index()
+    # Check if previous data exists
+    if previous_curated_training_data_json: 
+        previous_curated_training_data_df = EtlTransforms.json_to_df(data=previous_curated_training_data_json, date_as_index=True)
+
+        # Combine previous and current datasets
+        curated_training_data_df = pd.concat([previous_curated_training_data_df, current_curated_training_data_df], sort=False).sort_index()
+    
+    else:
+        curated_training_data_df = current_curated_training_data_df
 
     # Forwardfill missing values
     curated_training_data_df = EtlTransforms.forwardfill_null_values_end_of_series(df=curated_training_data_df, 
