@@ -31,7 +31,8 @@ class TestEIA:
         metadata_folder = metadata_folder,
         metadata_object_key = metadata_object_key,
         metadata_dataset_key = metadata_dataset_key,
-        start_date_if_none = start_date_if_none)
+        start_date_if_none = start_date_if_none,
+        is_monthly = False)
         
         mock_requests_get.assert_called_once_with('https://api.eia.gov/v2/' + endpoint,
             headers={'X-Params': json.dumps({
@@ -46,7 +47,7 @@ class TestEIA:
                 'direction': 'asc'
                 }],
                 'length': 5000,
-                'start': '1999-01-04',
+                'start': '1999-01-05',
                 'offset': 0}),
                 'Content-Type': 'application/json'},
             params = {'api_key': 'api_key'},
@@ -77,6 +78,7 @@ class TestEIA:
         metadata_object_key = metadata_object_key,
         metadata_dataset_key = metadata_dataset_key,
         start_date_if_none = start_date_if_none,
+        is_monthly = False,
         offset=offset)
         
         mock_requests_get.assert_called_once_with('https://api.eia.gov/v2/' + endpoint,
@@ -92,7 +94,7 @@ class TestEIA:
                 'direction': 'asc'
                 }],
                 'length': 5000,
-                'start': '1999-01-04',
+                'start': '1999-01-05',
                 'offset': offset}),
                 'Content-Type': 'application/json'},
             params = {'api_key': 'api_key'},
@@ -123,6 +125,7 @@ class TestEIA:
         metadata_object_key = metadata_object_key,
         metadata_dataset_key = metadata_dataset_key,
         start_date_if_none = start_date_if_none,
+        is_monthly = False,
         offset=offset)
         
         mock_requests_get.assert_called_once_with('https://api.eia.gov/v2/' + endpoint,
@@ -164,6 +167,7 @@ class TestEIA:
         metadata_object_key = metadata_object_key,
         metadata_dataset_key = metadata_dataset_key,
         start_date_if_none = start_date_if_none,
+        is_monthly=False,
         offset=offset)
 
         assert response[0] == 'Error occurred'

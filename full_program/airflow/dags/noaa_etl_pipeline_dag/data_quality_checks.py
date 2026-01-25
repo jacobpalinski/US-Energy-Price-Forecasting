@@ -31,8 +31,8 @@ def data_quality_checks():
     columns={
         "date": Column(str, nullable=False, checks=[Check(lambda s: pd.to_datetime(s).ge(start_date).all(), element_wise=False),
         Check(lambda s: pd.to_datetime(s).le(end_date).all(), element_wise=False),]),
-        "city": Column(str, nullable=False),
-        "state": Column(str, nullable=False), 
+        "city": Column(object, nullable=False),
+        "state": Column(object, nullable=False), 
         "quarter": Column(int, nullable=False, checks=[Check.ge(1), Check.le(100)]),
         "awnd": Column(float, nullable=False, checks=Check.ge(0)),
         "snow": Column(float, nullable=False, checks=Check.ge(0)),

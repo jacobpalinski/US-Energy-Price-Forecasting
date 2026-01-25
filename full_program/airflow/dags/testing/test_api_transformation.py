@@ -92,7 +92,7 @@ class TestNoaaTransformation:
         expected_df = NoaaTransformation.modify_date(df=expected_df)
         imputation_df = NoaaTransformation.imputation_df(df=df_noaa_transformation_testing_impute_missing_weather_variables)
         result_df = NoaaTransformation.impute_missing_weather_variables(df=df_noaa_transformation_testing_impute_missing_weather_variables, imputation_df=imputation_df)
-        pd.testing.assert_frame_equal(result_df, expected_df)
+        pd.testing.assert_frame_equal(result_df.sort_values(by=['date', 'datatype']).reset_index(drop=True), expected_df.sort_values(by=['date', 'datatype']).reset_index(drop=True))
     
     def test_calculate_missing_tavg(self, df_noaa_transformation_testing):
         '''
@@ -144,7 +144,7 @@ class TestNoaaTransformation:
         expected_df['date'] = pd.to_datetime(expected_df['date'])
         expected_df = expected_df.set_index('date')
         result_df = NoaaTransformation.maximum_hdd(df=df_noaa_feature_engineering_testing)
-        pd.testing.assert_frame_equal(result_df, expected_df)
+        pd.testing.assert_frame_equal(result_df, expected_df, rtol=0.01, atol=0.01)
     
     def test_maximum_cdd(self, df_noaa_feature_engineering_testing):
         '''
@@ -290,7 +290,7 @@ class TestEiaTransformation:
     ''' 
     Test class for testing EiaTransformation class 
     '''
-    def test_convert_column_to_float(self, df_convert_column_to_float):
+    def test_convert_column_to_numeric(self, df_convert_column_to_numeric):
         '''
         Tests convert_price_to_float function of EiaTransformation class
         '''

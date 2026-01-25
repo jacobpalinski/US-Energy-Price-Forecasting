@@ -1,7 +1,11 @@
 ''' Import modules '''
 from datetime import datetime
+import pandera as pa
+from pandera import Column, Check
+import pandas as pd
 from dags.extraction.eia_api import *
 from dags.transformation.etl_transforms import EtlTransforms
+from dags.utils.data_quality_check_functions import DataQualityChecks
 
 def drop_columns():
     ''' Drop irrelevant columns from extracted natural gas spot prices '''
@@ -16,6 +20,24 @@ def drop_columns():
     # Retrieve extracted data from S3 folder
     natural_gas_spot_prices_json = s3.get_data(folder='full_program/extraction/natural_gas_spot_prices/', object_key=f'natural_gas_spot_prices_{formatted_date}')
     natural_gas_spot_prices_df = EtlTransforms.json_to_df(data=natural_gas_spot_prices_json, date_as_index=False)
+
+    # Perform data quality checks on key columns 
+    schema = pa.DataFrameSchema(
+    {
+        "value": Column(
+            object,
+            checks=Check(DataQualityChecks.is_numeric_or_null, element_wise=True),
+            nullable=True,
+        ),
+        "period": Column(
+            object,
+            checks=[Check(DataQualityChecks.is_yyyy_mm_dd, element_wise=True),
+            Check(lambda s: pd.to_datetime(s, errors="coerce").notna(), element_wise=False)],
+            nullable=False,
+        ),
+    }
+    )
+    schema.validate(natural_gas_spot_prices_df)
 
     # Drop irrelevant columns from natural_gas_spot_prices_df
     natural_gas_spot_prices_df = EtlTransforms.drop_columns(df=natural_gas_spot_prices_df, columns=['duoarea', 'area-name', 'product', 'product-name', 'process',

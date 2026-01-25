@@ -1,28 +1,28 @@
 import numpy as np
 import pytest
-
-from transformation.etl_transforms import EtlTransforms
-from modelling.model import Model
+from dags.transformation.etl_transforms import EtlTransforms
+from dags.modelling.model import Model
 import tensorflow as tf
 
 np.random.seed(42)
 
 @pytest.fixture
 def random_data():
-    X_train = np.random.randn(200, 26)
+    X_train = np.random.randn(200, 27)
     y_train = np.random.randn(200, 1)
-    X_validation = np.random.randn(50, 26)
+    X_validation = np.random.randn(50, 27)
     y_validation = np.random.randn(50, 1)
     return X_train, y_train, X_validation, y_validation
 
 def test_dataset(random_data):
+    """
+    Test dataset creation from random data
+    """
     X_train, y_train , _, _ = random_data
     train_dataset = EtlTransforms.build_dataset(x=X_train, y=y_train, sequence_length=30, batch_size=128)
-    sample = train_dataset.take(1)
-    for element in sample:
-        assert np.array_equal(tf.shape(element[0]).numpy(), np.array([128, 30, 26]))
-        assert np.array_equal(tf.shape(element[1]).numpy(), np.array([128, 1]))
-
+    for x_batch, y_batch in train_dataset.take(1):
+        assert x_batch.shape == (128, 30, 27)
+        assert y_batch.shape == (128, 1)
 
 def test_model_training(random_data):
     """

@@ -20,7 +20,7 @@ def convert_values_to_float():
     heating_oil_spot_prices_df = EtlTransforms.json_to_df(data=heating_oil_spot_prices_json, date_as_index=False)
 
     # Convert column to float
-    heating_oil_spot_prices_df = EiaTransformation.convert_column_to_float(df=heating_oil_spot_prices_df, column='value')
+    heating_oil_spot_prices_df = EiaTransformation.convert_column_to_numeric(df=heating_oil_spot_prices_df, column='value')
     
     # Put data in S3
     s3.put_data(data=heating_oil_spot_prices_df, folder='full_program/transformation/heating_oil_spot_prices/', object_key=f'heating_oil_spot_prices_{formatted_date}')

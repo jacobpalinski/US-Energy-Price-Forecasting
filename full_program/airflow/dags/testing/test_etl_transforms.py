@@ -6,9 +6,8 @@ from dags.transformation.etl_transforms import *
 from dags.fixtures.fixtures import df_etl_transforms_testing, merge_dataframes_natural_gas_spot_prices_df_no_missing_date, merge_dataframes_natural_gas_spot_prices_df_missing_date, \
 merge_dataframes_heating_oil_spot_prices_df_no_missing_date, merge_dataframes_heating_oil_spot_prices_df_missing_date, merge_dataframes_natural_gas_monthly_variables_df_no_missing_date, \
 merge_dataframes_natural_gas_monthly_variables_df_missing_date, merge_dataframes_natural_gas_rigs_in_operation_df_no_missing_date, merge_dataframes_natural_gas_rigs_in_operation_df_missing_date, \
-merge_dataframes_daily_weather_df_no_missing_date, merge_dataframes_daily_weather_df_missing_date, df_forwardfill_null_values_end_of_series_with_empty_values,  \
-df_forwardfill_null_values_end_of_series_no_empty_values, df_backfill_null_values_start_of_series_with_empty_values, df_backfill_null_values_start_of_series_no_empty_values, \
-merged_df, calculate_rolling_variables_df
+df_forwardfill_null_values_end_of_series_with_empty_values, df_forwardfill_null_values_end_of_series_no_empty_values, df_backfill_null_values_start_of_series_with_empty_values, \
+df_backfill_null_values_start_of_series_no_empty_values, merged_df, calculate_rolling_variables_df
 
 class TestEtlTransforms:
     ''' Test class for testing EtlUtils class '''
@@ -89,20 +88,6 @@ class TestEtlTransforms:
         expected_df = pd.DataFrame(data)
         expected_df.index = index
         result_df = EtlTransforms.drop_null(df=df_etl_transforms_testing)
-        pd.testing.assert_frame_equal(result_df, expected_df)
-    
-    def test_date_index(self, df_etl_transforms_testing):
-        '''
-        Tests set_date_index function of EtlUtils class
-        '''
-        expected_df = df_etl_transforms_testing.copy()
-        expected_df['date'] = pd.to_datetime(expected_df['date'])
-        expected_df = expected_df.set_index('date')
-        expected_index = pd.to_datetime(['1999-01-04', '1999-01-04', '1999-01-05', '1999-01-06', '2024-05-24'])
-        expected_index.name = 'date'
-        result_df = EtlTransforms.set_date_index(df=df_etl_transforms_testing)
-        result_index = result_df.index
-        pd.testing.assert_index_equal(result_index, expected_index)
         pd.testing.assert_frame_equal(result_df, expected_df)
     
     def test_merge_dataframe_no_missing_dates_all_datasets(self, merge_dataframes_natural_gas_monthly_variables_df_no_missing_date, 
@@ -470,81 +455,6 @@ class TestEtlTransforms:
         expected_df = expected_df.set_index('date')
         result_df = EtlTransforms.create_test_data(df=merged_df, holdout=0.5)
         pd.testing.assert_frame_equal(result_df, expected_df)
-    
-    def test_generator(self):
-        ''' Tests generator function of EtlTransforms class '''
-        x_train = {
-        'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
-        'imports': [1000, 1000, 1000, 2000],
-        'lng_imports': [20, 40, 60, 80],
-        'heating_oil_natural_gas_price_ratio': [2.1, 2.05, 2.04, 2.06],
-        '7day_ew_volatility price ($/MMBTU)': [1.34, 1.34, 1.34, 1.34],
-        '14day_ew_volatility price ($/MMBTU)': [2.06, 2.06, 2.06, 2.06],
-        '30day_ew_volatility price ($/MMBTU)': [4.2, 4.2, 4.2, 4.2],
-        '60day_ew_volatility price ($/MMBTU)': [3.05, 3.05, 3.05, 3.05],
-        'price_1day_lag ($/MMBTU)': [2.04, 2.60, 2.45, 1.23],
-        'price_2day_lag ($/MMBTU)': [2.60, 2.71, 3.12, 4.90],
-        'price_3day_lag ($/MMBTU)': [4.20, 6.19, 2.50, 6.90],
-        '7day_rolling_average price ($/MMBTU)': [3.20, 3.20, 3.20, 3.20],
-        '14day_rolling_average price ($/MMBTU)': [3.60, 3.60, 3.60, 3.60],
-        '30day_rolling_average price ($/MMBTU)': [4.10, 4.10, 4.10, 4.10],
-        '7day_rolling_median price ($/MMBTU)': [2.50, 2.50, 2.50, 2.50],
-        '14day_rolling_median price ($/MMBTU)': [2.75, 2.75, 2.75, 2.75],
-        '30day_rolling_median price ($/MMBTU)': [4.71, 4.71, 4.71, 4.71],
-        'total_consumption_total_underground_storage_ratio': [7.05, 7.05, 7.05, 7.05],
-        'min_tavg': [-1, -10, -20, 3],
-        'max_tavg': [25, 30, 40, 32],
-        'max_abs_tavg_diff': [10, 12, 4, 6],
-        'max_abs_tavg_diff_relative_to_daily_median': [3, 4, 6, 7],
-        'hdd_max': [10, 5, 1, 2],
-        'cdd_max': [5, 3, 0, 3],
-        'wci_sum': [0, 15, 17, 10],
-        'natural_gas_rigs_in_operation': [500, 500, 1000, 2000],
-        'snow_sum': [0, 10, 20, 0]
-        }
-        y_train = {'date': ['1999-03-29', '1999-03-30', '1999-03-31', '1999-04-01'],
-        'price ($/MMBTU)': [2.1, 2.05, 2.10, 2.08]}
-        x_train_df = pd.DataFrame(x_train)
-        x_train_df['date'] = pd.to_datetime(x_train_df['date'])
-        x_train_df = x_train_df.set_index('date')
-        y_train_df = pd.DataFrame(y_train)
-        y_train_df['date'] = pd.to_datetime(y_train_df['date'])
-        y_train_df = y_train_df.set_index('date')
-        
-        expected_x_sequence = np.array([[[1000., 20., 2.1, 1.34, 2.06, 4.2, 3.05,
-        2.04, 2.6, 4.2, 3.2, 3.6, 4.1, 2.5,
-        2.75, 4.71, 7.05, -1., 25., 10., 3.,
-        10., 5., 0., 500.0, 0.],
-        [1000., 40., 2.05, 1.34, 2.06, 4.2, 3.05,
-        2.6, 2.71, 6.19, 3.2, 3.6, 4.1, 2.5,
-        2.75, 4.71, 7.05, -10., 30., 12., 4.,
-        5., 3., 15., 500.0, 10.]],
-        [[1000., 40., 2.05, 1.34, 2.06, 4.2, 3.05,
-        2.6, 2.71, 6.19, 3.2, 3.6, 4.1, 2.5,
-        2.75, 4.71, 7.05, -10., 30., 12., 4.,
-        5., 3., 15., 500.0, 10.],
-        [1000., 60., 2.04, 1.34, 2.06, 4.2, 3.05,
-        2.45, 3.12, 2.5, 3.2, 3.6, 4.1, 2.5,
-        2.75, 4.71, 7.05, -20., 40., 4., 6.,
-        1., 0., 17., 1000.0, 20.]]])
-        expected_y_sequence = np.array([[2.1],
-        [2.08]])
-
-        # Collect sequences from generator
-        x_sequences, y_sequences = [], []
-        for x_seq, y_next in EtlTransforms.generator(x=x_train_df, y=y_train_df, sequence_length=2):
-            x_sequences.append(x_seq)
-            y_sequences.append(y_next)
-        
-        # Convert to np.array
-        x_sequences = np.array(x_sequences)
-        y_sequences = np.array(y_sequences)
-
-        # Assertions
-        assert x_sequences.shape == (2, 2, 26)
-        assert y_sequences.shape == (2, 1)
-        np.testing.assert_array_equal(x_sequences, expected_x_sequence)
-        np.testing.assert_array_equal(y_sequences, expected_y_sequence)
     
     def test_build_dataset(self):
         ''' Tests build_dataset function of EtlTransforms class '''

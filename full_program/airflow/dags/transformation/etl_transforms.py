@@ -286,7 +286,7 @@ class EtlTransforms:
             args=(x, y, sequence_length),
             output_signature=(
                 tf.TensorSpec(shape=(sequence_length, x.shape[1]), dtype=tf.float64),
-                tf.TensorSpec(shape=(), dtype=tf.float64),
+                tf.TensorSpec(shape=(1,), dtype=tf.float64),
             )
         )
         return dataset.batch(batch_size=batch_size).prefetch(tf.data.AUTOTUNE)

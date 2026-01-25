@@ -7,7 +7,7 @@ class EiaTransformation:
 
     Methods
     -------
-    convert_column_to_float(cls, df, column):
+    convert_column_to_numeric(cls, df, column):
         Converts price column from non-float format to floating format
     convert_date_format(cls, df):
         Convert YYYY-MM date format to YYYY-MM-DD for monthly variables extracted
@@ -27,13 +27,13 @@ class EiaTransformation:
         Creates is_dec_or_jan binary variable where 1 indicates a given date is in December or January
     '''
     @classmethod
-    def convert_column_to_float(cls, df: pd.DataFrame, column: str) -> pd.DataFrame:
+    def convert_column_to_numeric(cls, df: pd.DataFrame, column: str) -> pd.DataFrame:
         '''
-        Converts price column from non-float format to floating format
+        Converts price column from non-float format to float / integer format
 
         Args:
             df (pd.DataFrame): Natural gas / heating oil prices df
-            column (str): Name of price column to be converted to float format
+            column (str): Name of price column to be converted to float / integer format
         
         Returns:
             pd.DataFrame: Returns modified dataframe
