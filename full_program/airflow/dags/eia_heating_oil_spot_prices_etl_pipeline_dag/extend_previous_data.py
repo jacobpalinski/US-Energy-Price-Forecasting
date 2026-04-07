@@ -38,9 +38,6 @@ def extend_previous_data():
     # Reset index
     heating_oil_spot_prices_df = heating_oil_spot_prices_df.reset_index()
 
-    # Convert date from timestamp to string
-    heating_oil_spot_prices_df['date'] = heating_oil_spot_prices_df['date'].dt.strftime('%Y-%m-%d')
-
     # Put data in S3
     s3.put_data(data=heating_oil_spot_prices_df, folder='full_program/transformation/heating_oil_spot_prices/', object_key=f'heating_oil_spot_prices_{formatted_date}')
 

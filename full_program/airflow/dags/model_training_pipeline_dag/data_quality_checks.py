@@ -9,7 +9,7 @@ from dags.utils.aws import S3
 from dags.transformation.etl_transforms import EtlTransforms
 
 def data_quality_checks():
-    ''' Function that performs data quality checks on transformed NOOA weather dataset '''
+    ''' Function that performs data quality checks on curated training dataset '''
      # Todays date
     today = datetime.now()
     formatted_date = today.strftime('%Y%m%d')

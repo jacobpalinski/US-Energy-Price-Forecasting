@@ -40,11 +40,9 @@ def train_model_7day():
     # Create sequences for training and test data
     train_dataset_7day = EtlTransforms.build_dataset(x=X_train, y=y_train, sequence_length=30, batch_size=128)
     validation_dataset_7day = EtlTransforms.build_dataset(x=X_test, y=y_test, sequence_length=30, batch_size=128)
-    print('sequences successfully created')
 
     # Train GRU model
     Model.train_model(train_dataset_7day, validation_dataset_7day, time_steps=30, experiment_id=experiment_id, forecast_horizon=7)
-    print('models successfully trained')
 
 
 

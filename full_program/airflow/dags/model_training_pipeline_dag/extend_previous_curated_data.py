@@ -36,14 +36,6 @@ def extend_previous_curated_data():
     else:
         curated_training_data_df = current_curated_training_data_df
 
-    # Forwardfill missing values
-    curated_training_data_df = EtlTransforms.forwardfill_null_values_end_of_series(df=curated_training_data_df, 
-    columns=['imports', 'lng_imports', 'natural_gas_rigs_in_operation',
-    'total_consumption_total_underground_storage_ratio'])
-
-    # Drop any null records that exist
-    curated_training_data_df = curated_training_data_df.dropna(how='any', axis=0)
-
     # Reset index so date column is stored as json
     curated_training_data_df = curated_training_data_df.reset_index()
 

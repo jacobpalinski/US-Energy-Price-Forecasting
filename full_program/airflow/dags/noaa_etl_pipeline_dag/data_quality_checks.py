@@ -26,6 +26,48 @@ def data_quality_checks():
     start_date = daily_weather_df['date'].iloc[0]
     end_date = daily_weather_df['date'].iloc[-1]
 
+    # Required city values
+    required_city_values = {
+        "Orlando",
+        "Miami",
+        "Tampa",
+        "New Orleans",
+        "San Antonio",
+        "Houston",
+        "Philadelphia",
+        "Jacksonville",
+        "Austin",
+        "Shreveport",
+        "Dallas",
+        "Baton Rouge",
+        "St Louis",
+        "Buffalo",
+        "New York",
+        "Cleveland",
+        "Columbus",
+        "Los Angeles",
+        "San Diego",
+        "Sacramento",
+        "San Francisco",
+        "Cincinnati",
+        "Pittsburgh",
+        "Chicago",
+        "Detroit",
+        "Grand Rapids"
+    }
+
+    required_state_values = {
+        "Florida",
+        "Louisiana",
+        "Texas",
+        "Pennsylvania",
+        "Illinois",
+        "New York",
+        "Ohio",
+        "California",
+        "Michigan"
+    }
+
     # Pandera schema for data quality checks
     schema = pa.DataFrameSchema(
     columns={
@@ -33,7 +75,7 @@ def data_quality_checks():
         Check(lambda s: pd.to_datetime(s).le(end_date).all(), element_wise=False),]),
         "city": Column(object, nullable=False),
         "state": Column(object, nullable=False), 
-        "quarter": Column(int, nullable=False, checks=[Check.ge(1), Check.le(100)]),
+        "quarter": Column(int, nullable=False, checks=[Check.ge(1), Check.le(4)]),
         "awnd": Column(float, nullable=False, checks=Check.ge(0)),
         "snow": Column(float, nullable=False, checks=Check.ge(0)),
         "tavg": Column(float, nullable=False),

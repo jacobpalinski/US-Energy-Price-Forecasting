@@ -39,7 +39,7 @@ def drop_columns():
             checks=Check(DataQualityChecks.is_numeric_or_null, element_wise=True),
             nullable=True,
         ),
-        "date": Column(
+        "period": Column(
             object,
             checks=[Check(DataQualityChecks.is_yyyy_mm_dd, element_wise=True),
             Check(lambda s: pd.to_datetime(s, errors="coerce").notna(), element_wise=False)],

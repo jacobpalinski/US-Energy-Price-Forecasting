@@ -21,34 +21,34 @@ default_args = {
 # Create DAG that runs weekly
 with DAG(dag_id='heating_oil_spot_prices_etl_pipeline', default_args=default_args, schedule_interval = timedelta(days=7, hours=2), 
         catchup=False) as dag:
-    heating_oil_spot_prices_extraction = PythonOperator(
+    heating_oil_spot_prices_extraction_task = PythonOperator(
         task_id='heating_oil_spot_prices_extraction',
         python_callable=heating_oil_spot_prices_extraction
     )
-    drop_columns = PythonOperator(
+    drop_columns_task = PythonOperator(
         task_id='drop_columns',
         python_callable=drop_columns
     )
-    drop_nulls = PythonOperator(
+    drop_nulls_task = PythonOperator(
         task_id='drop_nulls',
         python_callable=drop_nulls
     )
-    convert_values_to_float = PythonOperator(
+    convert_values_to_float_task = PythonOperator(
         task_id='convert_values_to_float',
         python_callable=convert_values_to_float
     )
-    rename_columns = PythonOperator(
+    rename_columns_task = PythonOperator(
         task_id='rename_columns',
         python_callable=rename_columns
     )
-    extend_previous_data = PythonOperator(
+    extend_previous_data_task = PythonOperator(
         task_id='extend_previous_data',
         python_callable=extend_previous_data
     )
-    data_quality_checks = PythonOperator(
+    data_quality_checks_task = PythonOperator(
         task_id='data_quality_checks',
-        python_callable=extend_previous_data
+        python_callable=data_quality_checks
     )
 
-    heating_oil_spot_prices_extraction >> drop_columns >> drop_nulls >> convert_values_to_float >> rename_columns >> extend_previous_data \
-    >> data_quality_checks
+    heating_oil_spot_prices_extraction_task >> drop_columns_task >> drop_nulls_task >> convert_values_to_float_task >> rename_columns_task >> extend_previous_data_task \
+    >> data_quality_checks_task

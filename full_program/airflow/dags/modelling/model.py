@@ -42,6 +42,9 @@ class Model:
             time_steps (int): Number of time steps used in forecast
             experiment_id (str): Mflow experiment id
             forecast_horizon: Length of time natural gas spot prices are being forecasted for
+        
+        Returns:
+            keras.Sequential: Trained GRU model
         '''
         # Create GRU model structure
         model = cls.compile_model(time_steps)
@@ -51,10 +54,10 @@ class Model:
         current_date_formatted = current_date.strftime('%Y%m%d')
 
         # Define model name and versioning format for model registry
-        model_name = f'GRU_{forecast_horizon}_day_horizon_{time_steps}_{current_date_formatted}'
+        model_name = f'GRU_{forecast_horizon}_day_horizon_{time_steps}_time_steps_{current_date_formatted}'
 
         with mlflow.start_run(experiment_id=experiment_id,
-                              run_name=f'GRU_{forecast_horizon}_day_horizon_{time_steps}_{current_date_formatted}'):
+                              run_name=f'GRU_{forecast_horizon}_day_horizon_{time_steps}_time_steps_{current_date_formatted}'):
             mlflow.log_param("units", 48)
             mlflow.log_param("activation_function", 'tanh')
             mlflow.log_param("dropout", 0.2)
@@ -71,6 +74,8 @@ class Model:
             # Register the model in MLflow Model Registry
             artifact_uri = f"runs:/{mlflow.active_run().info.run_id}/{model_artifact_path}"
             mlflow.register_model(model_uri=artifact_uri, name=model_name)
+        
+        return model
 
     @classmethod
     def compile_model(cls, time_steps: int) -> keras.Sequential:
@@ -109,3 +114,18 @@ class Model:
         model.fit(dataset, epochs=epochs, validation_data=validation_dataset, verbose=2,
                   callbacks=[] if callbacks is None else callbacks)
         return model
+    
+    @classmethod
+    def save_model(cls, model: keras.Model, path:str) -> None:
+        '''
+        Saves trainedmodel to disk (required for SageMaker)
+        
+        Args:
+            model (keras.Model): Trained  GRU model
+            path (str): SageMaker model directory path
+        '''
+        os.makedirs(path, exist_ok=True)
+        model.save(path)
+        
+
+

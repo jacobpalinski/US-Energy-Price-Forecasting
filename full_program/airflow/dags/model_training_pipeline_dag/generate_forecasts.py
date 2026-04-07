@@ -31,7 +31,7 @@ def generate_forecasts():
     experiment_id = mlflow_model.retrieve_experiment_id()
 
     # Retrieve imputed weather variables
-    daily_weather_modelling_imputation_json = s3.get_data(folder='full_program/curated/imputation/', object_key=f'daily_weather_modelling_imputation_base_20241227') # Change to actual date once file has been created
+    daily_weather_modelling_imputation_json = s3.get_data(folder='full_program/curated/imputation/', object_key=f'daily_weather_modelling_imputation_base_dataset_20241227')
     daily_weather_modelling_imputation_df = EtlTransforms.json_to_df(data=daily_weather_modelling_imputation_json, date_as_index=False)
 
     # Retrieve training(for fitting scalar) and test data for a given date
@@ -59,10 +59,10 @@ def generate_forecasts():
     X_train[robust_columns] = robust_scaler.fit_transform(X_train[robust_columns])
 
     # Retrieve models
-    model_7day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_7_day_horizon_30_{formatted_date}/1")
-    model_14day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_14_day_horizon_21_{formatted_date}/1")
-    model_30day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_30_day_horizon_14_{formatted_date}/1")
-    model_60day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_60_day_horizon_14_{formatted_date}/1")
+    model_7day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_7_day_horizon_30_time_steps_{formatted_date}/1")
+    model_14day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_14_day_horizon_21_time_steps_{formatted_date}/1")
+    model_30day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_30_day_horizon_14_time_steps_{formatted_date}/1")
+    model_60day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_60_day_horizon_14_time_steps_{formatted_date}/1")
 
     # Define the models and forecast horizons
     forecast_horizons = {

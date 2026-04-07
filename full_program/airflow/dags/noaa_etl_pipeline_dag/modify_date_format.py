@@ -80,12 +80,12 @@ def modify_date_format():
         ),
         "city": Column(
             object,
-            checks=Check(lambda s: required_city_values.issubset(set(s.dropna())), element_wise=False, error=f"city column must contain the following values {required_city_values}"),
+            checks=Check.isin(required_city_values),
             nullable=False,
         ),
         "state": Column(
             object,
-            checks=Check(lambda s: required_state_values.issubset(set(s.dropna())), element_wise=False, error=f"state column must contain the following values {required_state_values}"),
+            checks=Check.isin(required_state_values),
             nullable=False
         ),
         "datatype": Column(
