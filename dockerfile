@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy code into the container
-COPY . /app/
+COPY full_program/ /app/full_program/
 
 # Ensure Python can find modules
 ENV PYTHONPATH=/app/full_program/airflow
