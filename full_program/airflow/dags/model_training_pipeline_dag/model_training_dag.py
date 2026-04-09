@@ -98,7 +98,7 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
         "RoleArn": "arn:aws:iam::320264762283:role/US-Energy-Price-Forecasting-Sagemaker-Execution-Role",
 
         "AlgorithmSpecification": {
-            "TrainingImage": "320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/us-energy-price-forecasting/model-training:latest",
+            "TrainingImage": "320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/us-energy-price-forecasting/model-training",
             "TrainingInputMode": "File"
         },
 
@@ -139,7 +139,7 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
         "RoleArn": "arn:aws:iam::320264762283:role/US-Energy-Price-Forecasting-Sagemaker-Execution-Role",
 
         "AlgorithmSpecification": {
-            "TrainingImage": "320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/us-energy-price-forecasting/model-training:latest",
+            "TrainingImage": "320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/us-energy-price-forecasting/model-training",
             "TrainingInputMode": "File"
         },
 
@@ -180,7 +180,7 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
         "RoleArn": "arn:aws:iam::320264762283:role/US-Energy-Price-Forecasting-Sagemaker-Execution-Role",
 
         "AlgorithmSpecification": {
-            "TrainingImage": "320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/us-energy-price-forecasting/model-training:latest",
+            "TrainingImage": "320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/us-energy-price-forecasting/model-training",
             "TrainingInputMode": "File"
         },
 
@@ -221,7 +221,7 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
         "RoleArn": "arn:aws:iam::320264762283:role/US-Energy-Price-Forecasting-Sagemaker-Execution-Role",
 
         "AlgorithmSpecification": {
-            "TrainingImage": "320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/us-energy-price-forecasting/model-training:latest",
+            "TrainingImage": "320264762283.dkr.ecr.ap-southeast-1.amazonaws.com/us-energy-price-forecasting/model-training",
             "TrainingInputMode": "File"
         },
 
