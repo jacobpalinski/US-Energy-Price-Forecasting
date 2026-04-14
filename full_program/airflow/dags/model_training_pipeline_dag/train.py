@@ -1,5 +1,6 @@
 ''' Import modules '''
 import os
+import json
 import argparse
 from datetime import datetime
 import boto3
@@ -19,6 +20,8 @@ def parse_args():
     parser.add_argument("--forecast_horizon", type=int)
     parser.add_argument("--sequence_length", type=int, default=30)
     parser.add_argument("--batch_size", type=int, default=128)
+
+    args, _ = parser.parse_known_args()
 
     # Return parsed arguments
     return parser.parse_args()
@@ -41,8 +44,10 @@ def main():
     s3 = boto3.client('s3')
 
     # Retrieve curated training and test data from folder
-    curated_training_data_json =s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key=f'full_program/curated/training_data/curated_training_data_{formatted_date}')
-    curated_test_data_json = s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key=f'full_program/curated/test_data/curated_test_data_{formatted_date}')
+    curated_training_data_object =s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key=f'full_program/curated/training_data/curated_training_data_{formatted_date}')
+    curated_test_data_object = s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key=f'full_program/curated/test_data/curated_test_data_{formatted_date}')
+    curated_training_data_json = json.loads(curated_training_data_object['Body'].read().decode('utf-8'))
+    curated_test_data_json = json.loads(curated_test_data_object['Body'].read().decode('utf-8'))
     curated_training_data_df = EtlTransforms.json_to_df(curated_training_data_json, date_as_index=True)
     curated_test_data_df = EtlTransforms.json_to_df(curated_test_data_json, date_as_index=True)
 
@@ -69,8 +74,6 @@ def main():
 
     # Save model for SageMaker
     model_dir = os.environ.get("SM_MODEL_DIR", "/opt/ml/model")
-    os.makedirs(model_dir, exist_ok=True)
-
     Model.save_model(os.path.join(model_dir, f"GRU_{args.forecast_horizon}_day_horizon_{args.sequence_length}_time_steps_{formatted_date}"))
 
 

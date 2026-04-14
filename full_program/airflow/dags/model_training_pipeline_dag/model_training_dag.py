@@ -94,7 +94,7 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
     train_model_7day_task = SageMakerTrainingOperator(
     task_id="train_model_7day",
     config={
-        "TrainingJobName": f"GRU_7_day_horizon_30_time_steps_{formatted_date}",
+        "TrainingJobName": f"GRU-7-day-horizon-30-time_steps-{formatted_date}",
         "RoleArn": "arn:aws:iam::320264762283:role/US-Energy-Price-Forecasting-Sagemaker-Execution-Role",
 
         "AlgorithmSpecification": {
@@ -135,7 +135,7 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
     train_model_14day_task = SageMakerTrainingOperator(
     task_id="train_model_14day",
     config={
-        "TrainingJobName": f"GRU_14_day_horizon_21_time_steps_{formatted_date}",
+        "TrainingJobName": f"GRU-14-day-horizon-21-time-steps_{formatted_date}",
         "RoleArn": "arn:aws:iam::320264762283:role/US-Energy-Price-Forecasting-Sagemaker-Execution-Role",
 
         "AlgorithmSpecification": {
@@ -176,7 +176,7 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
     train_model_30day_task = SageMakerTrainingOperator(
     task_id="train_model_30day",
     config={
-        "TrainingJobName": f"GRU_30_day_horizon_14_time_steps_{formatted_date}",
+        "TrainingJobName": f"GRU-30-day-horizon-14-time-steps-{formatted_date}",
         "RoleArn": "arn:aws:iam::320264762283:role/US-Energy-Price-Forecasting-Sagemaker-Execution-Role",
 
         "AlgorithmSpecification": {
@@ -217,7 +217,7 @@ with DAG(dag_id='model_training_pipeline', default_args=default_args, schedule_i
     train_model_60day_task = SageMakerTrainingOperator(
     task_id="train_model_60day",
     config={
-        "TrainingJobName": f"GRU_60_day_horizon_14_time_steps_{formatted_date}",
+        "TrainingJobName": f"GRU-60_day-horizon-14-time_steps-{formatted_date}",
         "RoleArn": "arn:aws:iam::320264762283:role/US-Energy-Price-Forecasting-Sagemaker-Execution-Role",
 
         "AlgorithmSpecification": {

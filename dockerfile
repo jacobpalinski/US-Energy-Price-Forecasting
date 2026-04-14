@@ -16,5 +16,3 @@ ENV PYTHONPATH=/app/full_program/airflow
 
 # Set the working directory where train.py is located
 WORKDIR /app/full_program/airflow/dags/model_training_pipeline_dag
-
-ENTRYPOINT ["python", "train.py"]

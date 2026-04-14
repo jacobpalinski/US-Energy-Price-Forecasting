@@ -14,12 +14,15 @@ class Config:
     access_key_id (str): AWS Access Key
     secret_access_key (str): AWS Secret Access Key
     bucket (str): AWS S3 bucket for storage + retrieval
+    topic_arn (str): AWS SNS topic arn for sending notifications
     eia_api_key (str): API key for retrieving data from EIA API
     token (str): Token for retrieving data from NOAA API
     '''
     def __init__(self):
         self.access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
         self.secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+        self.region = os.environ.get('AWS_REGION')
         self.bucket = os.environ.get('S3_BUCKET')
+        self.topic_arn = os.environ.get('TOPIC_ARN')
         self.eia_api_key = os.environ.get('API_KEY')
         self.token = os.environ.get('TOKEN')
