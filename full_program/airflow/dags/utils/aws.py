@@ -24,13 +24,9 @@ class S3:
 
     Methods
     -------
-    connect(cls):
-        Creates a connection to S3 client using access_key_id and secret_access_key
-    disconnect(cls):
-        Disconnects from S3 client
-    get_data(cls, folder, object_key):
+    get_data(s3_key):
         Gets data from S3 bucket for a given folder and object key
-    put_data(cls, data, folder, object_key):
+    put_data(data, s3_key):
         Puts data in S3 bucket as json file under a given folder with a specific object_key
         
     '''
@@ -38,35 +34,22 @@ class S3:
         self.access_key_id = config.access_key_id
         self.secret_access_key = config.secret_access_key
         self.bucket = config.bucket
-
-    def connect(self) -> None:
-        ''' 
-        Creates a connection to S3 client using access_key_id and secret_access_key
-        '''
         self.s3_client=boto3.client('s3', aws_access_key_id=self.access_key_id, 
                                    aws_secret_access_key=self.secret_access_key)
-
-    def disconnect(self) -> None:
-        '''
-        Disconnects from S3 client
-        '''
-        del self.s3_client
     
-    def get_data(self, folder: str, object_key: str) -> dict:
+    def get_data(self, s3_key: str) -> dict:
         '''
         Gets data from S3 bucket for a given folder and object key
 
         Args:
-            folder (str): S3 folder data is going to be retrieved from
-            object_key (str): Name of object being retrieved
+            s3_key (str): The S3 key for the object to retrieve
         
         Returns:
             dict: Returns json data in the form of a dictionary object
 
         '''
         try:
-            self.connect()
-            response = self.s3_client.get_object(Bucket=self.bucket, Key=folder + object_key)
+            response = self.s3_client.get_object(Bucket=self.bucket, Key=s3_key)
             contents = response['Body'].read().decode('utf-8')
             json_data = json.loads(contents)
             return json_data
@@ -75,10 +58,7 @@ class S3:
             print(f'Error retrieving metadata: {e}')
             return {}
 
-        finally:
-            self.disconnect()
-
-    def put_data(self, data: list, folder: str, object_key: str) -> None:
+    def put_data(self, data: list, s3_key: str) -> None:
         '''
         Puts data in S3 bucket as json file under a given folder with a specific object_key
 
@@ -92,10 +72,8 @@ class S3:
             data = data.to_dict(orient='records')
 
         data_json = json.dumps(data)
-        self.connect()
-        self.s3_client.put_object(Bucket=self.bucket, Key=folder + object_key, 
-        Body=data_json, ContentType='application/json')
-        self.disconnect()
+        self.s3_client.put_object(Bucket=self.bucket, Key=s3_key, 
+                                  Body=data_json, ContentType='application/json')
 
 class S3Metadata(S3):
     ''' 
@@ -109,65 +87,116 @@ class S3Metadata(S3):
 
     Methods
     --------------
-    get_metadata(cls):
+    get_metadata(s3_key: str) -> dict:
         Retrieves metadata from S3, including multiple dates for each dataset 
-    get_latest_end_date(cls):
-        Retrieves the latest end date for a given dataset inside metadata file
-    update_metadata(cls):
-        Updates the metadata in S3 with a new end date for a given dataset.
+    update_metadata(s3_key: str, dataset_key: str, **kwargs) -> None:
+        Updates the metadata in S3 with a new end date for a given dataset
     
     '''
-    def get_metadata(self, folder: str, object_key: str) -> dict:
+    def get_metadata(self, s3_key: str) -> dict:
         ''' 
         Retrieves metadata from S3, including multiple dates for each dataset 
     
         Args:
-            folder (str): S3 folder data is going to be retrieved from
-            object_key (str): Name of object being retrieved 
+            s3_key (str): The S3 key for the metadata file
     
         Returns:
-            dict: A dictionary where keys are dataset identifiers and values are lists of dates.
+            dict: A dictionary where keys are dataset identifiers and values are a dictionary consisting of latest_start_date, latest_end_date,
+            latest_extracted_file_path and latest_transformed_file_path.
     
         '''
-        metadata = self.get_data(folder=folder, object_key=object_key)
+        metadata = self.get_data(s3_key=s3_key)
         return metadata
 
-    def get_latest_end_date(self, folder: str, object_key: str, dataset_key: str) -> str:
-        '''
-        Retrieves the latest end date for a given dataset inside metadata file
-
-        Args:
-            folder (str): S3 folder data is going to be retrieved from
-            object_key (str): Name of object being retrieved
-            dataset_key (str): The identifier of the dataset
-        
-        Returns:
-            str: The latest end date in 'YYYY-MM-DD' format or None if no date exists
-        '''
-        metadata = self.get_metadata(folder=folder, object_key=object_key)
-        dates = metadata.get(dataset_key, [])
-        if dates:
-            max_date = max(dates, key=lambda d: datetime.strptime(d, '%Y-%m-%d'))
-            return max_date
-        return None
-
-    def update_metadata(self, folder: str, object_key: str, dataset_key: str, new_date: str) -> None:
+    def update_metadata(self, s3_key, dataset_key, **kwargs) -> None:
         '''
         Updates the metadata in S3 with a new end date for a given dataset.
 
         Args:
-            folder (str): S3 folder data is going to be retrieved from
-            object_key (str): Name of object being retrieved
-            dataset_key (str): The identifier for the dataset
-            new_date (str): The new end date to be added in 'YYYY-MM-DD' format.
+            s3_ket (str): The S3 key where the metadata is stored
+            dataset_key (str): The identifier of the dataset for which metadata is being updated
+            **kwargs: Additional keyword arguments to handle latest start date, latest end date, latest extracted file path and latest transformed file path
         '''
-        metadata = self.get_metadata(folder=folder, object_key=object_key)
+        metadata = self.get_metadata(s3_key=s3_key)
         if dataset_key not in metadata:
-            metadata[dataset_key] = []
-        if new_date not in metadata[dataset_key]:
-            metadata[dataset_key].append(new_date)
-        metadata[dataset_key].sort() # Sorts dates for given metadata key
-        self.put_data(data=metadata, folder='full_program/metadata/', object_key=object_key)
+            metadata[dataset_key] = {}
+        for key, value in kwargs.items():
+            metadata[dataset_key][key] = value
+        self.put_data(data=metadata, s3_key=s3_key)
+
+class SNSNotifier:
+    ''' 
+    Class for sending notifications using AWS SNS service
+    
+    Instance Variables
+    ------------------
+    access_key_id (str): AWS Access Key
+    secret_access_key (str): AWS Secret Access Key
+    topic_arn (str): ARN of the SNS topic to which notifications will be sent
+
+    Methods
+    -------
+    connect:
+        Creates a connection to SNS client using access_key_id and secret_access_key
+    '''
+    def __init__(self, config: Config):
+        self.access_key_id = config.access_key_id
+        self.secret_access_key = config.secret_access_key
+        self.region = config.region
+        self.topic_arn = config.topic_arn
+        self.sns_client = boto3.client('sns', aws_access_key_id=self.access_key_id, 
+                                        aws_secret_access_key=self.secret_access_key,
+                                        region_name=self.region)
+    
+    def build_message(self, context: dict) -> json:
+        '''
+        Builds a message payload for SNS notification based on the Airflow context.
+        Args:
+            context (dict): Airflow context dictionary containing information about the DAG run, task instance, and any exceptions.
+        Returns:
+            json: A JSON-formatted object containing relevant information for the notification.
+        '''
+        # Retrieves relevant information from Airflow context to include in notification message
+        task_instance = context.get("task_instance")
+        dag = context.get("dag")
+        exception = context.get("exception")
+
+        # Create payload information to be sent in SNS notification
+        payload = {
+            "dag_id": dag.dag_id if dag else None,
+            "task_id": task_instance.task_id if task_instance else None,
+            "execution_date": str(context.get("execution_date")),
+            "log_url": task_instance.log_url if task_instance else None,
+            "exception": str(exception) if exception else None,
+        }
+
+        # Json payload to be sent in SNS notification
+        return json.dumps(payload, indent=2)
+
+    def send(self, context: dict):
+        '''
+        Sends an SNS notification with relevant information about the Airflow task failure.
+        Args:
+            context (dict): Airflow context dictionary containing information about the DAG run, task instance, and any exceptions.
+        '''
+        # Retrieves relevant information from Airflow context to include in notification message
+        dag_id = context.get("dag").dag_id if context.get("dag") else "unknown"
+        task_id = context.get("task_instance").task_id if context.get("task_instance") else "unknown"
+
+        # Build message payload for SNS notification
+        message = self.build_message(context)
+
+        # Send SNS notification
+        self.sns_client.publish(
+            TopicArn=self.topic_arn,
+            Subject=f"Airflow Alert: {dag_id}.{task_id} Failed",
+            Message=message,
+        )
+    
+    def __call__(self, context):
+        self.send(context)
+    
+
     
 
 

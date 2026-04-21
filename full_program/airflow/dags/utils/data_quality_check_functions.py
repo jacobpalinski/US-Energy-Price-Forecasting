@@ -13,7 +13,7 @@ class DataQualityChecks:
         if isinstance(element, (int, float)):
             return True
         if isinstance(element, str):
-            return bool(re.fullmatch(r"-?\d+(\.\d+)?", element))
+            return bool(re.fullmatch(r"-?(\d+(\.\d+)?|\.\d+)", element))
         return False
     
     @staticmethod

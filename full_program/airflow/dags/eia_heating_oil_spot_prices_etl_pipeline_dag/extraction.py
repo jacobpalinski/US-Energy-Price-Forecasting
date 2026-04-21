@@ -2,11 +2,9 @@
 from datetime import datetime
 from dags.extraction.eia_api import *
 
-def heating_oil_spot_prices_extraction():
+def heating_oil_spot_prices_extraction(**context):
     ''' Performs data extraction from EIA api for heating oil spot prices '''
-    # Todays date
-    today = datetime.now()
-    formatted_date = today.strftime('%Y%m%d')
+    ts_nodash = context["ts_nodash"]
 
     # Instantiate classes for Config, S3, S3Metadata and EIA
     config = Config()
@@ -29,6 +27,5 @@ def heating_oil_spot_prices_extraction():
     'length': 5000
     }
 
-    eia.extract(endpoint='petroleum/pri/spt/data/', headers=headers, folder='full_program/extraction/heating_oil_spot_prices/',
-    object_key=f'heating_oil_spot_prices_{formatted_date}', metadata_folder='full_program/metadata/', metadata_object_key='metadata', 
-    metadata_dataset_key='heating_oil_spot_prices', is_monthly=False, start_date_if_none='1999-01-04')
+    eia.extract(endpoint='petroleum/pri/spt/data/', headers=headers, put_object_s3_key=f'full_program/extraction/heating_oil_spot_prices/heating_oil_spot_prices_{ts_nodash}.json',
+    metadata_s3_key='full_program/metadata/metadata.json', dataset_key='heating_oil_spot_prices', extract_timestamp=ts_nodash, is_monthly=False, start_date_if_none='1999-01-04')
