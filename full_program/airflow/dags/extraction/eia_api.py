@@ -24,11 +24,13 @@ class EIA:
 
     Methods
     -------
-    api_request(cls, endpoint, headers, metadata_folder, metadata_object_key, metadata_dataset_key, start_date_if_none, is_monthly, offset):
+    create_start_date(metadata_s3_key, dataset_key, start_date_if_none, is_monthly):
+        Retrieves latest end date for a given dataset key in metadata to be used as start date in API request
+    api_request(endpoint, headers, metadata_s3_key, dataset_key, start_date_if_none, is_monthly, offset):
         Makes an API request to a specific endpoint of the Energy Information Administration API
-    get_max_date(cls, data, is_monthly):
+    get_latest_extract_end_date(data, is_monthly):
         Retrieves latest end date from data extracted to be logged in metadata
-    extract(cls, endpoint, headers, folder, object_key, metadata_folder, metadata_object_key, metadata_dataset_key, start_date_if_none, is_monthly, offset):
+    extract(endpoint, headers, folder, object_key, metadata_folder, metadata_object_key, metadata_dataset_key, start_date_if_none, is_monthly, offset):
         Extracts data from a request to a specific endpoint and puts data in a S3 endpoint.
         Maybe multiple requests to a specific endpoint as the API can only return 5000 results
         at once hence adjustment of offset maybe necessary
@@ -112,6 +114,7 @@ class EIA:
     def get_latest_extract_end_date(self, data: list, is_monthly: bool) -> str:
         ''' 
         Retrieves latest end date from data extracted to be logged in metadata
+        
         Args:
             data (list): Records in extracted data
             is_monthly (bool): Used to identify whether data is extract has daily or monthly granularity
@@ -145,6 +148,7 @@ class EIA:
             dataset_key (str): Dataset key from metadata where latest end date is being retrieved for
             start_date_if_none (str): Date to be used for start_date key in headers if there are no dates for a given metadata dataset key
             is_monthly (bool): Used to identify whether data is extract has daily or monthly granularity
+            extract_timestamp (str): Timestamp of when data extraction is being performed to be logged in metadata
             offset (int): Offset in the results. Incremented for results that contain over 5000
             units of data
         '''
