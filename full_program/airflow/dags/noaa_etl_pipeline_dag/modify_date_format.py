@@ -8,18 +8,21 @@ from dags.transformation.etl_transforms import EtlTransforms
 from dags.transformation.noaa_api_transformation import NoaaTransformation
 from dags.utils.data_quality_check_functions import DataQualityChecks
 
-def modify_date_format():
+def modify_date_format(**context):
     ''' Modify date format of extracted NOAA weather data '''
-    # Todays date
-    today = datetime.now()
-    formatted_date = today.strftime('%Y%m%d')
+    ts_nodash = context["ts_nodash"]
 
     # Instantiate classes for Config, S3
     config = Config()
     s3 = S3(config=config)
+    s3_metadata = S3Metadata(config=config)
+
+    # Retrieve latest extracted filepath from metadata in S3
+    metadata = s3.get_data(s3_key='full_program/metadata/metadata.json')
+    latest_extracted_file_path = metadata.get('daily_weather', {}).get('latest_extracted_file_path')
 
     # Retrieve extracted data from S3 folder
-    daily_weather_json = s3.get_data(folder='full_program/extraction/daily_weather/', object_key=f'daily_weather_{formatted_date}')
+    daily_weather_json = s3.get_data(s3_key=latest_extracted_file_path)
     daily_weather_df = EtlTransforms.json_to_df(data=daily_weather_json, date_as_index=False)
 
     # Required city values
@@ -104,7 +107,8 @@ def modify_date_format():
     daily_weather_df['date'] = daily_weather_df['date'].dt.strftime('%Y-%m-%d')
     
     # Put data in S3
-    s3.put_data(data=daily_weather_df, folder='full_program/transformation/daily_weather/', object_key=f'daily_weather_{formatted_date}')
+    s3.put_data(data=daily_weather_df, s3_key=f'full_program/transformation/daily_weather/daily_weather_{ts_nodash}.json')
+    s3_metadata.update_metadata(s3_key='full_program/metadata/metadata.json', dataset_key='daily_weather', latest_transformed_file_path=f'full_program/transformation/daily_weather/daily_weather_{ts_nodash}.json', latest_transformed_timestamp=ts_nodash)
 
 
 

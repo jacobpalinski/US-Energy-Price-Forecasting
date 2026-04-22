@@ -2,11 +2,9 @@
 from datetime import datetime
 from dags.extraction.noaa_api import *
 
-def noaa_extraction():
+def noaa_extraction(**context):
     ''' Performs data extraction from NOAA api '''
-    # Todays date
-    today = datetime.now()
-    formatted_date = today.strftime('%Y%m%d')
+    ts_nodash = context["ts_nodash"]
 
     # Instantiate classes for Config, S3, S3Metadata and NOAA
     config = Config()
@@ -29,7 +27,5 @@ def noaa_extraction():
     'units': 'metric',
     'limit': 1000}
 
-    noaa.extract(parameters=parameters, folder='full_program/extraction/daily_weather/', 
-    object_key = f'daily_weather_{formatted_date}', metadata_folder='full_program/metadata/', 
-    metadata_object_key='metadata', metadata_dataset_key='daily_weather', 
-    start_date_if_none='1999-01-04')
+    noaa.extract(parameters=parameters, put_object_s3_key=f'full_program/extraction/daily_weather/daily_weather_{ts_nodash}.json', metadata_s3_key='full_program/metadata/metadata.json', 
+    dataset_key='daily_weather', start_date_if_none='1999-01-04', extract_timestamp=ts_nodash)

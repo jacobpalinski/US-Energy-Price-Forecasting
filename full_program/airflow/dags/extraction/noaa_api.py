@@ -61,6 +61,31 @@ class NOAA:
         'GHCND:USW00013904': ['Austin', 'Texas']}
         self.s3 = s3
         self.s3_metadata = s3_metadata
+
+    def create_start_date(self, metadata_s3_key: str, dataset_key: str, start_date_if_none: str) -> str:
+        '''
+        Retrieves latest end date for a given dataset key in metadata to be used as start date in API request
+
+        Args:
+            metadata_s3_key (str): Metadata S3 key where latest end date for data extraction of given dataset is retrieved from
+            dataset_key (str): Dataset key from metadata where latest end date is being retrieved for
+            start_date_if_none (str): Date to be used for start_date if there is no end date for a given dataset key in metadata
+
+        Returns:
+            str: Start date to be used in API request in string format
+        '''
+        # Retrieve latest end date. Latest end date to be used as start date in api request
+        metadata = self.s3_metadata.get_metadata(s3_key=metadata_s3_key)
+        latest_end_date = metadata.get(dataset_key, {}).get('latest_end_date') # Latest end date varies depending on metadata for given dataset
+
+        if latest_end_date is None:
+            start_date = start_date_if_none
+        else:
+            latest_end_date_datetime = datetime.strptime(latest_end_date, '%Y-%m-%d')
+            latest_end_date_plus_one = latest_end_date_datetime + timedelta(days=1)
+            start_date = latest_end_date_plus_one.strftime('%Y-%m-%d')
+
+        return start_date
     
     def api_request(self, parameters: dict) -> requests.Response:
         ''' 
@@ -90,56 +115,51 @@ class NOAA:
             except requests.RequestException as e:
                 return 'Error occurred', e
     
-    def get_max_date(self, data: list) -> str:
+    def get_latest_extract_end_date(self, data: list) -> str:
         ''' 
         Retrieves latest end date from data extracted to be logged in metadata
+        
         Args:
             data (list): Records in extracted data
-        
+
         Returns:
             str: Latest end date in string format 
         '''
         if not data:
             return None
-        else: 
+        else:
             dates = [datetime.strptime(item['date'], '%Y-%m-%dT%H:%M:%S') for item in data]
-            max_date = max(dates)
-            max_date_str = max_date.strftime('%Y-%m-%d')
-            return max_date_str
+        
+        max_date = max(dates)
+        max_date_str = max_date.strftime('%Y-%m-%d') # Conversion required for monthly date granularity
+        return max_date_str
     
-    def extract(self, parameters: dict, folder: str, object_key: str, metadata_folder: str, 
-        metadata_object_key: str, metadata_dataset_key: str, start_date_if_none: str) -> None:
+    def extract(self, parameters: dict, put_object_s3_key: str, metadata_s3_key: str, dataset_key: str, start_date_if_none: str, extract_timestamp: str) -> None:
         ''' 
         Extract data from requests and puts results in an S3 endpoint.
         
         Args:
             parameters (dict): Parameters to be passed to the API request
-            folder (str): S3 folder data is going to be retrieved from
-            object_key (str): Name of object being retrieved
-            metadata_folder (str): Metadata folder where latest end date for data extraction of given dataset is retrieved from
-            metadata_object_key (str): Metadata object where latest end date is being retrieved from
-            metadata_dataset_key (str): Dataset key from metadata where latest end date is being retrieved for
+            put_object_s3_key (str): S3 key for where data is being put in S3 bucket
+            metadata_s3_key (str): Metadata S3 key where latest end date for data extraction of given dataset is retrieved from
+            dataset_key (str): Dataset key from metadata where latest end date is being retrieved for
             start_date_if_none (str): Date to be used for start_date key in headers if there are no dates for a given metadata dataset key
         '''
         # Initialise data variable to store result from api_request
         data = []
-        
-        # Retrieve lastest end date. Latest end date used as start date in API request
-        latest_end_date = self.s3_metadata.get_latest_end_date(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key)
-        increment = timedelta(days=6)
-        if latest_end_date is None:
-            start_date = start_date_if_none
-        else:
-            latest_end_date_datetime = datetime.strptime(latest_end_date, '%Y-%m-%d')
-            latest_end_date_plus_one = latest_end_date_datetime + timedelta(days=1)
-            start_date = latest_end_date_plus_one.strftime('%Y-%m-%d')
+
+        # Retrieve start date for API request and use as parameter in API request
+        start_date = self.create_start_date(metadata_s3_key=metadata_s3_key, dataset_key=dataset_key, start_date_if_none=start_date_if_none)
         parameters['startdate'] = start_date
-        enddate = datetime.strptime(start_date, '%Y-%m-%d')
-        parameters['enddate'] = (enddate + increment).strftime('%Y-%m-%d')
+
+        # Create increment variable to increment start and end date in parameters for API request
+        increment = timedelta(days=6)
+
+        # Create end date parameter for API request as start date + increment
+        parameters['enddate'] = (datetime.strptime(start_date, '%Y-%m-%d') + increment).strftime('%Y-%m-%d')
 
         # Append results to data as long as data exists for a given API request
         while True:
-            print(parameters['startdate'])
             response = self.api_request(parameters=parameters)
             results = response.json().get('results', [])
 
@@ -159,11 +179,11 @@ class NOAA:
             parameters['enddate'] = (enddate + increment).strftime('%Y-%m-%d')
         
         # Retrieve maximum date in records extracted
-        max_date = self.get_max_date(data)
-        if max_date is None:
+        latest_end_date = self.get_latest_extract_end_date(data)
+        if latest_end_date is None:
             return
         # Append results to S3 bucket folder and update latest date extracted from a given url in metadata
         else:
-            self.s3.put_data(data=data, folder=folder, object_key=object_key)
-            self.s3_metadata.update_metadata(folder=metadata_folder, object_key=metadata_object_key, dataset_key=metadata_dataset_key, new_date=max_date)
+            self.s3.put_data(data=data, s3_key=put_object_s3_key)
+            self.s3_metadata.update_metadata(s3_key=metadata_s3_key, dataset_key=dataset_key, latest_end_date=latest_end_date, latest_extracted_timestamp=extract_timestamp, latest_extracted_file_path=put_object_s3_key)
 

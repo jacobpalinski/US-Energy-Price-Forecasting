@@ -10,16 +10,16 @@ from dags.transformation.etl_transforms import EtlTransforms
 
 def data_quality_checks():
     ''' Function that performs data quality checks on transformed NOOA weather dataset '''
-    # Todays date
-    today = datetime.now()
-    formatted_date = today.strftime('%Y%m%d')
-
     # Instantiate classes for Config, S3
     config = Config()
     s3 = S3(config=config)
 
-    # Retrieve extracted data from S3 folder
-    daily_weather_json = s3.get_data(folder='full_program/transformation/daily_weather/', object_key=f'daily_weather_{formatted_date}')
+    # Retrieve latest transformed filepath from metadata in S3
+    metadata = s3.get_data(s3_key='full_program/metadata/metadata.json')
+    latest_transformed_file_path = metadata.get('daily_weather', {}).get('latest_transformed_file_path')
+
+    # Retrieve transformed data and imputed data from S3 folder
+    daily_weather_json = s3.get_data(s3_key=latest_transformed_file_path)
     daily_weather_df = EtlTransforms.json_to_df(data=daily_weather_json, date_as_index=False)
 
     # Retrieve start and end dates for data quality checks
@@ -82,7 +82,8 @@ def data_quality_checks():
         "tmax": Column(float, nullable=False),
         "tmin": Column(float, nullable=False),
     },
-    strict=True)
+    strict=True,
+    unique=True)
 
     # Validate schema
     schema.validate(daily_weather_df)
