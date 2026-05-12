@@ -1,4 +1,5 @@
-''' Import modules '''
+# Import modules
+import os
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -11,13 +12,24 @@ from eia_natural_gas_monthly_variables_etl_pipeline_dag.convert_values_to_int im
 from eia_natural_gas_monthly_variables_etl_pipeline_dag.convert_date_format import convert_date_format
 from eia_natural_gas_monthly_variables_etl_pipeline_dag.extend_previous_data import extend_previous_data
 from eia_natural_gas_monthly_variables_etl_pipeline_dag.data_quality_checks import data_quality_checks
+from dags.utils.config import Config
+from dags.utils.aws import SNSNotifier
+from dotenv import load_dotenv
+
+# Import environment variables
+load_dotenv()
+
+# Setup config and SNS notifier classes
+config = Config()
+sns_notifier = SNSNotifier(config=config)
 
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
     'start_date': datetime(2025, 2, 28),
     'retries': 1,
-    'retry_delay': timedelta(seconds=30)
+    'retry_delay': timedelta(seconds=30),
+    'on_failure_callback': sns_notifier
 }
 
 # Create DAG that runs weekly
