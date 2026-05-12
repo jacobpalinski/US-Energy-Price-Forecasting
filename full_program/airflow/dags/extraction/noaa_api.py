@@ -1,13 +1,18 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime, timedelta
 import os
 import requests 
 from dags.utils.aws import S3, S3Metadata
-from dags.utils.config import *
+from dags.utils.config import Config
 from dotenv import load_dotenv
+import logging
 
 # Import environment variables
 load_dotenv()
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 class NOAA:
     ''' 
@@ -84,6 +89,9 @@ class NOAA:
             latest_end_date_datetime = datetime.strptime(latest_end_date, '%Y-%m-%d')
             latest_end_date_plus_one = latest_end_date_datetime + timedelta(days=1)
             start_date = latest_end_date_plus_one.strftime('%Y-%m-%d')
+        
+        # Log the start date created for the API request along with the dataset key and latest end date retrieved from metadata that was used to create the start date
+        logger.info(f'Created start date of {start_date} for dataset_key: {dataset_key} using latest end date of {latest_end_date} from metadata')
 
         return start_date
     
@@ -101,6 +109,8 @@ class NOAA:
         max_attempts = 3
         attempt = 0
 
+        logger.info(f'Making API request to NOAA with parameters: {parameters}')
+
         # Repeat requests when number of attempts < max_attempts
         while attempt < max_attempts:
             try:
@@ -110,11 +120,12 @@ class NOAA:
                     return response
             
             except requests.exceptions.Timeout:
+                logger.warning(f"API request to NOAA timed out for parameters: {parameters}")
                 attempt += 1
                     
             except requests.RequestException as e:
-                return 'Error occurred', e
-    
+                logger.exception(f"Error occurred while making API request to NOAA with parameters: {parameters}")
+
     def get_latest_extract_end_date(self, data: list) -> str:
         ''' 
         Retrieves latest end date from data extracted to be logged in metadata
@@ -186,4 +197,6 @@ class NOAA:
         else:
             self.s3.put_data(data=data, s3_key=put_object_s3_key)
             self.s3_metadata.update_metadata(s3_key=metadata_s3_key, dataset_key=dataset_key, latest_end_date=latest_end_date, latest_extracted_timestamp=extract_timestamp, latest_extracted_file_path=put_object_s3_key)
+            # Log size of dataset and the latest end date for a given dataset key
+            logger.info(f'Extracted {len(data)} records for {dataset_key} dataset with latest end date of {latest_end_date}')
 

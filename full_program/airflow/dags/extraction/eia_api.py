@@ -1,15 +1,20 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import json
 import os
 import requests
 from dags.utils.aws import S3, S3Metadata
-from dags.utils.config import *
+from dags.utils.config import Config
 from dotenv import load_dotenv
+import logging
 
 # Import environment variables
 load_dotenv()
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 class EIA:
     '''
@@ -67,6 +72,9 @@ class EIA:
             else:
                 latest_end_date_plus_one = latest_end_date_datetime + timedelta(days=1)
             start_date = latest_end_date_plus_one.strftime('%Y-%m-%d')
+        
+        # Log the start date created for the API request along with the dataset key and latest end date retrieved from metadata that was used to create the start date
+        logger.info(f'Created start date of {start_date} for dataset_key: {dataset_key} using latest end date of {latest_end_date} from metadata')
 
         return start_date
 
@@ -104,12 +112,18 @@ class EIA:
             'Content-Type': 'application/json'
         }
 
+        # Log API request info including endpoint, start date and offset
+        logger.info(f"Making EIA API request for {endpoint} with start date of {start_date} and offset of {offset}")
+
         # Make request
         try: 
             response = requests.get(url, headers=headers,  params=params, timeout=30)
+            # Log response info
+            logger.info(f"EIA API request completed for {endpoint} with start date of {start_date} and offset of {offset}")
             return response
         except requests.RequestException as e:
-            return 'Error occurred', e
+            logger.exception(f"Unexpected request exception during EIA API call for {endpoint}")
+            raise e
     
     def get_latest_extract_end_date(self, data: list, is_monthly: bool) -> str:
         ''' 
@@ -176,3 +190,6 @@ class EIA:
         # Append results to S3 bucket folder and update latest date extracted from a given url in metadata
         self.s3.put_data(data=data, s3_key=put_object_s3_key)
         self.s3_metadata.update_metadata(s3_key=metadata_s3_key, dataset_key=dataset_key, latest_end_date=latest_end_date, latest_extracted_timestamp=extract_timestamp, latest_extracted_file_path=put_object_s3_key)
+
+        # Setup logger to log size of dataset and the latest end date for a given dataset key
+        logger.info(f'Extracted {len(data)} records for {dataset_key} dataset with latest end date of {latest_end_date}')
