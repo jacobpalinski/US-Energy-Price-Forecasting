@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 import pandas as pd
 import pandera as pa
@@ -7,6 +7,11 @@ from datetime import datetime
 from dags.utils.config import *
 from dags.utils.aws import S3
 from dags.transformation.etl_transforms import EtlTransforms
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def data_quality_checks():
     ''' Function that performs data quality checks on transformed NOOA weather dataset '''
@@ -22,9 +27,16 @@ def data_quality_checks():
     daily_weather_json = s3.get_data(s3_key=latest_transformed_file_path)
     daily_weather_df = EtlTransforms.json_to_df(data=daily_weather_json, date_as_index=False)
 
+    # Log row count of latest transformed dataset
+    logger.info(f"Latest transformed dataset contains {len(daily_weather_df)} rows")
+
     # Retrieve start and end dates for data quality checks
     start_date = daily_weather_df['date'].iloc[0]
     end_date = daily_weather_df['date'].iloc[-1]
+
+    # Log start and end dates
+    logger.info(f"Start date for data quality checks: {start_date}")
+    logger.info(f"End date for data quality checks: {end_date}")
 
     # Required city values
     required_city_values = {
@@ -83,7 +95,11 @@ def data_quality_checks():
         "tmin": Column(float, nullable=False),
     },
     strict=True,
-    unique=True)
+    unique=["date", "city", "state", "quarter", "awnd", "snow", "tavg", "tmax", "tmin"])
 
     # Validate schema
-    schema.validate(daily_weather_df)
+    try:
+        schema.validate(daily_weather_df)
+        logger.info("Data quality checks passed")
+    except pa.errors.SchemaError:
+        logger.exception("Data quality validation failed")

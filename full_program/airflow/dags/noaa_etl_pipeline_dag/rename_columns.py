@@ -1,8 +1,13 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 from dags.utils.config import *
 from dags.utils.aws import S3
 from dags.transformation.etl_transforms import EtlTransforms
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def rename_columns():
     ''' Rename columns from extracted natural gas monthly variables '''
@@ -21,6 +26,9 @@ def rename_columns():
     # Rename pivoted columns
     daily_weather_df = EtlTransforms.rename_columns(df=daily_weather_df, renamed_columns={'AWND': 'awnd', 'TMIN': 'tmin', 'TMAX': 'tmax', 
     'TAVG': 'tavg', 'SNOW':'snow'})
+
+    # Log info about successful renaming of columns
+    logger.info("Successfully renamed columns in daily weather dataframe")
     
     # Put data in S3
     s3.put_data(data=daily_weather_df, s3_key=latest_transformed_file_path)

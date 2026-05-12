@@ -1,7 +1,12 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 from dags.extraction.noaa_api import *
 from dags.transformation.etl_transforms import EtlTransforms
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def drop_columns():
     ''' Drop irrelevant columns from extracted NOAA weather data '''
@@ -19,6 +24,9 @@ def drop_columns():
 
     # Drop irrelevant column from daily_weather_df
     daily_weather_df = EtlTransforms.drop_columns(df=daily_weather_df, columns=['station'])
+
+    # Log columns after drop_columns transformation
+    logger.info(f"Columns after drop_columns transformation: {daily_weather_df.columns.tolist()}")
     
     # Put data in S3
     s3.put_data(data=daily_weather_df, s3_key=latest_transformed_file_path)

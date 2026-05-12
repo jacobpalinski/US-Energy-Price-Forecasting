@@ -1,7 +1,12 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 from dags.extraction.noaa_api import *
 from dags.transformation.etl_transforms import EtlTransforms
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def pivot_data():
     ''' Pivot data from extracted NOAA weather data '''
@@ -20,6 +25,9 @@ def pivot_data():
     # Pivot columns
     daily_weather_df = EtlTransforms.pivot_columns(df=daily_weather_df, index=['date', 'station', 'city', 'state', 'quarter'],
     column='datatype', value='value')
+
+    # Log info about successful pivoting
+    logger.info("Successfully pivoted columns for daily weather data")
     
     # Put data in S3
     s3.put_data(data=daily_weather_df, s3_key=latest_transformed_file_path)

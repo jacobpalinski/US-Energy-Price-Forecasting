@@ -1,10 +1,15 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
 from dags.extraction.noaa_api import *
 from dags.transformation.etl_transforms import EtlTransforms
 from dags.transformation.noaa_api_transformation import NoaaTransformation
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def calculate_missing_average_temperature():
     ''' Calculate missing average temperature values in extracted NOAA weather data '''
@@ -34,6 +39,9 @@ def calculate_missing_average_temperature():
     
     # Concatenate all processed chunks into a single dataframe
     daily_weather_df = pd.concat(processed_chunks, ignore_index=True)
+
+    # Log imputation for missing weather variables has been successful
+    logger.log('Successfully imputed missing weather variables')
     
     # Put data in S3
     s3.put_data(data=daily_weather_df, s3_key=latest_transformed_file_path)

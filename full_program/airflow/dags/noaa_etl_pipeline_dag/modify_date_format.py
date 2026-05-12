@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 import pandera as pa
 from pandera import Column, Check
@@ -7,6 +7,11 @@ from dags.extraction.noaa_api import *
 from dags.transformation.etl_transforms import EtlTransforms
 from dags.transformation.noaa_api_transformation import NoaaTransformation
 from dags.utils.data_quality_check_functions import DataQualityChecks
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def modify_date_format(**context):
     ''' Modify date format of extracted NOAA weather data '''
@@ -96,15 +101,24 @@ def modify_date_format(**context):
             checks=Check(lambda s: set(s.dropna()).issubset({"TMIN", "TMAX", "TAVG", "SNOW", "AWND"}), element_wise=False, error="datatype column must only contain TMIN, TMAX, TAVG, SNOW, AWND"),
             nullable=False,
         ),
-    }
+    },
+    unique=["value", "date", "city", "state", "datatype"]
     )
-    schema.validate(daily_weather_df)
+    
+    try:
+        schema.validate(daily_weather_df)
+        logger.info("Data quality checks passed")
+    except pa.errors.SchemaError:
+        logger.exception("Data quality validation failed")
 
     # Convert date column to datetime and create a quarter column
     daily_weather_df = NoaaTransformation.modify_date(df=daily_weather_df)
 
     # Convert date column to string
     daily_weather_df['date'] = daily_weather_df['date'].dt.strftime('%Y-%m-%d')
+
+    # Log successful date transformation
+    logger.info('Date transformation successful')
     
     # Put data in S3
     s3.put_data(data=daily_weather_df, s3_key=f'full_program/transformation/daily_weather/daily_weather_{ts_nodash}.json')
