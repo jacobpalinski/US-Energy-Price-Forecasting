@@ -1,12 +1,13 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
-from dags.extraction.eia_api import *
+from dags.utils.config import Config
+from dags.utils.aws import S3, S3Metadata
+from dags.extraction.eia_api import EIA
 
-def natural_gas_spot_prices_extraction():
+def natural_gas_spot_prices_extraction(**context):
     ''' Performs data extraction from EIA api for natural gas spot prices '''
-    # Todays date
-    today = datetime.now()
-    formatted_date = today.strftime('%Y%m%d')
+    # Timestamp of DAG execution
+    ts_nodash = context["ts_nodash"]
 
     # Instantiate classes for Config, S3, S3Metadata and EIA
     config = Config()
@@ -29,6 +30,5 @@ def natural_gas_spot_prices_extraction():
     'length': 5000
     }
 
-    eia.extract(endpoint='natural-gas/pri/fut/data/', headers=headers, folder='full_program/extraction/natural_gas_spot_prices/',
-    object_key=f'natural_gas_spot_prices_{formatted_date}', metadata_folder='full_program/metadata/', metadata_object_key='metadata', 
-    metadata_dataset_key='natural_gas_spot_prices', is_monthly=False, start_date_if_none='1999-01-04')
+    eia.extract(endpoint='natural-gas/pri/fut/data/', headers=headers, put_object_s3_key=f'full_program/extraction/natural_gas_spot_prices/natural_gas_spot_prices_{ts_nodash}.json',
+    metadata_s3_key='full_program/metadata/metadata.json', dataset_key='natural_gas_spot_prices', extract_timestamp=ts_nodash, is_monthly=False, start_date_if_none='1999-01-04')
