@@ -1,20 +1,21 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 import pandas as pd
-from dags.utils.config import *
-from dags.utils.aws import *
+from dags.utils.config import Config
+from dags.utils.aws import S3, S3Metadata
 from dags.transformation.etl_transforms import EtlTransforms
 
-# Todays date
+# Todays timestamp
 today = datetime.now()
-formatted_date = today.strftime('%Y%m%d')
+timestamp_str = today.strftime('%Y%m%d%H%M%S')
 
 # Instantiate classes for Config, S3, S3Metadata
 config = Config()
 s3 = S3(config=config)
+s3_metadata = S3Metadata(config=config)
 
-# Retrieve training data for 2024-12-26 (adjust date if going to update imputation dataframe in future)
-training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key='curated_training_data_20241226')
+# Retrieve training data for 2024-12-26 (module only run once hence hardcoding s3_key)
+training_data_json = s3.get_data(s3_key=config.daily_weather_modelling_imputation_base_curated_training_data_s3_key)
 training_data_df = EtlTransforms.json_to_df(data=training_data_json, date_as_index=False)
 
 # Convert date column to datetime
@@ -29,7 +30,8 @@ daily_weather_modelling_imputation_df = training_data_df.groupby(['month', 'week
 'max_abs_tavg_diff_relative_to_daily_median', 'hdd_max', 'cdd_max', 'wci_sum', 'snow_sum']].median().reset_index()
 
 # Store data in S3 bucket to be used for imputation as part of forecasting
-s3.put_data(data=daily_weather_modelling_imputation_df, folder='full_program/curated/imputation/', object_key=f'daily_weather_modelling_imputation_base_{formatted_date}')
+s3.put_data(data=daily_weather_modelling_imputation_df, s3_key=f'full_program/curated/imputation/daily_weather_modelling_imputation_base_{timestamp_str}.json')
+s3_metadata.update_metadata(s3_key='full_program/metadata/metadata.json', dataset_key='daily_weather_modelling_imputation_base', latest_transformed_file_path=f'full_program/curated/imputation/daily_weather_modelling_imputation_base_{timestamp_str}.json')
 
 
 

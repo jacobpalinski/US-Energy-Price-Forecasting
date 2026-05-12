@@ -1,14 +1,14 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
-from dags.utils.config import *
-from dags.utils.aws import *
+from dags.utils.config import Config
+from dags.utils.aws import S3, S3Metadata
 from dags.extraction.noaa_api import NOAA
 from dags.transformation.etl_transforms import EtlTransforms
 from dags.transformation.noaa_api_transformation import NoaaTransformation
 
-# Todays date
+# Todays timestamp
 today = datetime.now()
-formatted_date = today.strftime('%Y%m%d')
+timestamp_str = today.strftime('%Y%m%d%H%M%S')
 
 # Instantiate classes for Config, S3, S3Metadata and NOAA
 config = Config()
@@ -31,17 +31,19 @@ parameters = {'datasetid': 'GHCND',
 'units': 'metric',
 'limit': 1000}
 
-noaa.extract(parameters=parameters, folder='full_program/extraction/daily_weather/', 
-object_key = f'daily_weather_{formatted_date}', metadata_folder='metadata/', 
-metadata_object_key='metadata', metadata_dataset_key='daily_weather', 
-start_date_if_none='1999-01-04')
+noaa.extract(parameters=parameters, put_object_s3_key=f'full_program/extraction/imputation/daily_weather_imputation_base_{timestamp_str}.json',
+metadata_s3_key='full_program/metadata/metadata.json', dataset_key='daily_weather_imputation_base', 
+start_date_if_none='1999-01-04', extract_timestamp=timestamp_str)
 
 # Create dataframe to be used for imputation of missing weather variables as part of ETL process
-daily_weather_json = s3.get_data(folder='full_program/extraction/daily_weather/', object_key=f'daily_weather_{formatted_date}')
-daily_weather_df = EtlTransforms.json_to_df(data=daily_weather_json, date_as_index=False)
-daily_weather_df = NoaaTransformation.modify_date(df=daily_weather_df)
-imputation_df = NoaaTransformation.imputation_df(df=daily_weather_df)
-s3.put_data(data=imputation_df, folder='full_program/extraction/imputation/', object_key=f'imputation_base_{formatted_date}')
+daily_weather_imputation_json = s3.get_data(s3_key=f'full_program/extraction/imputation/daily_weather_imputation_base_{timestamp_str}.json')
+daily_weather_imputation_df = EtlTransforms.json_to_df(data=daily_weather_imputation_json, date_as_index=False)
+daily_weather_imputation_df = NoaaTransformation.modify_date(df=daily_weather_imputation_df)
+daily_weather_imputation_df = NoaaTransformation.imputation_df(df=daily_weather_imputation_df)
+
+# Put data in S3 and update metadata
+s3.put_data(data=daily_weather_imputation_df, s3_key=f'full_program/transformation/daily_weather_imputation_base_{timestamp_str}.json')
+s3_metadata.update_metadata(s3_key='full_program/metadata/metadata.json', dataset_key='daily_weather_imputation_base', latest_transformed_file_path=f'full_program/transformation/daily_weather_imputation_base_{timestamp_str}.json')
 
 
 
