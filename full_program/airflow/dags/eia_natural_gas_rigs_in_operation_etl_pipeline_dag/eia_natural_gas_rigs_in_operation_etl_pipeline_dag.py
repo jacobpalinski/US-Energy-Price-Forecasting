@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -11,13 +11,20 @@ from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.convert_values_to_int im
 from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.convert_date_format import convert_date_format
 from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.extend_previous_data import extend_previous_data
 from eia_natural_gas_rigs_in_operation_etl_pipeline_dag.data_quality_checks import data_quality_checks
+from dags.utils.config import Config
+from dags.utils.aws import SNSNotifier
+
+# Setup config and SNS notifier classes
+config = Config()
+sns_notifier = SNSNotifier(config=config)
 
 # Create default arguments for DAG
 default_args = {
     'owner': 'airflow',
     'start_date': datetime(2025, 2, 28),
     'retries': 1,
-    'retry_delay': timedelta(seconds=30)
+    'retry_delay': timedelta(seconds=30),
+    'on_failure_callback': sns_notifier
 }
 
 with DAG(dag_id='natural_gas_rigs_in_operation_etl_pipeline', default_args=default_args, schedule_interval = timedelta(days=7, hours=2), 
@@ -54,7 +61,6 @@ with DAG(dag_id='natural_gas_rigs_in_operation_etl_pipeline', default_args=defau
         task_id='extend_previous_data',
         python_callable=extend_previous_data
     )
-
     data_quality_checks_task = PythonOperator(
         task_id='data_quality_checks',
         python_callable=data_quality_checks
