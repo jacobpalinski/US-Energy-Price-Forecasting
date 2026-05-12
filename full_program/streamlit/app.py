@@ -1,4 +1,4 @@
-'''Import relevant modules'''
+# Import modules
 from datetime import datetime
 import sys
 import streamlit as st
@@ -17,13 +17,13 @@ config = Config()
 s3 = S3(config=config)
 
 # Load Predictions
-predictions_7day_json = s3.get_data(folder='full_program/curated/predictions/', object_key='predictions_7day')
+predictions_7day_json = s3.get_data(s3_key='full_program/curated/predictions/predictions_7day')
 predictions_7day_df = EtlTransforms.json_to_df(data=predictions_7day_json, date_as_index=True)
-predictions_14day_json = s3.get_data(folder='full_program/curated/predictions/', object_key='predictions_14day')
+predictions_14day_json = s3.get_data(s3_key='full_program/curated/predictions/predictions_14day')
 predictions_14day_df = EtlTransforms.json_to_df(data=predictions_14day_json, date_as_index=True)
-predictions_30day_json = s3.get_data(folder='full_program/curated/predictions/', object_key='predictions_30day')
+predictions_30day_json = s3.get_data(s3_key='full_program/curated/predictions/predictions_30day')
 predictions_30day_df = EtlTransforms.json_to_df(data=predictions_30day_json, date_as_index=True)
-predictions_60day_json = s3.get_data(folder='full_program/curated/predictions/', object_key='predictions_60day')
+predictions_60day_json = s3.get_data(s3_key='full_program/curated/predictions/predictions_60day')
 predictions_60day_df = EtlTransforms.json_to_df(data=predictions_60day_json, date_as_index=True)
 
 # Calculate % changes for each date in dataframe
@@ -100,7 +100,7 @@ add_line(figure=spot_prices, y_value='price ($/MMBTU)', df=filtered_30day_df, co
 add_line(figure=spot_prices, y_value='price ($/MMBTU)', df=filtered_60day_df, color='pink', label='60 day forecast', after_threshold=True)
 
 
-# Layout for sport prices visualisation
+# Layout for spot prices visualisation
 spot_prices.update_layout(
     title="Natural Gas Spot Prices",
     title_x=0.4,
