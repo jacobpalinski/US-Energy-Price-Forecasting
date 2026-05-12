@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 import numpy as np
 import pandas as pd
 from datetime import datetime
@@ -9,32 +9,32 @@ class NoaaTransformation:
 
     Methods
     -------
-    modify_date(cls, df):
+    modify_date(df):
         Modify date column and creater quarter column for daily weather data
-    imputation_df(cls, df):
+    imputation_df(df):
         Creates dataframe that computes mean values for TMIN, TMAX, AWND, PRCP and SNOW
         for all cities across all quarters
-    impute_missing_weather_variables(cls, df, imputation_df):
+    impute_missing_weather_variables(df, imputation_df):
         Imputes rows which have a missing value for TMIN, TMAX, AWND and SNOW values
-    calculate_missing_tavg(cls, df):
+    calculate_missing_tavg(df):
         Calculates TAVG (average temperature) for rows where it is missing
-    maximum_hdd(cls, df):
+    maximum_hdd(df):
         Calculates maximum heating degree day for a given date across all states
-    maximum_cdd(cls, df):
+    maximum_cdd(df):
         Calculates maximum cooling degree day for a given date across all states
-    wci_sum(cls, df):
+    wci_sum(df):
         Creates aggregated wind chill index (wci) across all states
-    snow_sum(cls, df):
+    snow_sum(df):
         Creates aggregated amount of snow across all states
-    min_and_max_average_temperature(cls, df):
+    min_and_max_average_temperature(df):
         Creates maximum and minimum average temperature for any given state for each date
-    max_abs_tavg_diff(cls, df):
+    max_abs_tavg_diff(df):
         Creates absolute largest day-on-day average temperature movement across all states
-    max_abs_tavg_diff_relative_daily_median(cls, df):
+    max_abs_tavg_diff_relative_daily_median(df):
         Creates absolute value largest temperature difference relative to daily median across all states
     '''
-    @classmethod
-    def modify_date(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def modify_date(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Modify date column and creater quarter column for daily weather data
 
@@ -48,8 +48,8 @@ class NoaaTransformation:
         df['quarter'] = df['date'].dt.quarter
         return df
     
-    @classmethod
-    def imputation_df(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def imputation_df(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Creates dataframe that computes mean values for TMIN, TMAX, AWND and median SNOW
         for all cities across all quarters
@@ -83,8 +83,8 @@ class NoaaTransformation:
         output_df['quarter'] = output_df['quarter'].astype(int)
         return output_df
     
-    @classmethod
-    def impute_missing_weather_variables(cls, df: pd.DataFrame, imputation_df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def impute_missing_weather_variables(df: pd.DataFrame, imputation_df: pd.DataFrame) -> pd.DataFrame:
         '''
         Imputes rows which have a missing value for TMIN, TMAX, AWND and SNOW values
 
@@ -116,8 +116,8 @@ class NoaaTransformation:
         df = pd.concat([df, new_rows_df], ignore_index=True)
         return df
     
-    @classmethod
-    def calculate_missing_tavg(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def calculate_missing_tavg(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Calculates TAVG (average temperature) for rows where it is missing
 
@@ -144,8 +144,8 @@ class NoaaTransformation:
         df = pd.concat([df, new_rows], ignore_index=True)
         return df
     
-    @classmethod
-    def maximum_hdd(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def maximum_hdd(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Calculates maximum heating degree day for a given date across all states
 
@@ -162,8 +162,8 @@ class NoaaTransformation:
         df = df.drop(columns=['hdd'], axis=1)
         return df
     
-    @classmethod
-    def maximum_cdd(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def maximum_cdd(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Calculates maximum cooling degree day for a given date across all states
 
@@ -180,8 +180,8 @@ class NoaaTransformation:
         df = df.drop(columns=['cdd'], axis=1)
         return df
     
-    @classmethod
-    def wci_sum(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def wci_sum(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Creates aggregated wind chill index (wci) across all states
 
@@ -197,8 +197,8 @@ class NoaaTransformation:
         df = df.drop(columns=['wci'])
         return df
     
-    @classmethod
-    def snow_sum(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def snow_sum(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Creates aggregated amount of snow across all states
 
@@ -212,8 +212,8 @@ class NoaaTransformation:
         df = pd.merge(df, snow_aggregation, left_index=True, right_index=True)
         return df
 
-    @classmethod
-    def min_and_max_average_temperature(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def min_and_max_average_temperature(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Creates maximum and minimum average temperature for any given state for each date
 
@@ -228,8 +228,8 @@ class NoaaTransformation:
         df = pd.merge(df, min_max_tavg_per_date, left_index=True, right_index=True)
         return df
     
-    @classmethod
-    def max_abs_tavg_diff(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def max_abs_tavg_diff(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Creates absolute largest day-on-day average temperature movement across all states
 
@@ -246,8 +246,8 @@ class NoaaTransformation:
         df = pd.merge(df, max_abs_tavg_diff_per_date, left_index=True, right_index=True)
         return df
     
-    @classmethod
-    def max_abs_tavg_diff_relative_to_daily_median(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def max_abs_tavg_diff_relative_to_daily_median(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Creates absolute value largest temperature difference relative to daily median across all states
 

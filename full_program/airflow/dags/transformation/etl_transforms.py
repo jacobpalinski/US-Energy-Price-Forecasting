@@ -1,11 +1,11 @@
-''' Import modules '''
+# Import modules
 import json
 import os
 import pandas as pd
 import numpy as np
 import tensorflow as tf
 from sklearn.preprocessing import RobustScaler
-from typing import Callable
+from typing import Callable, Generator
 
 class EtlTransforms:
     '''
@@ -14,54 +14,52 @@ class EtlTransforms:
 
     Methods
     -------
-    json_to_df(cls, data, date_as_index):
+    json_to_df(data, date_as_index):
         Converts json data to a dataframe
-    df_to_json(cls, df):
+    df_to_json(df):
         Converts dataframe to a json format
-    drop_columns(cls, df, columns):
+    drop_columns(df, columns):
         Drops columns from dataframe and returns modified dataframe
-    drop_duplicates(cls, df):
+    drop_duplicates(df):
         Drops duplicate rows from dataframe and returns modified dataframe
-    rename_columns(cls, df, renamed_columns):
+    rename_columns(df, renamed_columns):
         Renames columns in dataframe and returns dataframe with new column names
-    pivot_columns(cls, df, index, column, value):
+    pivot_columns(df, index, column, value):
         Pivots columns in dataframe and returns modified dataframe
-    drop_null(cls, df):
+    drop_null(df):
         Drops all null rows in dataframe and returns modified dataframe
-    merge_dataframes(cls, daily_weather_df,  natural_gas_monthly_variables_df, 
+    merge_dataframes(daily_weather_df,  natural_gas_monthly_variables_df, 
     natural_gas_rigs_in_operation_df, natural_gas_spot_prices_df, heating_oil_spot_prices_df):
         Merges dataframes representing each of the transformed sources from transformation folder in S3 Bucket
-    forwardfill_null_values_end_of_series(cls, df, columns):
+    forwardfill_null_values_end_of_series(df, columns):
         Forward fills null values for monthly natural gas variables and weather variables at the
         end of time series
-    backfill_null_values_start_of_series(cls, df):
+    backfill_null_values_start_of_series(df):
         Back fills nulls values at start of series for volatility, lag, rolling
         and maximum day to day average temperature change
     create_test_data(df, holdout):
         Creates test data to be used when evaluating training model performance
-    create_sequence(x, y, sequence_length):
-        Creates sequences for LSTM
     generator(cls, x, y, sequence_length):
         Creates sequences for LSTM using generator
     build_dataset(cls, x, y, sequence_length, batch_size):
         Build tensorflow dataset from generated sequences
-    normalisation(cls, df, fit_transform):
+    normalisation(df, fit_transform):
         Normalises dataframe before training machine learning model on dataframe
-    calculate_moving_average(cls, df: pd.DataFrame, window: int):
+    calculate_moving_average(df: pd.DataFrame, window: int):
         Calculate moving average price ($/MMBTU) based on a given window
-    calculate_rolling_median(cls, df: pd.DataFrame, window: int):
+    calculate_rolling_median(df: pd.DataFrame, window: int):
         Calculate the median price (%/MMBTU) based on a given window
-    calculate_ew_volatility(cls, df: pd.DataFrame, window: int):
+    calculate_ew_volatility(df: pd.DataFrame, window: int):
         Calculate the expotential weighted volatility of price (%/MMBTU) based on a given window
     '''
-    @classmethod
-    def json_to_df(cls, data: json, date_as_index: bool) -> pd.DataFrame:
+    @staticmethod
+    def json_to_df(data: json, date_as_index: bool) -> pd.DataFrame:
         '''
         Converts json data to a dataframe
 
         Args:
             data (json): Data in json format to be converted to dataframe
-            date_as_index: Indictates whether or not to set date as index in resulting dataframe
+            date_as_index (bool): Indictates whether or not to set date as index in resulting dataframe
         
         Returns:
             pd.DataFrame: Returns json data as a dataframe
@@ -72,8 +70,8 @@ class EtlTransforms:
             df.index = pd.to_datetime(df.index)
         return df
     
-    @classmethod
-    def df_to_json(cls, df: pd.DataFrame) -> json:
+    @staticmethod
+    def df_to_json(df: pd.DataFrame) -> json:
         '''
         Converts dataframe to a json format
 
@@ -86,8 +84,8 @@ class EtlTransforms:
         json_data = df.to_json(orient='records')
         return json_data
     
-    @classmethod
-    def drop_columns(cls, df: pd.DataFrame, columns: list) -> pd.DataFrame:
+    @staticmethod
+    def drop_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:
         '''
         Drops columns from dataframe and returns modified dataframe
 
@@ -101,8 +99,8 @@ class EtlTransforms:
         df = df.drop(columns=columns, axis=1)
         return df
     
-    @classmethod
-    def drop_duplicates(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def drop_duplicates(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Drops duplicate rows from dataframe and returns modified dataframe
 
@@ -115,8 +113,8 @@ class EtlTransforms:
         df = df.drop_duplicates(axis=1)
         return df
     
-    @classmethod
-    def rename_columns(cls, df: pd.DataFrame, renamed_columns: dict) -> pd.DataFrame:
+    @staticmethod
+    def rename_columns(df: pd.DataFrame, renamed_columns: dict) -> pd.DataFrame:
         '''
         Renames columns in a given dataframe
 
@@ -130,8 +128,8 @@ class EtlTransforms:
         df = df.rename(columns=renamed_columns)
         return df
     
-    @classmethod
-    def pivot_columns(cls, df: pd.DataFrame, index: list, column: str, value: str) -> pd.DataFrame:
+    @staticmethod
+    def pivot_columns(df: pd.DataFrame, index: list, column: str, value: str) -> pd.DataFrame:
         ''' 
         Pivots columns in a given dataframe 
         
@@ -148,8 +146,8 @@ class EtlTransforms:
         df.columns.name = None
         return df
     
-    @classmethod
-    def drop_null(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def drop_null(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Drops null rows in a given dataframe
         
@@ -162,9 +160,9 @@ class EtlTransforms:
         df = df.dropna()
         return df
     
-    @classmethod
-    def merge_dataframes(cls, natural_gas_monthly_variables_df: pd.DataFrame, 
-    natural_gas_rigs_in_operation_df: pd.DataFrame, natural_gas_spot_prices_df: pd.DataFrame, heating_oil_spot_prices_df: pd.DataFrame):
+    @staticmethod
+    def merge_dataframes(natural_gas_monthly_variables_df: pd.DataFrame, 
+    natural_gas_rigs_in_operation_df: pd.DataFrame, natural_gas_spot_prices_df: pd.DataFrame, heating_oil_spot_prices_df: pd.DataFrame) -> pd.DataFrame:
         '''
         Merges dataframes representing each of the natural gas sources from transformation folder in S3 Bucket
 
@@ -192,8 +190,8 @@ class EtlTransforms:
         df.index.name = 'date'
         return df
     
-    @classmethod
-    def forwardfill_null_values_end_of_series(cls, df: pd.DataFrame, columns: list) -> pd.DataFrame:
+    @staticmethod
+    def forwardfill_null_values_end_of_series(df: pd.DataFrame, columns: list) -> pd.DataFrame:
         '''
         Forward fills null values for monthly natural gas variables and weather variables at the
         end of time series
@@ -211,8 +209,8 @@ class EtlTransforms:
         
         return df
 
-    @classmethod
-    def backfill_null_values_start_of_series(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def backfill_null_values_start_of_series(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Back fills nulls values at start of series for volatility, lag, rolling
         and maximum day to day average temperature change
@@ -230,8 +228,8 @@ class EtlTransforms:
         df[columns_to_backfill] = df[columns_to_backfill].fillna(method='bfill')
         return df
     
-    @classmethod
-    def create_test_data(cls, df: pd.DataFrame, holdout: float) -> pd.DataFrame:
+    @staticmethod
+    def create_test_data(df: pd.DataFrame, holdout: float) -> pd.DataFrame:
         ''' 
         Creates test data to be used when evaluating training model performance
 
@@ -248,8 +246,8 @@ class EtlTransforms:
         holdout_df = df.iloc[-n_holdout_rows:]
         return holdout_df
 
-    @classmethod
-    def generator(cls, x: pd.DataFrame, y: pd.DataFrame, sequence_length: int) -> None:
+    @staticmethod
+    def generator(x: pd.DataFrame, y: pd.DataFrame, sequence_length: int) -> Generator[tuple[pd.DataFrame, pd.DataFrame], None, None]:
         '''
         Creates sequences for LSTM using generator
 
@@ -259,7 +257,7 @@ class EtlTransforms:
             sequence_length (int): Number of elements in each sequence
 
         Returns:
-            np.array: Returns array of sequences for both input and output variables
+            Generator[tuple[pd.DataFrame, pd.DataFrame], None, None]
         '''
         num_samples = len(y) - sequence_length
         for i in range(num_samples):
@@ -291,15 +289,15 @@ class EtlTransforms:
         )
         return dataset.batch(batch_size=batch_size).prefetch(tf.data.AUTOTUNE)
 
-    @classmethod
-    def normalise(cls, train_df: pd.DataFrame, test_df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def normalise(train_df: pd.DataFrame, test_df: pd.DataFrame) -> pd.DataFrame:
         '''
         Normalises dataframe before training machine learning model on dataframe
 
         Args: 
             df (pd.DataFrame): Merged dataframe
-            train_df: Dataframe containing training data
-            test_df: Dataframe containting test data
+            train_df (pd.DataFrame): Dataframe containing training data
+            test_df (pd.DataFrame): Dataframe containting test data
 
         Returns:
             pd.Dataframe: Returns dataframe with normalised data
@@ -328,14 +326,14 @@ class EtlTransforms:
         # Return normalised dataframes
         return train_df, test_df
 
-    @classmethod
-    def calculate_moving_average(cls, df: pd.DataFrame, window: int) -> float:
+    @staticmethod
+    def calculate_moving_average(df: pd.DataFrame, window: int) -> float:
         ''' 
         Calculate moving average price ($/MMBTU) based on a given window
 
         Args: 
             df (pd.DataFrame): Dataframe
-            window: Window moving average is being calculated for
+            window (int): Window moving average is being calculated for
 
         Returns:
             float: Moving average
@@ -345,14 +343,14 @@ class EtlTransforms:
         else:
             return None
     
-    @classmethod
-    def calculate_rolling_median(cls, df: pd.DataFrame, window: int) -> float:
+    @staticmethod
+    def calculate_rolling_median(df: pd.DataFrame, window: int) -> float:
         ''' 
         Calculate the median price (%/MMBTU) based on a given window
 
         Args: 
             df (pd.DataFrame): Dataframe
-            window: Window rolling median is being calculated for
+            window (int): Window rolling median is being calculated for
 
         Returns:
             float: Rolling median
@@ -362,14 +360,14 @@ class EtlTransforms:
         else:
             return None
     
-    @classmethod
-    def calculate_ew_volatility(cls, df: pd.DataFrame, window: int) -> float:
+    @staticmethod
+    def calculate_ew_volatility(df: pd.DataFrame, window: int) -> float:
         ''' 
         Calculate the expotential weighted volatility of price (%/MMBTU) based on a given window
 
         Args: 
             df (pd.DataFrame): Dataframe
-            window: Window expotential weighted volatility is being calculated for
+            window (int): Window expotential weighted volatility is being calculated for
 
         Returns:
             float: Expotential weighted volatility

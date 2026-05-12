@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 import pandas as pd
 
 class EiaTransformation:
@@ -7,27 +7,27 @@ class EiaTransformation:
 
     Methods
     -------
-    convert_column_to_numeric(cls, df, column):
+    convert_column_to_numeric(df, column):
         Converts price column from non-float format to floating format
-    convert_date_format(cls, df):
+    convert_date_format(df):
         Convert YYYY-MM date format to YYYY-MM-DD for monthly variables extracted
-    natural_gas_prices_lag(cls, df):
+    natural_gas_prices_lag(df):
         Creates lag variables for 1,2 and 3 days for natural gas prices
-    heating_oil_natural_gas_price_ratio(cls, df):
+    heating_oil_natural_gas_price_ratio(df):
         Creates a ratio of price of heating oil vs price of natural gas
-    expotential_weighted_natural_gas_price_volatility(cls, df):
+    expotential_weighted_natural_gas_price_volatility(df):
         Calculates expotential weighted natural gas price volatility for 7, 14, 30 and 60 days
-    rolling_average_natural_gas_price(cls, df):
+    rolling_average_natural_gas_price(df):
         Creates rolling average of natural gas prices for 7, 14 and 30 days
-    rolling_median_natural_gas_price(cls, df):
+    rolling_median_natural_gas_price(df):
         Creates rolling median of natural gas prices for 7, 14 and 30 days
-    total_consumption_to_total_underground_storage_ratio(cls, df):
+    total_consumption_to_total_underground_storage_ratio(df):
         Creates total natural gas consumption to natural gas underground storage ratio
-    is_december_or_january(cls, df):
+    is_december_or_january(df):
         Creates is_dec_or_jan binary variable where 1 indicates a given date is in December or January
     '''
-    @classmethod
-    def convert_column_to_numeric(cls, df: pd.DataFrame, column: str) -> pd.DataFrame:
+    @staticmethod
+    def convert_column_to_numeric(df: pd.DataFrame, column: str) -> pd.DataFrame:
         '''
         Converts price column from non-float format to float / integer format
 
@@ -41,8 +41,8 @@ class EiaTransformation:
         df[column] = pd.to_numeric(df[column])
         return df
     
-    @classmethod
-    def convert_date_format(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def convert_date_format(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Convert YYYY-MM date format to YYYY-MM-DD for monthly variables extracted
 
@@ -55,8 +55,8 @@ class EiaTransformation:
         df['date'] = pd.to_datetime(df['date'], format='%Y-%m').dt.strftime('%Y-%m-%d')
         return df
 
-    @classmethod
-    def natural_gas_prices_lag(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def natural_gas_prices_lag(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Creates lag variables for 1,2 and 3 days for natural gas prices
         
@@ -71,8 +71,8 @@ class EiaTransformation:
         df['price_3day_lag ($/MMBTU)'] = df['price ($/MMBTU)'].shift(3)
         return df
     
-    @classmethod
-    def heating_oil_to_natural_gas_price_ratio(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def heating_oil_to_natural_gas_price_ratio(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Creates a ratio of price of heating oil vs price of natural gas
         
@@ -85,8 +85,8 @@ class EiaTransformation:
         df['heating_oil_natural_gas_price_ratio'] = round(df['price_heating_oil ($/GAL)'] / df['price ($/MMBTU)'], 2)
         return df
 
-    @classmethod
-    def expotential_weighted_natural_gas_price_volatility(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def expotential_weighted_natural_gas_price_volatility(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Creates expotential weighted natural gas price volatility for 7, 14, 30 and 60 days
         
@@ -102,8 +102,8 @@ class EiaTransformation:
         df['60day_ew_volatility price ($/MMBTU)'] = round(df['price ($/MMBTU)'].ewm(span=60, min_periods=60).std(), 2)
         return df
     
-    @classmethod
-    def rolling_average_natural_gas_price(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def rolling_average_natural_gas_price(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Creates rolling average of natural gas prices for 7, 14 and 30 days
         
@@ -118,8 +118,8 @@ class EiaTransformation:
         df['30day_rolling_average price ($/MMBTU)'] = round(df['price ($/MMBTU)'].rolling(window=30, min_periods=30).mean(), 2)
         return df
     
-    @classmethod
-    def rolling_median_natural_gas_price(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def rolling_median_natural_gas_price(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Creates rolling median of natural gas prices for 7, 14 and 30 days
         
@@ -134,8 +134,8 @@ class EiaTransformation:
         df['30day_rolling_median price ($/MMBTU)'] = round(df['price ($/MMBTU)'].rolling(window=30, min_periods=30).median(), 2)
         return df
     
-    @classmethod
-    def total_consumption_to_total_underground_storage_ratio(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def total_consumption_to_total_underground_storage_ratio(df: pd.DataFrame) -> pd.DataFrame:
         ''' 
         Creates total natural gas consumption to natural gas underground storage ratio
         
@@ -148,8 +148,8 @@ class EiaTransformation:
         df['total_consumption_total_underground_storage_ratio'] = round((df['residential_consumption'] + df['commercial_consumption']) / df['total_underground_storage'], 2)
         return df
 
-    @classmethod
-    def is_december_or_january(cls, df: pd.DataFrame) -> pd.DataFrame:
+    @staticmethod
+    def is_december_or_january(df: pd.DataFrame) -> pd.DataFrame:
         '''
         Creates is_dec_or_jan binary variable where 1 indicates a given date is in December or January
         
