@@ -1,4 +1,4 @@
-'''Import relevant modules'''
+# Import modules
 from datetime import datetime, timedelta
 import mlflow
 import pandas as pd
@@ -7,23 +7,25 @@ from pandas.tseries.offsets import BDay, CustomBusinessDay
 import numpy as np
 from mlflow.tracking import MlflowClient
 from sklearn.preprocessing import RobustScaler
-from dags.utils.aws import S3
+from dags.utils.aws import S3, S3Metadata
 from dags.utils.config import Config
 from dags.transformation.etl_transforms import EtlTransforms
 from dags.transformation.eia_api_transformation import EiaTransformation
 from dags.modelling.mlflow_model import MlflowModel
+import logging
 
-def generate_forecasts():
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
+def generate_forecasts(ts_nodash):
     ''' Function that generates forecasts for natural gas prices for 7, 14, 30 and 60 day time horizons 
     using trained model that has been logged in mlflow '''
-
-    # Retrieve current date
-    today = datetime.now()
-    formatted_date = today.strftime('%Y%m%d')
 
     # Instantiate classes for Config, S3
     config = Config()
     s3 = S3(config=config)
+    s3_metadata = S3Metadata(config=config)
 
     # Setup mlflow tracking uri and retrieve experiment_id
     mlflow_model = MlflowModel(experiment_name='Natural gas price forecasting production', tracking_uri='http://mlflow:5000')
@@ -31,14 +33,25 @@ def generate_forecasts():
     experiment_id = mlflow_model.retrieve_experiment_id()
 
     # Retrieve imputed weather variables
-    daily_weather_modelling_imputation_json = s3.get_data(folder='full_program/curated/imputation/', object_key=f'daily_weather_modelling_imputation_base_dataset_20241227')
+    daily_weather_modelling_imputation_json = s3.get_data(s3_key='full_program/curated/imputation/daily_weather_modelling_imputation_base_dataset_20241227')
     daily_weather_modelling_imputation_df = EtlTransforms.json_to_df(data=daily_weather_modelling_imputation_json, date_as_index=False)
 
+    # Log number of rows and columns in daily_weather_modelling_imputation_df
+    logger.info(f"Daily weather modelling imputation df contains {len(daily_weather_modelling_imputation_df)} rows")
+    logger.info(f"Daily weather modelling imputation df contains the following columns: {daily_weather_modelling_imputation_df.columns.tolist()}")
+
     # Retrieve training(for fitting scalar) and test data for a given date
-    curated_training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key=f'curated_training_data_{formatted_date}') # Revert back to formatted date once successfully tested
+    metadata = s3.get_data(s3_key='full_program/metadata/metadata.json')
+    latest_filepath = metadata.get('curated_training_data', {}).get('latest_file_path')
+    previous_filepath = metadata.get('curated_test_data', {}).get('previous_file_path')
+    curated_training_data_json = s3.get_data(s3_key=latest_filepath)
     curated_training_data_df = EtlTransforms.json_to_df(data=curated_training_data_json, date_as_index=True)
-    curated_test_data_json = s3.get_data(folder='full_program/curated/test_data/', object_key=f'curated_test_data_{formatted_date}') # Revert back to formatted date once successfully tested
+    curated_test_data_json = s3.get_data(s3_key=previous_filepath)
     curated_test_data_df = EtlTransforms.json_to_df(data=curated_test_data_json, date_as_index=True)
+
+    # Log the number of rows in the curated training and test datasets
+    logger.info(f"Curated training dataset contains {len(curated_training_data_df)} rows")
+    logger.info(f"Curated test dataset contains {len(curated_test_data_df)} rows")
 
     # Create X_train for normalisation purposes
     X_train = curated_training_data_df.drop(columns='price ($/MMBTU)')
@@ -58,11 +71,14 @@ def generate_forecasts():
     # Normalise training data
     X_train[robust_columns] = robust_scaler.fit_transform(X_train[robust_columns])
 
+    # Log columns that have been normalised
+    logger.info(f"The following columns have been normalised: {robust_columns}")
+
     # Retrieve models
-    model_7day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_7_day_horizon_30_time_steps_{formatted_date}/1")
-    model_14day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_14_day_horizon_21_time_steps_{formatted_date}/1")
-    model_30day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_30_day_horizon_14_time_steps_{formatted_date}/1")
-    model_60day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_60_day_horizon_14_time_steps_{formatted_date}/1")
+    model_7day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_7_day_horizon_30_time_steps_{ts_nodash}/1")
+    model_14day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_14_day_horizon_21_time_steps_{ts_nodash}/1")
+    model_30day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_30_day_horizon_14_time_steps_{ts_nodash}/1")
+    model_60day = mlflow.pyfunc.load_model(model_uri=f"models:/GRU_60_day_horizon_14_time_steps_{ts_nodash}/1")
 
     # Define the models and forecast horizons
     forecast_horizons = {
@@ -72,6 +88,9 @@ def generate_forecasts():
     '60day': {'model': model_60day, 'sequence_length': 14, 'number_of_predictions': 60},
     }
 
+    # Log models have been successfully retrieved
+    logger.info(f"Successfully loaded models {list(forecast_horizons.keys())}")
+
     # Generate business days excluding public holidays for extension of test data
     holidays = USFederalHolidayCalendar()
 
@@ -79,12 +98,17 @@ def generate_forecasts():
 
     last_date = curated_test_data_df.index[-1]
 
+    # Log first date forecasts are being made for
+    logger.info(f"Forecasts are being made from {last_date + timedelta(days=1)} onwards")
+
     extended_dates = pd.date_range(start=last_date + timedelta(days=1), periods=60, freq=bday_with_holidays)
 
     for horizon, config in forecast_horizons.items():
         model = config['model']
         sequence_length = config['sequence_length']
         number_of_predictions = config['number_of_predictions']
+
+        logger.info(f"Currently making a forecast using {model} with sequence length {sequence_length} and generating {number_of_predictions} predictions")
 
         # Initialise dataframe and retain last price 
         curated_test_data_df_forecast_horizon_copy = curated_test_data_df.copy()
@@ -94,11 +118,13 @@ def generate_forecasts():
 
         # Now loop through the rest of the extended_dates
         for date in extended_dates:
+            # Log number of predictions made
+            logger.info(f"{predictions_count} have been made")
+
             # Break loop if number of predictions required for model have been met
             if predictions_count == number_of_predictions:
                 break
             
-            #new_row = pd.DataFrame(index=[date], columns=curated_test_data_df_forecast_horizon_copy.columns)
             new_row = pd.DataFrame(
             {col: pd.Series(dtype=curated_test_data_df_forecast_horizon_copy[col].dtype) for col in curated_test_data_df_forecast_horizon_copy.columns},
             index=[date])
@@ -192,6 +218,9 @@ def generate_forecasts():
             x_batch_np = last_x_batch.numpy()
             predictions = model.predict(x_batch_np)
             last_prediction = predictions[-1, 0]
+
+            # Log model prediction
+            logger.debug(f"Generated prediction {horizon} for date {str(date)} and predicted price {round(last_prediction, 2)}")
             
             # Set predicted value as natural gas spot price for a given date
             curated_test_data_df_forecast_horizon_copy.at[date, 'price ($/MMBTU)'] = round(last_prediction, 2)
@@ -210,4 +239,4 @@ def generate_forecasts():
         # Convert date from timestamp to string
         curated_test_data_df_forecast_horizon_copy_prices_only['date'] = curated_test_data_df_forecast_horizon_copy_prices_only['date'].dt.strftime('%Y-%m-%d')
 
-        s3.put_data(data=curated_test_data_df_forecast_horizon_copy_prices_only, folder='full_program/curated/predictions/', object_key=f'predictions_{horizon}')
+        s3.put_data(data=curated_test_data_df_forecast_horizon_copy_prices_only, s3_key='full_program/curated/predictions/', object_key=f'predictions_{horizon}.json')

@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 import os
 import json
 import argparse
@@ -20,6 +20,7 @@ def parse_args():
     parser.add_argument("--forecast_horizon", type=int)
     parser.add_argument("--sequence_length", type=int, default=30)
     parser.add_argument("--batch_size", type=int, default=128)
+    parser.add_argument("--ts_nodash", type=str)
 
     args, _ = parser.parse_known_args()
 
@@ -37,15 +38,15 @@ def main():
     mlflow_model.set_tracking_uri()
     experiment_id = mlflow_model.retrieve_experiment_id()
 
-    # Formatted date
-    formatted_date = datetime.now().strftime('%Y%m%d')
-
     # Create connection to S3
     s3 = boto3.client('s3')
 
     # Retrieve curated training and test data from folder
-    curated_training_data_object =s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key=f'full_program/curated/training_data/curated_training_data_{formatted_date}')
-    curated_test_data_object = s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key=f'full_program/curated/test_data/curated_test_data_{formatted_date}')
+    metadata = s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key='full_program/metadata/metadata.json')
+    latest_filepath = metadata.get('curated_training_data', {}).get('latest_file_path')
+    previous_filepath = metadata.get('curated_test_data', {}).get('previous_file_path')
+    curated_training_data_object = s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key=latest_filepath)
+    curated_test_data_object = s3.get_object(Bucket=os.getenv("S3_BUCKET"), Key=previous_filepath)
     curated_training_data_json = json.loads(curated_training_data_object['Body'].read().decode('utf-8'))
     curated_test_data_json = json.loads(curated_test_data_object['Body'].read().decode('utf-8'))
     curated_training_data_df = EtlTransforms.json_to_df(curated_training_data_json, date_as_index=True)
@@ -69,12 +70,13 @@ def main():
         validation_dataset=validation_dataset,
         time_steps=args.sequence_length,
         experiment_id=experiment_id,
-        forecast_horizon=args.forecast_horizon
+        forecast_horizon=args.forecast_horizon,
+        ts_nodash=args.ts_nodash
     )
 
     # Save model for SageMaker
     model_dir = os.environ.get("SM_MODEL_DIR", "/opt/ml/model")
-    Model.save_model(os.path.join(model_dir, f"GRU_{args.forecast_horizon}_day_horizon_{args.sequence_length}_time_steps_{formatted_date}"))
+    Model.save_model(os.path.join(model_dir, f"GRU_{args.forecast_horizon}_day_horizon_{args.sequence_length}_time_steps_{args.ts_nodash}"))
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 from dags.utils.aws import S3
 from dags.utils.config import Config

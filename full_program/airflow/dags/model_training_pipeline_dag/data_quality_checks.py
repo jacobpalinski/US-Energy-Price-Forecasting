@@ -1,43 +1,53 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime,timedelta
 import pandas as pd
 import pandera as pa
 from pandera import Column, Check
 from datetime import datetime
-from dags.utils.config import *
+from dags.utils.config import Config
 from dags.utils.aws import S3
 from dags.transformation.etl_transforms import EtlTransforms
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def data_quality_checks():
     ''' Function that performs data quality checks on curated training dataset '''
-     # Todays date
-    today = datetime.now()
-    formatted_date = today.strftime('%Y%m%d')
-
-    # Previous curated data
-    previous = datetime.now() - timedelta(days=7)
-    formatted_previous_date = previous.strftime('%Y%m%d')
-    
-    # Instantiate classes for Config, S3
+    # Instantiate classes for Config, S3, S3Metadata
     config = Config()
     s3 = S3(config=config)
 
-    # Retrieve curated training data from S3 folder
-    current_curated_training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key=f'curated_training_data_{formatted_date}')
-    current_curated_training_data_df = EtlTransforms.json_to_df(data=current_curated_training_data_json, date_as_index=True)
+    # Retrieve latest and previous curated filepaths from metadata in S3 and create dataframes from latest and previous curated filepaths if they exist
+    metadata = s3.get_data(s3_key='full_program/metadata/metadata.json')
+    latest_filepath = metadata.get('curated_training_data', {}).get('latest_file_path')
+    latest_curated_training_data_json = s3.get_data(s3_key=latest_filepath)
+    latest_curated_training_data_df = EtlTransforms.json_to_df(data=latest_curated_training_data_json, date_as_index=True)
 
-    # Retrieve previous training data from S3 folder
-    previous_curated_training_data_json = s3.get_data(folder='full_program/curated/training_data/', object_key=f'curated_training_data_{formatted_previous_date}')
+    # Low row count of latest curated training dataset
+    logger.info(f"Latest curated training dataset contains {len(latest_curated_training_data_df)} rows")
+
+    previous_filepath = metadata.get('curated_training_data', {}).get('previous_file_path')
 
     # Check if previous data exists
-    if previous_curated_training_data_json: 
+    if previous_filepath is not None: 
+        previous_curated_training_data_json = s3.get_data(s3_key=previous_filepath)
         previous_curated_training_data_df = EtlTransforms.json_to_df(data=previous_curated_training_data_json, date_as_index=True)
-        start_date = previous_curated_training_data_df['date'].iloc[0]
+
+        # Low row count of previous curated training dataset
+        logger.info(f"Previous curated training dataset contains {len(previous_curated_training_data_df)} rows")
+
+        start_date = previous_curated_training_data_df.index[0]
     
     else:
-        start_date = current_curated_training_data_df['date'].iloc[0]
+        start_date = latest_curated_training_data_df.index[0]
 
-    end_date = current_curated_training_data_df['date'].iloc[-1]
+    end_date = latest_curated_training_data_df.index[-1]
+
+    # Log start and end dates
+    logger.info(f"Start date for data quality checks: {start_date}")
+    logger.info(f"End date for data quality checks: {end_date}")
 
     # Pandera schema for data quality checks
     schema = pa.DataFrameSchema(
@@ -72,7 +82,16 @@ def data_quality_checks():
         "max_tavg": Column(float, nullable=False),
         "max_abs_tavg_diff": Column(float, nullable=False, checks=Check.ge(0)),
     },
-    strict=True)
+    strict=True,
+    unique=["date", "price ($/MMBTU)", "imports", "lng_imports", "natural_gas_rigs_in_operation", "price_1day_lag ($/MMBTU)", "price_2day_lag ($/MMBTU)",
+            "price_3day_lag ($/MMBTU)", "heating_oil_natural_gas_price_ratio", "7day_ew_volatility price ($/MMBTU)", "14day_ew_volatility price ($/MMBTU)",
+            "30day_ew_volatility price ($/MMBTU)", "60day_ew_volatility price ($/MMBTU)", "7day_rolling_average price ($/MMBTU)", "14day_rolling_average price ($/MMBTU)",
+            "30day_rolling_average price ($/MMBTU)", "7day_rolling_median price ($/MMBTU)", "14day_rolling_median price ($/MMBTU)", "30day_rolling_median price ($/MMBTU)",
+            "total_consumption_total_underground_storage_ratio", "is_dec_or_jan", "hdd_max", "cdd_max", "wci_sum", "snow_sum", "min_tavg", "max_tavg", "max_abs_tavg_diff"])
 
     # Validate schema
-    schema.validate(current_curated_training_data_df)
+    try:
+        schema.validate(latest_curated_training_data_df)
+        logger.info("Data quality checks passed")
+    except pa.errors.SchemaError:
+        logger.exception("Data quality validation failed")
