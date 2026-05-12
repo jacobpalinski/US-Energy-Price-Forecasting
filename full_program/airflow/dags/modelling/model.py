@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 import pickle
 import io
@@ -31,7 +31,7 @@ class Model:
 
     @classmethod
     def train_model(cls, dataset: tf.data.Dataset, validation_dataset: tf.data.Dataset, time_steps: int,
-                    experiment_id: str, forecast_horizon: int,
+                    experiment_id: str, forecast_horizon: int, ts_nodash: str
                     ) -> None:
         '''
         Trains model and logs model parameters, results and creates a model artifact to be used in streamlit 
@@ -54,10 +54,10 @@ class Model:
         current_date_formatted = current_date.strftime('%Y%m%d')
 
         # Define model name and versioning format for model registry
-        model_name = f'GRU_{forecast_horizon}_day_horizon_{time_steps}_time_steps_{current_date_formatted}'
+        model_name = f'GRU_{forecast_horizon}_day_horizon_{time_steps}_time_steps_{ts_nodash}'
 
         with mlflow.start_run(experiment_id=experiment_id,
-                              run_name=f'GRU_{forecast_horizon}_day_horizon_{time_steps}_time_steps_{current_date_formatted}'):
+                              run_name=f'GRU_{forecast_horizon}_day_horizon_{time_steps}_time_steps_{ts_nodash}'):
             mlflow.log_param("units", 48)
             mlflow.log_param("activation_function", 'tanh')
             mlflow.log_param("dropout", 0.2)
