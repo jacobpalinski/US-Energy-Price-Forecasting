@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 import os
 import json
 import pytest
@@ -6,7 +6,7 @@ import requests_mock
 import boto3
 import pandas as pd
 from unittest.mock import patch, MagicMock
-from dags.utils.aws import S3, S3Metadata
+from dags.utils.aws import S3, S3Metadata, SNSNotifier
 from dags.utils.config import Config
 from dags.extraction.eia_api import *
 from dags.extraction.noaa_api import *
@@ -19,29 +19,12 @@ def mock_environment_variables(mocker):
     mocker.patch.dict(os.environ, {
         'AWS_ACCESS_KEY_ID': 'access-key',
         'AWS_SECRET_ACCESS_KEY': 'secret-key',
+        'AWS_REGION': 'region',
         'S3_BUCKET': 'bucket',
+        'TOPIC_ARN': 'topic-arn',
         'API_KEY': 'api_key',
         'TOKEN': 'token'
     })
-
-@pytest.fixture
-def mock_s3(mocker, mock_environment_variables):
-    ''' 
-    Mocks S3 class for testing 
-    '''
-    config = Config()
-    s3 = S3(config=config)
-    return s3
-
-@pytest.fixture
-def mock_s3_metadata(mocker, mock_environment_variables):
-    ''' 
-    Mocks S3Metadata class for testing 
-    '''
-    config = Config()
-    s3 = S3(config)
-    s3_metadata = S3Metadata(config=config)
-    return s3_metadata
 
 @pytest.fixture
 def mock_boto3_client(mocker):
@@ -52,12 +35,48 @@ def mock_boto3_client(mocker):
     yield mock_s3_client
 
 @pytest.fixture
+def mock_s3(mocker, mock_environment_variables, mock_boto3_client):
+    ''' 
+    Mocks S3 class for testing 
+    '''
+    config = Config()
+    s3 = S3(config=config)
+    return s3
+
+@pytest.fixture
 def mock_get_data(mocker, mock_s3):
     ''' 
     Mocks get_data method of S3 object 
     '''
-    mock_s3_get_data = mocker.patch.object(mock_s3, 'get_data')
+    mock_s3_get_data = mocker.patch(mock_s3, 'get_data')
     return mock_s3_get_data
+
+@pytest.fixture
+def mock_put_data(mocker, mock_s3):
+    '''
+    Mocks put_data method of S3 object
+    '''
+    mock_s3_put_data = mocker.patch('dags.utils.aws.S3.put_data')
+    return mock_s3_put_data
+
+@pytest.fixture
+def mock_s3_metadata(mocker, mock_environment_variables, mock_boto3_client):
+    ''' 
+    Mocks S3Metadata class for testing 
+    '''
+    config = Config()
+    s3 = S3(config)
+    s3_metadata = S3Metadata(config=config)
+    return s3_metadata
+
+@pytest.fixture
+def mock_sns_notifier(mocker, mock_environment_variables, mock_boto3_client):
+    '''
+    Mocks SNSNotifier class for testing
+    '''
+    config = Config()
+    sns_notifier = SNSNotifier(config=config)
+    return sns_notifier
 
 @pytest.fixture
 def mock_eia(mocker, mock_environment_variables):
@@ -89,20 +108,20 @@ def mock_requests_get(mocker):
     return mocker.patch('requests.get')
 
 @pytest.fixture
-def mock_get_latest_end_date(mocker):
-    ''' 
-    Mocks get_latest_end_date method of S3Metadata class 
-    '''
-    mock_s3metadata_get_latest_end_date = mocker.patch.object(S3Metadata, 'get_latest_end_date')
-    return mock_s3metadata_get_latest_end_date
-
-@pytest.fixture
 def mock_update_metadata(mocker):
     ''' 
     Mocks update_metadata method of S3Metadata class 
     '''
-    mock_s3metadata_get_latest_end_date = mocker.patch.object(S3Metadata, 'update_metadata')
-    return mock_s3metadata_get_latest_end_date
+    mock_s3metadata_update_metadata = mocker.patch.object(S3Metadata, 'update_metadata')
+    return mock_s3metadata_update_metadata
+
+@pytest.fixture
+def mock_get_metadata(mocker, mock_eia):
+    '''
+    Mocks get_metadata method of S3Metadata class
+    '''
+    mock_s3metadata_get_metadata = mocker.patch('dags.utils.aws.S3Metadata.get_metadata', return_value = {})
+    return mock_s3metadata_get_metadata
 
 @pytest.fixture
 def mock_eia_headers():
@@ -188,10 +207,10 @@ def mock_metadata_response():
     Mocks metadata that is retrieved from S3 bucket to get latest load date for a given dataset 
     '''
     data = {
-        'natural_gas_spot_prices': ['1999-01-04'],
-        'natural_gas_rigs_in_operation': [],
-        'natural_gas_monthly_variables': ['2024-03'],
-        'daily_weather': ['2024-05-21', '2024-05-23']
+        'natural_gas_spot_prices': {"latest_end_date": "2026-04-13"},
+        'natural_gas_rigs_in_operation': {"latest_end_date": "2024-02", "latest_extracted_file_path": "s3_path"},
+        'natural_gas_monthly_variables': {"latest_end_date": "2021-02", "latest_transformed_file_path": "s3_path"},
+        'daily_weather': {"latest_end_date": "2026-04-13", "latest_transformed_file_path": "s3_path"}
     }
     return data
 
@@ -217,7 +236,7 @@ def df_convert_column_to_numeric():
 @pytest.fixture
 def df_etl_transforms_testing():
     ''' 
-    Dataframe to be used for testing of EtlUtils class 
+    Dataframe to be used for testing of EtlTransforms class
     '''
     data = [{'date': '1999-01-04', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.3, 'city': 'Detroit', 'state': 'Michigan'},
     {'date': '1999-01-04', 'datatype': 'AWND', 'station': 'GHCND:USW00094847', 'value': 4.3, 'city': 'Detroit', 'state': 'Michigan'},
@@ -269,13 +288,13 @@ def df_noaa_feature_engineering_testing():
     '''
     Dataframe to be used for testing functions used for feature engineering in NoaaTransformation class
     Will be used to test the following functions:
-        maximum_hdd(cls, df)
-        maximum_cdd(cls, df)
-        wci_sum(cls, df)
-        snow_sum(cls, df)
-        min_and_max_average_temperature(cls, df)
-        max_abs_tavg_diff(cls, df)
-        max_abs_tavg_diff_relative_daily_median(cls, df)
+        maximum_hdd(df)
+        maximum_cdd(df)
+        wci_sum(df)
+        snow_sum(df)
+        min_and_max_average_temperature(df)
+        max_abs_tavg_diff(df)
+        max_abs_tavg_diff_relative_daily_median(df)
     '''
     data = {'date': ['1999-01-05', '1999-01-05', '1999-01-05', '1999-01-06', '1999-01-06', '1999-01-06', '1999-01-07', '1999-01-07', '1999-01-07',
     '2000-01-05', '2000-01-05', '2000-01-05', '2000-01-06', '2000-01-06', '2000-01-06', '2000-01-07', '2000-01-07', '2000-01-07', 
@@ -299,12 +318,12 @@ def df_eia_feature_engineering_testing():
     '''
     Dataframe to be used for testing functions used for feature engineering in NoaaTransformation class
     Will be used to test the following functions:
-        natural_gas_prices_lag(cls, df)
-        heating_oil_natural_gas_price_ratio(cls, df)
-        expotential_weighted_natural_gas_price_volatility(cls, df)
-        rolling_average_natural_gas_price(cls, df)
-        rolling_median_natural_gas_price(cls, df)
-        total_consumption_to_total_underground_storage_ratio(cls, df)
+        natural_gas_prices_lag(df)
+        heating_oil_natural_gas_price_ratio(df)
+        expotential_weighted_natural_gas_price_volatility(df)
+        rolling_average_natural_gas_price(df)
+        rolling_median_natural_gas_price(df)
+        total_consumption_to_total_underground_storage_ratio(df)
     '''
     data = {'date': ['1999-01-04', '1999-01-05', '1999-01-06', '1999-01-07', '1999-01-08', '1999-01-11', '1999-01-12', '1999-01-13',
     '1999-01-14', '1999-01-15', '1999-01-19', '1999-01-20', '1999-01-21', '1999-01-22', '1999-01-25', '1999-01-26',
