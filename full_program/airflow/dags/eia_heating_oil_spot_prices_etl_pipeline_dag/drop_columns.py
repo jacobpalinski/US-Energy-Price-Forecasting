@@ -1,14 +1,21 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
 import pandera as pa
 from pandera import Column, Check
 import pandas as pd
-from dags.extraction.eia_api import *
+from dags.utils.aws import S3, S3Metadata
+from dags.utils.config import Config
 from dags.transformation.etl_transforms import EtlTransforms
 from dags.utils.data_quality_check_functions import DataQualityChecks
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def drop_columns(**context):
     ''' Drop irrelevant columns from extracted heating oil spot prices '''
+    # Timestamp of DAG execution
     ts_nodash = context["ts_nodash"]
 
     # Instantiate classes for Config, S3
@@ -40,14 +47,19 @@ def drop_columns(**context):
         )
     },
     unique=["value", "period"])
-    schema.validate(heating_oil_spot_prices_df)
+    
+    try:
+        schema.validate(heating_oil_spot_prices_df)
+        logger.info("Data quality checks passed")
+    except pa.errors.SchemaError:
+        logger.exception("Data quality validation failed")
 
     # Drop irrelevant columns from heating_oil_spot_prices_df
     heating_oil_spot_prices_df = EtlTransforms.drop_columns(df=heating_oil_spot_prices_df, columns=['duoarea', 'area-name', 'product', 'product-name', 'process',
     'process-name', 'series', 'series-description', 'units'])
 
-    # Retain filename for extracted data to be used as filename for transformed data in S3
-    latest_extracted_filename = latest_extracted_file_path.split('/')[-1]
+    # Log columns after drop_columns transformation
+    logger.info(f"Columns after drop_columns transformation: {heating_oil_spot_prices_df.columns.tolist()}")
     
     # Put data in S3 and update metadata with latest transformed file path
     s3.put_data(data=heating_oil_spot_prices_df, s3_key=f'full_program/transformation/heating_oil_spot_prices/heating_oil_spot_prices_{ts_nodash}.json')

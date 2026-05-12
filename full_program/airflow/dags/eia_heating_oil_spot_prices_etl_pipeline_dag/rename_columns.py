@@ -1,7 +1,13 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
-from dags.extraction.eia_api import *
+from dags.utils.config import Config
+from dags.utils.aws import S3
 from dags.transformation.etl_transforms import EtlTransforms
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def rename_columns():
     ''' Rename columns from extracted heating oil spot prices '''
@@ -19,6 +25,9 @@ def rename_columns():
 
     # Rename value and period columns from heating_oil_spot_prices_df
     heating_oil_spot_prices_df = EtlTransforms.rename_columns(df=heating_oil_spot_prices_df, renamed_columns={'value': 'price_heating_oil ($/GAL)', 'period': 'date'})
+
+    # Log info about successful renaming of columns
+    logger.info("Successfully renamed columns in heating oil spot prices dataframe")
     
     # Put data in S3
     s3.put_data(data=heating_oil_spot_prices_df, s3_key=latest_transformed_file_path)

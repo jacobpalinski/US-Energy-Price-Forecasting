@@ -1,4 +1,4 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -9,6 +9,12 @@ from eia_heating_oil_spot_prices_etl_pipeline_dag.rename_columns import rename_c
 from eia_heating_oil_spot_prices_etl_pipeline_dag.convert_values_to_float import convert_values_to_float
 from eia_heating_oil_spot_prices_etl_pipeline_dag.extend_previous_data import extend_previous_data
 from eia_heating_oil_spot_prices_etl_pipeline_dag.data_quality_checks import data_quality_checks
+from dags.utils.config import Config
+from dags.utils.aws import SNSNotifier
+
+# Setup config and SNS notifier classes
+config = Config()
+sns_notifier = SNSNotifier(config=config)
 
 # Create default arguments for DAG
 default_args = {

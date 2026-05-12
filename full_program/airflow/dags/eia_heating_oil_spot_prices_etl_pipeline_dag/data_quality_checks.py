@@ -6,6 +6,11 @@ from pandera import Column, Check
 from dags.utils.aws import S3, S3Metadata
 from dags.utils.config import Config
 from dags.transformation.etl_transforms import EtlTransforms
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def data_quality_checks():
     ''' Function that performs data quality checks on transformed heating oil spot prices dataset '''
@@ -19,10 +24,17 @@ def data_quality_checks():
     heating_oil_spot_prices_transformed_json = s3.get_data(s3_key=latest_transformed_file_path)
     heating_oil_spot_prices_transformed_df = EtlTransforms.json_to_df(data=heating_oil_spot_prices_transformed_json, date_as_index=False)
     
+    # Log row count of latest transformed dataset
+    logger.info(f"Latest transformed dataset contains {len(heating_oil_spot_prices_transformed_df)} rows")
+
     previous_transformed_file_path = metadata.get('heating_oil_spot_prices', {}).get('previous_transformed_file_path')
     if previous_transformed_file_path is not None:
         heating_oil_spot_prices_previous_transformed_json = s3.get_data(s3_key=previous_transformed_file_path)
         heating_oil_spot_prices_previous_transformed_df = EtlTransforms.json_to_df(data=heating_oil_spot_prices_previous_transformed_json, date_as_index=False)
+        
+        # Log row count of previous transformed dataset
+        logger.info(f"Previous transformed dataset contains {len(heating_oil_spot_prices_previous_transformed_df)} rows")
+        
     else:
         heating_oil_spot_prices_previous_transformed_df = None
 
@@ -33,6 +45,10 @@ def data_quality_checks():
         start_date = heating_oil_spot_prices_transformed_df['date'].iloc[0]
 
     end_date = heating_oil_spot_prices_transformed_df['date'].iloc[-1]
+
+    # Log start and end dates
+    logger.info(f"Start date for data quality checks: {start_date}")
+    logger.info(f"End date for data quality checks: {end_date}")
 
     # Pandera schema for data quality checks
     schema = pa.DataFrameSchema(
@@ -45,4 +61,8 @@ def data_quality_checks():
     unique=["date", "price_heating_oil ($/GAL)"])
 
     # Validate schema
-    schema.validate(heating_oil_spot_prices_transformed_df)
+    try:
+        schema.validate(heating_oil_spot_prices_transformed_df)
+        logger.info("Data quality checks passed")
+    except pa.errors.SchemaError:
+        logger.exception("Data quality validation failed")

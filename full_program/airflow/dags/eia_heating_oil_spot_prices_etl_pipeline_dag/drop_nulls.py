@@ -1,7 +1,13 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
-from dags.extraction.eia_api import *
+from dags.utils.aws import S3, S3Metadata
+from dags.utils.config import Config
 from dags.transformation.etl_transforms import EtlTransforms
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def drop_nulls():
     ''' Drop null records from extracted heating oil spot prices '''
@@ -17,8 +23,14 @@ def drop_nulls():
     heating_oil_spot_prices_json = s3.get_data(latest_transformed_file_path)
     heating_oil_spot_prices_df = EtlTransforms.json_to_df(data=heating_oil_spot_prices_json, date_as_index=False)
 
+    # Log number of records before dropping nulls
+    logger.info(f"Number of records before dropping nulls: {len(heating_oil_spot_prices_df)}")
+
     # Drop null values from heating_oil_spot_prices_df
     heating_oil_spot_prices_df = EtlTransforms.drop_null(df=heating_oil_spot_prices_df)
     
+    # Log number of records after dropping nulls
+    logger.info(f"Number of records after dropping nulls: {len(heating_oil_spot_prices_df)}")
+
     # Put data in S3
     s3.put_data(data=heating_oil_spot_prices_df, s3_key=latest_transformed_file_path)

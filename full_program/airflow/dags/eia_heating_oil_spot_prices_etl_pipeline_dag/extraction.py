@@ -1,9 +1,12 @@
-''' Import modules '''
+# Import modules
 from datetime import datetime
-from dags.extraction.eia_api import *
+from dags.utils.config import Config
+from dags.utils.aws import S3, S3Metadata
+from dags.extraction.eia_api import EIA
 
 def heating_oil_spot_prices_extraction(**context):
     ''' Performs data extraction from EIA api for heating oil spot prices '''
+    # Timestamp of DAG execution
     ts_nodash = context["ts_nodash"]
 
     # Instantiate classes for Config, S3, S3Metadata and EIA
