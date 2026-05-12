@@ -1,10 +1,10 @@
-''' Import modules '''
+# Import modules
 import pytest
 import pandas as pd
 from dags.transformation.noaa_api_transformation import *
 from dags.transformation.eia_api_transformation import *
 from dags.fixtures.fixtures import df_noaa_transformation_testing, df_noaa_transformation_testing_impute_missing_weather_variables, df_noaa_feature_engineering_testing, \
-df_convert_column_to_float, df_eia_feature_engineering_testing
+df_convert_column_to_numeric, df_eia_feature_engineering_testing
 
 class TestNoaaTransformation:
     ''' 
@@ -292,7 +292,7 @@ class TestEiaTransformation:
     '''
     def test_convert_column_to_numeric(self, df_convert_column_to_numeric):
         '''
-        Tests convert_price_to_float function of EiaTransformation class
+        Tests convert_column_to_numeric function of EiaTransformation class
         '''
         data = {'period': ['1999-01', '1999-02', '1999-03', '1999-04'],
         'duoarea': ['NUS-Z00', 'NUS-Z00', 'NUS-Z00', 'NUS-Z00'],
@@ -306,7 +306,7 @@ class TestEiaTransformation:
         'value': [3.0, 4.2, 5.1, 6.2],
         'units': ['$/MCF', '$/MCF', '$/MCF', '$/MCF']}
         expected_df = pd.DataFrame(data)
-        result_df = EiaTransformation.convert_column_to_float(df=df_convert_column_to_float, column='value')
+        result_df = EiaTransformation.convert_column_to_numeric(df=df_convert_column_to_numeric, column='value')
         pd.testing.assert_frame_equal(result_df, expected_df)
 
     def test_natural_gas_prices_lag(self, df_eia_feature_engineering_testing):
