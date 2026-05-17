@@ -21,7 +21,8 @@ default_args = {
     'owner': 'airflow',
     'start_date': datetime(2025, 2, 28),
     'retries': 1,
-    'retry_delay': timedelta(seconds=30)
+    'retry_delay': timedelta(seconds=30),
+    'on_failure_callback': sns_notifier
 }
 
 # Create DAG that runs weekly
